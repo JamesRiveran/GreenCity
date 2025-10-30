@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://bpvs6unrhmgga"]
+[gd_scene load_steps=8 format=3 uid="uid://bpvs6unrhmgga"]
 
 [ext_resource type="Script" uid="uid://w3uk8totf56t" path="res://Scripts/ItemSpawner.gd" id="1_6o2em"]
 [ext_resource type="PackedScene" uid="uid://btkmt5nnpupi6" path="res://Assets/Scenes/floor.tscn" id="1_skivu"]
 [ext_resource type="PackedScene" uid="uid://ctuq3lki53eau" path="res://Assets/Scenes/bag.tscn" id="2_wmxxr"]
+[ext_resource type="PackedScene" uid="uid://d1dncn6cckwmj" path="res://Assets/player.tscn" id="4_wmxxr"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_4dvna"]
 
@@ -19,7 +20,7 @@ sky = SubResource("Sky_5qytm")
 environment = SubResource("Environment_tr35v")
 
 [node name="Camera3D" type="Camera3D" parent="WorldEnvironment"]
-transform = Transform3D(1, 0, 0, 0, 0.7795348, 0.6263589, 0, -0.6263589, 0.7795348, 0, 2.508243, 4.677918)
+transform = Transform3D(1, 0, 0, 0, 0.7795348, 0.6263589, 0, -0.6263589, 0.7795348, 0, 7.0696225, 15.370945)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldEnvironment"]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 30, 0)
@@ -40,3 +41,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 1)
 
 [node name="Point2" type="Marker3D" parent="SpawnPoints"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -3.3886142)
+
+[node name="Player" parent="." instance=ExtResource("4_wmxxr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5591593, 0, -4.9478016)
