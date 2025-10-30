@@ -1,6 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://bpvs6unrhmgga"]
+[gd_scene load_steps=7 format=3 uid="uid://bpvs6unrhmgga"]
 
+[ext_resource type="Script" uid="uid://w3uk8totf56t" path="res://Scripts/ItemSpawner.gd" id="1_6o2em"]
 [ext_resource type="PackedScene" uid="uid://btkmt5nnpupi6" path="res://Assets/Scenes/floor.tscn" id="1_skivu"]
+[ext_resource type="PackedScene" uid="uid://ctuq3lki53eau" path="res://Assets/Scenes/bag.tscn" id="2_wmxxr"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_4dvna"]
 
@@ -23,3 +25,18 @@ transform = Transform3D(1, 0, 0, 0, 0.7795348, 0.6263589, 0, -0.6263589, 0.77953
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 30, 0)
 
 [node name="Floor" parent="." instance=ExtResource("1_skivu")]
+
+[node name="Items" type="Node3D" parent="." node_paths=PackedStringArray("items_root")]
+script = ExtResource("1_6o2em")
+item_templates = Array[PackedScene]([ExtResource("2_wmxxr")])
+spawn_points = Array[NodePath]([NodePath("../SpawnPoints/Point"), NodePath("../SpawnPoints/Point2")])
+items_root = NodePath(".")
+clear_old_items = true
+
+[node name="SpawnPoints" type="Node3D" parent="."]
+
+[node name="Point" type="Marker3D" parent="SpawnPoints"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 1)
+
+[node name="Point2" type="Marker3D" parent="SpawnPoints"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -3.3886142)
