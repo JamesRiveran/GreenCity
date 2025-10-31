@@ -51,7 +51,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -3.3886142)
 [node name="Player" parent="." instance=ExtResource("4_wmxxr")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5591593, 0, -4.9478016)
 wall_bodies = Array[NodePath]([NodePath("../Walls/WallE/StaticBody3D"), NodePath("../Walls/WallO/StaticBody3D"), NodePath("../Walls/WallS/StaticBody3D"), NodePath("../Walls/WallN/StaticBody3D")])
-wall_areas = Array[NodePath]([NodePath("../Town/Area1/Area3D"), NodePath("../Town/Area2/Area3D"), NodePath("../Town/Area3/Area3D"), NodePath("../Town/Area4/Area3D")])
+wall_areas = Array[NodePath]([NodePath("../TownAreas/Area1/Area3D"), NodePath("../TownAreas/Area2/Area3D"), NodePath("../TownAreas/Area3/Area3D"), NodePath("../TownAreas/Area4/Area3D")])
 hud_path = NodePath("../HUD")
 
 [node name="SpringArm3D" type="SpringArm3D" parent="Player"]
@@ -61,39 +61,41 @@ spring_length = 5.0
 [node name="FollowCamera" type="Camera3D" parent="Player/SpringArm3D"]
 transform = Transform3D(-1, 6.181725e-08, -6.181724e-08, -1.511168e-08, 0.57423383, 0.8186914, 8.6106795e-08, 0.8186914, -0.57423383, 0.0062217712, 3.9252052, 1.6783996)
 
-[node name="Town" type="Node3D" parent="."]
+[node name="TownAreas" type="Node3D" parent="."]
 
-[node name="Area1" type="Node3D" parent="Town"]
+[node name="Area1" type="Node3D" parent="TownAreas"]
 transform = Transform3D(38, 0, 0, 0, 10, 0, 0, 0, 38, 22.5, 5.189189, 22.5)
 
-[node name="Area3D" type="Area3D" parent="Town/Area1"]
+[node name="Area3D" type="Area3D" parent="TownAreas/Area1"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Town/Area1/Area3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TownAreas/Area1/Area3D"]
 shape = SubResource("BoxShape3D_wmxxr")
 
-[node name="Area2" type="Node3D" parent="Town"]
+[node name="Area2" type="Node3D" parent="TownAreas"]
 transform = Transform3D(38, 0, 0, 0, 10, 0, 0, 0, 38, -22.5, 5.189, 22.5)
 
-[node name="Area3D" type="Area3D" parent="Town/Area2"]
+[node name="Area3D" type="Area3D" parent="TownAreas/Area2"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Town/Area2/Area3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TownAreas/Area2/Area3D"]
 shape = SubResource("BoxShape3D_wmxxr")
 
-[node name="Area3" type="Node3D" parent="Town"]
+[node name="Area3" type="Node3D" parent="TownAreas"]
 transform = Transform3D(38, 0, 0, 0, 10, 0, 0, 0, 38, -22.5, 5.189, -22.5)
 
-[node name="Area3D" type="Area3D" parent="Town/Area3"]
+[node name="Area3D" type="Area3D" parent="TownAreas/Area3"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Town/Area3/Area3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TownAreas/Area3/Area3D"]
 shape = SubResource("BoxShape3D_wmxxr")
 
-[node name="Area4" type="Node3D" parent="Town"]
+[node name="Area4" type="Node3D" parent="TownAreas"]
 transform = Transform3D(38, 0, 0, 0, 10, 0, 0, 0, 38, 22.5, 5.189, -22.5)
 
-[node name="Area3D" type="Area3D" parent="Town/Area4"]
+[node name="Area3D" type="Area3D" parent="TownAreas/Area4"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Town/Area4/Area3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="TownAreas/Area4/Area3D"]
 shape = SubResource("BoxShape3D_wmxxr")
+
+[node name="TownBuildings" type="Node3D" parent="."]
 
 [node name="Walls" type="Node3D" parent="."]
 
