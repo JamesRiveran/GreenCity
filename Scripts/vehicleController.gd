@@ -1,10 +1,12 @@
 extends VehicleBody3D
 
+# --- Ruedas ---
 @export var front_left_wheel: VehicleWheel3D
 @export var front_right_wheel: VehicleWheel3D
 @export var rear_left_wheel: VehicleWheel3D
 @export var rear_right_wheel: VehicleWheel3D
 
+# --- Control del vehículo ---
 @export var engine_force_strength: float = 1200.0
 @export var brake_force_strength: float = 60.0
 @export var steering_angle_max: float = 0.40
@@ -19,34 +21,40 @@ extends VehicleBody3D
 @export var max_health: int = 100
 var health: int = max_health
 
-# --- Daño por “wall” (Area3D) ---
+# --- Daño configurable ---
 @export var wall_damage: int = 10
 @export var wall_cooldown: float = 0.30
-@export var wall_area_path: NodePath      # arrastra aquí tu Area3D
-@export var wall_area_name: String = ""   # opcional: si prefieres filtrar por nombre
 
-@onready var wall_area: Area3D = get_node_or_null(wall_area_path)
+# --- Paredes y Áreas de daño ---
+@export var wall_bodies: Array[NodePath] = []  # <--- aquí asignas tus StaticBody3D (paredes)
+@export var wall_areas: Array[NodePath] = []   # opcional, si tienes Area3D también
+
 var _wall_hit_cd_until := 0.0
 
 
 func _ready():
-	# Estabilidad del coche
+	# Configurar estabilidad del vehículo
 	center_of_mass_mode = RigidBody3D.CENTER_OF_MASS_MODE_CUSTOM
 	center_of_mass = Vector3(0, -1, 0)
 
-	# (Opcional) habilitar monitor de contactos por si también chocas con cuerpos
+	# Habilitar detección de colisiones físicas
 	contact_monitor = true
-	max_contacts_reported = max(max_contacts_reported, 4)
+	max_contacts_reported = max(max_contacts_reported, 8)
 
-	# Conexión directa al Area3D de la wall
-	if wall_area:
-		wall_area.monitoring = true
-		wall_area.monitorable = true
-		if wall_area.has_signal("body_entered"):
-			wall_area.body_entered.connect(_on_wall_area_body_entered)
+	connect("body_entered", Callable(self, "_on_body_entered_vehicle"))
 
-	# Vida inicial
-	health = max_health
+	# Conectar todas las áreas configuradas
+	for path in wall_areas:
+		var area := get_node_or_null(path)
+		if area and area is Area3D:
+			area.monitoring = true
+			area.monitorable = true
+			if area.has_signal("body_entered"):
+				area.body_entered.connect(_on_wall_area_body_entered.bind(area))
+			print("[Car:%s] Área de daño conectada: %s" % [name, area.name])
+		else:
+			print("[Car:%s] ⚠️ Área inválida en path: %s" % [name, str(path)])
+
 	print("[Car:%s] Vida inicial: %d" % [name, health])
 
 
@@ -86,30 +94,36 @@ func _physics_process(_delta: float) -> void:
 
 func apply_damage(amount: int, source: Node = null) -> void:
 	health = max(health - amount, 0)
-	print("[Car:%s] Daño: %d | Vida: %d" % [name, amount, health])
+	var src_name = source.name if source else "Desconocido"
+	print("[Car:%s] 💥 Daño recibido: %d | Fuente: %s | Vida restante: %d" % [name, amount, src_name, health])
 	if health == 0:
-		print("[Car:%s] ¡Vehículo destruido!" % name)
+		print("[Car:%s] 🚗💀 ¡Vehículo destruido!" % name)
 
 
-# Cuando el Area3D (wall) detecta que el coche entró
-func _on_wall_area_body_entered(body: Node) -> void:
+# Cuando una de las áreas detecta que el coche entró
+func _on_wall_area_body_entered(body: Node, area: Area3D) -> void:
 	if body != self:
 		return
-	_try_wall_damage()
+	print("[Car:%s] Entró en área '%s'" % [name, area.name])
+	_try_wall_damage(area)
 
 
-# (Opcional) si no asignas wall_area_path y quieres filtrar por nombre desde el coche
-func _on_area_entered_vehicle(area: Area3D) -> void:
-	if wall_area and area != wall_area:
-		return
-	if wall_area == null and wall_area_name != "" and area.name != wall_area_name:
-		return
-	_try_wall_damage()
+# Cuando el coche colisiona físicamente con un StaticBody3D asignado
+func _on_body_entered_vehicle(body: Node) -> void:
+	if body is StaticBody3D:
+		# Comprobar si este StaticBody3D está en nuestra lista del inspector
+		for path in wall_bodies:
+			var wall := get_node_or_null(path)
+			if wall == body:
+				print("[Car:%s] 🚧 Colisión con pared '%s'" % [name, body.name])
+				_try_wall_damage(body)
+				break
 
 
-func _try_wall_damage() -> void:
+# Aplica daño con cooldown
+func _try_wall_damage(source: Node = null) -> void:
 	var now := Time.get_unix_time_from_system()
 	if now < _wall_hit_cd_until:
 		return
-	apply_damage(wall_damage, wall_area if wall_area else self)
+	apply_damage(wall_damage, source if source else self)
 	_wall_hit_cd_until = now + wall_cooldown
