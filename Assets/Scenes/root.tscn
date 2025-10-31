@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://bpvs6unrhmgga"]
+[gd_scene load_steps=11 format=3 uid="uid://bpvs6unrhmgga"]
 
 [ext_resource type="Script" uid="uid://w3uk8totf56t" path="res://Scripts/ItemSpawner.gd" id="1_6o2em"]
 [ext_resource type="PackedScene" uid="uid://btkmt5nnpupi6" path="res://Assets/Scenes/floor.tscn" id="1_skivu"]
 [ext_resource type="PackedScene" uid="uid://ctuq3lki53eau" path="res://Assets/Scenes/bag.tscn" id="2_wmxxr"]
 [ext_resource type="PackedScene" uid="uid://d1dncn6cckwmj" path="res://Assets/player.tscn" id="4_wmxxr"]
+[ext_resource type="Script" uid="uid://ce501i3lptkkq" path="res://Scripts/hud.gd" id="5_morkg"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_wmxxr"]
 
@@ -51,6 +52,14 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -3.3886142)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5591593, 0, -4.9478016)
 wall_bodies = Array[NodePath]([NodePath("../Walls/WallE/StaticBody3D"), NodePath("../Walls/WallO/StaticBody3D"), NodePath("../Walls/WallS/StaticBody3D"), NodePath("../Walls/WallN/StaticBody3D")])
 wall_areas = Array[NodePath]([NodePath("../Town/Area1/Area3D"), NodePath("../Town/Area2/Area3D"), NodePath("../Town/Area3/Area3D"), NodePath("../Town/Area4/Area3D")])
+hud_path = NodePath("../HUD")
+
+[node name="SpringArm3D" type="SpringArm3D" parent="Player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.42687464, 0)
+spring_length = 5.0
+
+[node name="FollowCamera" type="Camera3D" parent="Player/SpringArm3D"]
+transform = Transform3D(-1, 6.181725e-08, -6.181724e-08, -1.511168e-08, 0.57423383, 0.8186914, 8.6106795e-08, 0.8186914, -0.57423383, 0.0062217712, 3.9252052, 1.6783996)
 
 [node name="Town" type="Node3D" parent="."]
 
@@ -123,3 +132,18 @@ transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 50, 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Walls/WallN/StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7868347, 0.8994601, 0)
 shape = SubResource("BoxShape3D_morkg")
+
+[node name="HUD" type="CanvasLayer" parent="."]
+script = ExtResource("5_morkg")
+
+[node name="HealthBar" type="ProgressBar" parent="HUD"]
+offset_left = 692.0
+offset_top = 49.0
+offset_right = 1101.0
+offset_bottom = 76.0
+value = 100.0
+
+[node name="GameTimer" type="Timer" parent="HUD"]
+wait_time = 180.0
+one_shot = true
+autostart = true

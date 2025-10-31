@@ -28,9 +28,10 @@ var health: int = max_health
 # --- Paredes y Áreas de daño ---
 @export var wall_bodies: Array[NodePath] = []  # <--- aquí asignas tus StaticBody3D (paredes)
 @export var wall_areas: Array[NodePath] = []   # opcional, si tienes Area3D también
+@export var hud_path: NodePath
+@onready var hud := get_node_or_null(hud_path)
 
 var _wall_hit_cd_until := 0.0
-
 
 func _ready():
 	# Configurar estabilidad del vehículo
@@ -96,6 +97,11 @@ func apply_damage(amount: int, source: Node = null) -> void:
 	health = max(health - amount, 0)
 	var src_name = source.name if source else "Desconocido"
 	print("[Car:%s] 💥 Daño recibido: %d | Fuente: %s | Vida restante: %d" % [name, amount, src_name, health])
+
+	# ✅ Actualizar barra de vida
+	if hud and hud.has_method("update_health"):
+		hud.update_health(health, max_health)
+
 	if health == 0:
 		print("[Car:%s] 🚗💀 ¡Vehículo destruido!" % name)
 
@@ -118,7 +124,6 @@ func _on_body_entered_vehicle(body: Node) -> void:
 				print("[Car:%s] 🚧 Colisión con pared '%s'" % [name, body.name])
 				_try_wall_damage(body)
 				break
-
 
 # Aplica daño con cooldown
 func _try_wall_damage(source: Node = null) -> void:
