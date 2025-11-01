@@ -7,10 +7,13 @@
 
 [node name="Bag" type="Node3D"]
 script = ExtResource("1_qthco")
-trash_type_score = 20
-floating_enabled = true
-float_amplitude = 0.3
-float_speed = 2.5
+is_dump = null
+rotation_enabled = null
+rotation_speed = null
+rotation_axis = null
+floating_enabled = null
+float_amplitude = null
+float_speed = null
 
 [node name="BagMesh" parent="." instance=ExtResource("1_qtmei")]
 

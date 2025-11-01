@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://bpvs6unrhmgga"]
+[gd_scene load_steps=10 format=3 uid="uid://bpvs6unrhmgga"]
 
-[ext_resource type="Script" uid="uid://w3uk8totf56t" path="res://Scripts/ItemSpawner.gd" id="1_6o2em"]
 [ext_resource type="PackedScene" uid="uid://btkmt5nnpupi6" path="res://Assets/Scenes/floor.tscn" id="1_skivu"]
+[ext_resource type="Script" uid="uid://bcbdnxj17ojxi" path="res://Scripts/TrashManager.gd" id="2_6o2em"]
 [ext_resource type="PackedScene" uid="uid://ctuq3lki53eau" path="res://Assets/Scenes/bag.tscn" id="2_wmxxr"]
-[ext_resource type="PackedScene" uid="uid://d1dncn6cckwmj" path="res://Assets/player.tscn" id="4_wmxxr"]
+[ext_resource type="PackedScene" uid="uid://d2ai043jjf2fr" path="res://Assets/Scenes/dump.tscn" id="4_morkg"]
+[ext_resource type="PackedScene" uid="uid://d1dncn6cckwmj" path="res://Assets/Scenes/player.tscn" id="4_wmxxr"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_4dvna"]
 
@@ -22,31 +23,41 @@ sky = SubResource("Sky_5qytm")
 environment = SubResource("Environment_tr35v")
 
 [node name="Camera3D" type="Camera3D" parent="WorldEnvironment"]
-transform = Transform3D(1, 0, 0, 0, 0.7795348, 0.6263589, 0, -0.6263589, 0.7795348, 0, 7.0696225, 15.370945)
+transform = Transform3D(1, 0, 0, 0, 0.7795348, 0.6263589, 0, -0.6263589, 0.7795348, 0, 2.8566632, 5.673811)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldEnvironment"]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 30, 0)
 
 [node name="Floor" parent="." instance=ExtResource("1_skivu")]
 
-[node name="Items" type="Node3D" parent="." node_paths=PackedStringArray("items_root")]
-script = ExtResource("1_6o2em")
+[node name="Items" type="Node3D" parent="." node_paths=PackedStringArray("vehicle", "dumps", "items_root")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1, 0)
+script = ExtResource("2_6o2em")
+collected_count_max = 2
+vehicle = NodePath("../Player")
+dumps = [NodePath("../Dump")]
 item_templates = Array[PackedScene]([ExtResource("2_wmxxr")])
-spawn_points = Array[NodePath]([NodePath("../SpawnPoints/Point"), NodePath("../SpawnPoints/Point2")])
+spawn_points = Array[NodePath]([NodePath("../SpawnPointsItems/Point"), NodePath("../SpawnPointsItems/Point2"), NodePath("../SpawnPointsItems/Point3"), NodePath("../SpawnPointsItems/Point4")])
 items_root = NodePath(".")
 clear_old_items = true
 
-[node name="SpawnPoints" type="Node3D" parent="."]
+[node name="SpawnPointsItems" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
 
-[node name="Point" type="Marker3D" parent="SpawnPoints"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 1)
+[node name="Point" type="Marker3D" parent="SpawnPointsItems"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5, 0, 0)
 
-[node name="Point2" type="Marker3D" parent="SpawnPoints"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -3.3886142)
+[node name="Point2" type="Marker3D" parent="SpawnPointsItems"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5, 0, 0)
+
+[node name="Point3" type="Marker3D" parent="SpawnPointsItems"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5, 0, 1.7988217)
+
+[node name="Point4" type="Marker3D" parent="SpawnPointsItems"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5, 0, 1.7988217)
 
 [node name="Player" parent="." instance=ExtResource("4_wmxxr")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5591593, 0, -4.9478016)
-wall_area_path = NodePath("../Walls/Area1/Area3D")
 
 [node name="Walls" type="Node3D" parent="."]
 
@@ -89,3 +100,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 105.66899, 0, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Walls/Wall1/Area3D"]
 shape = SubResource("BoxShape3D_wmxxr")
+
+[node name="Dump" parent="." instance=ExtResource("4_morkg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.49604756, 0.9377527)

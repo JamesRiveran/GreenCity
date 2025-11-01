@@ -1,5 +1,8 @@
 extends Node3D
 
+# Define ItemRotator como clase exportada
+class_name ItemRotator
+
 # --- ROTACIÓN ---
 @export var rotation_enabled: bool = true
 @export var rotation_speed: float = 45.0
@@ -7,7 +10,7 @@ extends Node3D
 
 # --- FLOTACIÓN ---
 @export var floating_enabled: bool = false
-@export var float_amplitude: float = 0.25  # altura máxima de movimiento
+@export var float_amplitude: float = 0.1  # altura máxima de movimiento
 @export var float_speed: float = 2.0       # velocidad de oscilación
 
 # --- VARIABLES INTERNAS ---
@@ -28,7 +31,7 @@ func _process(delta: float):
 	# Flotación
 	if floating_enabled:
 		_time += delta * float_speed
-		var offset_y = sin(_time) * float_amplitude
+		var offset_y = ((sin(_time) + 1.0) / 2.0) * float_amplitude
 		var pos = global_position
 		pos.y = _base_y + offset_y
 		global_position = pos
