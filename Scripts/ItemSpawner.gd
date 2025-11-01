@@ -1,5 +1,8 @@
 extends Node3D
 
+# Define ItemSpawner como clase exportada
+class_name ItemSpawner
+
 # Escenas que se pueden generar
 @export var item_templates: Array[PackedScene] = []
 
@@ -7,7 +10,7 @@ extends Node3D
 @export var spawn_points: Array[NodePath] = []
 
 # Nodo raíz donde se guardarán los ítems generados
-@export var items_root: Node3D
+@export var items_root: Node3D = self
 
 # Si true, se eliminarán los ítems viejos antes de generar nuevos
 @export var clear_old_items: bool = false
@@ -58,6 +61,8 @@ func spawn_items():
 			continue
 
 		var instance = template.instantiate()
-		instance.global_position = spawn_pos
+		# Asignar nombre único y legible
+		instance.name = "%s_%d" % [template.resource_path.get_file().get_basename(), count + 1] 
 		parent_node.add_child(instance)
+		instance.global_position = spawn_pos
 		count += 1

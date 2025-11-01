@@ -19,36 +19,27 @@ extends VehicleBody3D
 @export var max_health: int = 100
 var health: int = max_health
 
-# --- Daño por “wall” (Area3D) ---
+# --- Daño por colisiones con StaticBody3D ---
 @export var wall_damage: int = 10
+@export var wall_range: int = 1
 @export var wall_cooldown: float = 0.30
-@export var wall_area_path: NodePath      # arrastra aquí tu Area3D
-@export var wall_area_name: String = ""   # opcional: si prefieres filtrar por nombre
+@export var static_bodies_nodes: Array[NodePath] = []  # Lista de nodos StaticBody3D para evaluar colisiones
 
-@onready var wall_area: Area3D = get_node_or_null(wall_area_path)
+var _static_bodies: Array = []  # Array para almacenar los StaticBody3D
 var _wall_hit_cd_until := 0.0
 
-
 func _ready():
-	# Estabilidad del coche
-	center_of_mass_mode = RigidBody3D.CENTER_OF_MASS_MODE_CUSTOM
-	center_of_mass = Vector3(0, -1, 0)
-
-	# (Opcional) habilitar monitor de contactos por si también chocas con cuerpos
-	contact_monitor = true
-	max_contacts_reported = max(max_contacts_reported, 4)
-
-	# Conexión directa al Area3D de la wall
-	if wall_area:
-		wall_area.monitoring = true
-		wall_area.monitorable = true
-		if wall_area.has_signal("body_entered"):
-			wall_area.body_entered.connect(_on_wall_area_body_entered)
+	# Inicializar la lista de StaticBodies
+	_static_bodies.clear()
+	for node_path in static_bodies_nodes:
+		var node = get_node_or_null(node_path)
+		if node and node is StaticBody3D:
+			_static_bodies.append(node)
+			print("[Car:%s] StaticBody detectado: %s" % [name, node.name])
 
 	# Vida inicial
 	health = max_health
 	print("[Car:%s] Vida inicial: %d" % [name, health])
-
 
 func _physics_process(_delta: float) -> void:
 	if not front_left_wheel or not front_right_wheel:
@@ -81,35 +72,30 @@ func _physics_process(_delta: float) -> void:
 		if wheel:
 			wheel.brake = brake_force
 
+	# Detectar colisión con StaticBodies3D
+	for static_body in _static_bodies:
+		if is_colliding_with_static_body(static_body):
+			_try_wall_damage()
 
 # --- Daño y colisiones ---
 
-func apply_damage(amount: int, source: Node = null) -> void:
+func apply_damage(amount: int) -> void:
 	health = max(health - amount, 0)
 	print("[Car:%s] Daño: %d | Vida: %d" % [name, amount, health])
 	if health == 0:
 		print("[Car:%s] ¡Vehículo destruido!" % name)
 
-
-# Cuando el Area3D (wall) detecta que el coche entró
-func _on_wall_area_body_entered(body: Node) -> void:
-	if body != self:
-		return
-	_try_wall_damage()
-
-
-# (Opcional) si no asignas wall_area_path y quieres filtrar por nombre desde el coche
-func _on_area_entered_vehicle(area: Area3D) -> void:
-	if wall_area and area != wall_area:
-		return
-	if wall_area == null and wall_area_name != "" and area.name != wall_area_name:
-		return
-	_try_wall_damage()
-
+# Función para detectar la colisión con un StaticBody3D
+func is_colliding_with_static_body(static_body: StaticBody3D) -> bool:
+	var vehicle_position = global_transform.origin
+	var distance = vehicle_position.distance_to(static_body.global_transform.origin)
+	if distance < wall_range:  # Distancia de colisión (ajustar según lo necesites)
+		return true
+	return false
 
 func _try_wall_damage() -> void:
 	var now := Time.get_unix_time_from_system()
 	if now < _wall_hit_cd_until:
 		return
-	apply_damage(wall_damage, wall_area if wall_area else self)
+	apply_damage(wall_damage)
 	_wall_hit_cd_until = now + wall_cooldown
