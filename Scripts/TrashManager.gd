@@ -41,6 +41,12 @@ func _on_item_collected(item: Node3D, trash_type, trash_type_score):
 		trash_type_transported = trash_type
 		trash_type_transported_score = trash_type_score
 		print("[✅ TrashManager] Ítem recolectado:", item.name)
+		var entry_arr = list_items.filter(func (entry):
+			return entry.point.global_position == item.global_position
+		)
+		if not entry_arr.is_empty():
+			entry_arr[0].items.erase(item)
+		count_items -= 1
 		item.queue_free()
 	else:
 		print("[❌ TrashManager] Maxima capasidad no se puede recolectar item:", item.name)
