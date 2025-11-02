@@ -21,20 +21,39 @@ class_name ItemSpawner
 # Límite máximo de ítems a generar (-1 = sin límite)
 @export var max_items: int = -1
 
+var list_items = []
+var count_items: int = 0
 
 func _ready():
+	for path in spawn_points:
+		var point := get_node(path)
+		list_items.append({"point": point, "items": []})
+		
 	if auto_spawn:
 		spawn_items()
 
+func clear_list_items():
+	for entry in list_items:
+		entry.items.clear()
+	count_items = 0
 
+func has_items_at_point(point: Node3D) -> bool:
+	for entry in list_items:
+		if entry.point == point:
+			if entry.items.is_empty():
+				break
+			else:
+				return true
+	return false
+	
 func spawn_items():
 	# Validaciones
 	if item_templates.is_empty():
-		push_warning("⚠️ No hay plantillas asignadas en item_templates.")
+		push_warning("[⚠️ ItemSpawner] No hay plantillas asignadas en item_templates.")
 		return
 
 	if spawn_points.is_empty():
-		push_warning("⚠️ No hay puntos de aparición asignados en spawn_points.")
+		push_warning("[⚠️ ItemSpawner] No hay puntos de aparición asignados en spawn_points.")
 		return
 
 	# Determinar el nodo donde se añadirán los ítems
@@ -42,27 +61,56 @@ func spawn_items():
 
 	# Eliminar ítems antiguos si la opción está activada
 	if clear_old_items:
-		for child in parent_node.get_children():
-			child.queue_free()
+		for entry in list_items:
+			for item in entry.items:
+				if is_instance_valid(item):
+					item.queue_free()
+		clear_list_items()
+		
+	# Se mezclan los puntos para aleatorizar el spawn.
+	var randomized_points = spawn_points.duplicate()
+	randomized_points.shuffle()
 
-	var count := 0
-	for path in spawn_points:
-		if max_items > 0 and count >= max_items:
+	for path in randomized_points:
+		if max_items > 0 and count_items >= max_items:
 			break
 
 		var point := get_node(path)
+		
 		if point == null:
-			push_warning("No se encontró el nodo en la ruta: %s" % str(path))
+			push_warning("[⚠️ ItemSpawner] No se encontró el nodo en la ruta: %s" % str(path))
 			continue
 
 		var spawn_pos: Vector3 = point.global_position
+		
 		var template: PackedScene = item_templates.pick_random()
 		if template == null:
 			continue
 
 		var instance = template.instantiate()
 		# Asignar nombre único y legible
-		instance.name = "%s_%d" % [template.resource_path.get_file().get_basename(), count + 1] 
+		instance.name = "%s_%d" % [template.resource_path.get_file().get_basename(), count_items + 1] 
 		parent_node.add_child(instance)
+		for entry in list_items:
+			if entry.point == point:
+				entry.items.append(instance)
+				break
 		instance.global_position = spawn_pos
-		count += 1
+		count_items += 1
+
+func respawn_missing_items():
+		# Se mezclan los puntos para aleatorizar el spawn.
+	var randomized_points = list_items.filter(func(entry): return entry.items.is_empty())
+	randomized_points.shuffle()
+	
+	for entry in randomized_points:
+		var template: PackedScene = item_templates.pick_random()
+		if template == null:
+			push_warning("[⚠️ ItemSpawner] No hay plantillas asignadas en item_templates.")
+			continue
+		var instance = template.instantiate()
+		instance.name = "%s_respawn_%d" % [template.resource_path.get_file().get_basename(), count_items + 1]
+		items_root.add_child(instance)
+		instance.global_position = entry.point.global_position
+		entry.items.append(instance)
+		count_items += 1
