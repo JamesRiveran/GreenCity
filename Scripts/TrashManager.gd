@@ -1,5 +1,7 @@
 extends ItemSpawner
 
+signal vehicle_assigned(vehicle)
+
 @export var collected_count_max: int = -1  # Maximo de ítems recogidos
 @export var vehicle: VehicleBody3D  # El camión de basura
 @export var dumps: Array[Node3D] = []  # Lista de basureros (con Area3D)
@@ -20,11 +22,18 @@ func _ready():
 		if item is Node3D:
 			if item.has_signal("collected"):
 				item.connect("collected", Callable(self, "_on_item_collected"))
+			# Conectar la señal para asignar el vehículo
+			if item.has_method("set_vehicle"):
+				connect("vehicle_assigned", Callable(item, "set_vehicle"))
 	
 	for dump in dumps:
 		if dump is Node3D:
 			if dump.has_signal("deposited"):
 				dump.connect("deposited", Callable(self, "_on_item_deposited"))
+			# Conectar la señal para asignar el vehículo
+			if dump.has_method("set_vehicle"):
+				connect("vehicle_assigned", Callable(dump, "set_vehicle"))
+	emit_signal("vehicle_assigned", vehicle)
 
 func _on_item_collected(item: Node3D, trash_type, trash_type_score):
 	if collected_count_max > collected_count or  collected_count_max == -1:

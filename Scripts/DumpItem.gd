@@ -5,6 +5,7 @@ signal deposited(item: Node3D)
 @export var dump_trash_type: String = "general"  # Tipo: general, plastico, vidrio, papel, metal
 @export var deposit_time: float = 1.0       # Segundos entre descargas (0 = inmediato)
 
+var target_vehicle: VehicleBody3D = null
 var _is_unloading: bool = false             # Indica si actualmente se está descargando
 
 func _ready():
@@ -16,12 +17,12 @@ func _ready():
 		push_warning("[⚠️ DumpItem] Dump sin Area3D asignada: %s" % name)
 
 func _on_body_entered(body):
-	if body is VehicleBody3D and not _is_unloading:
+	if body == target_vehicle and not _is_unloading:
 		_is_unloading = true
 		_start_unloading()
 
 func _on_body_exited(body):
-	if body is VehicleBody3D:
+	if body == target_vehicle:
 		_is_unloading = false
 
 func _start_unloading() -> void:
@@ -31,3 +32,6 @@ func _start_unloading() -> void:
 			await get_tree().create_timer(deposit_time).timeout
 		else:
 			await get_tree().process_frame
+			
+func set_vehicle(v: VehicleBody3D) -> void:
+	target_vehicle = v
