@@ -1,10 +1,12 @@
 extends VehicleBody3D
 
+# --- Ruedas ---
 @export var front_left_wheel: VehicleWheel3D
 @export var front_right_wheel: VehicleWheel3D
 @export var rear_left_wheel: VehicleWheel3D
 @export var rear_right_wheel: VehicleWheel3D
 
+# --- Control del vehículo ---
 @export var engine_force_strength: float = 1200.0
 @export var brake_force_strength: float = 60.0
 @export var steering_angle_max: float = 0.40
@@ -19,26 +21,43 @@ extends VehicleBody3D
 @export var max_health: int = 100
 var health: int = max_health
 
-# --- Daño por colisiones con StaticBody3D ---
+
 @export var wall_damage: int = 10
 @export var wall_range: int = 1
 @export var wall_cooldown: float = 0.30
-@export var static_bodies_nodes: Array[NodePath] = []  # Lista de nodos StaticBody3D para evaluar colisiones
 
-var _static_bodies: Array = []  # Array para almacenar los StaticBody3D
+
+# --- Paredes y Áreas de daño ---
+@export var wall_bodies: Array[NodePath] = []  # <--- aquí asignas tus StaticBody3D (paredes)
+@export var wall_areas: Array[NodePath] = []   # opcional, si tienes Area3D también
+@export var hud_path: NodePath
+@onready var hud := get_node_or_null(hud_path)
+
 var _wall_hit_cd_until := 0.0
 
 func _ready():
-	# Inicializar la lista de StaticBodies
-	_static_bodies.clear()
-	for node_path in static_bodies_nodes:
-		var node = get_node_or_null(node_path)
-		if node and node is StaticBody3D:
-			_static_bodies.append(node)
-			print("[Car:%s] StaticBody detectado: %s" % [name, node.name])
+	# Configurar estabilidad del vehículo
+	center_of_mass_mode = RigidBody3D.CENTER_OF_MASS_MODE_CUSTOM
+	center_of_mass = Vector3(0, -1, 0)
 
-	# Vida inicial
-	health = max_health
+	# Habilitar detección de colisiones físicas
+	contact_monitor = true
+	max_contacts_reported = max(max_contacts_reported, 8)
+
+	connect("body_entered", Callable(self, "_on_body_entered_vehicle"))
+
+	# Conectar todas las áreas configuradas
+	for path in wall_areas:
+		var area := get_node_or_null(path)
+		if area and area is Area3D:
+			area.monitoring = true
+			area.monitorable = true
+			if area.has_signal("body_entered"):
+				area.body_entered.connect(_on_wall_area_body_entered.bind(area))
+			print("[Car:%s] Área de daño conectada: %s" % [name, area.name])
+		else:
+			print("[Car:%s] ⚠️ Área inválida en path: %s" % [name, str(path)])
+
 	print("[Car:%s] Vida inicial: %d" % [name, health])
 
 func _physics_process(_delta: float) -> void:
@@ -81,10 +100,44 @@ func _physics_process(_delta: float) -> void:
 
 func apply_damage(amount: int) -> void:
 	health = max(health - amount, 0)
-	print("[Car:%s] Daño: %d | Vida: %d" % [name, amount, health])
-	if health == 0:
-		print("[Car:%s] ¡Vehículo destruido!" % name)
+	var src_name = source.name if source else "Desconocido"
+	print("[Car:%s] 💥 Daño recibido: %d | Fuente: %s | Vida restante: %d" % [name, amount, src_name, health])
 
+
+	# ✅ Actualizar barra de vida
+	if hud and hud.has_method("update_health"):
+		hud.update_health(health, max_health)
+
+	if health == 0:
+		print("[Car:%s] 🚗💀 ¡Vehículo destruido!" % name)
+
+
+# Cuando una de las áreas detecta que el coche entró
+func _on_wall_area_body_entered(body: Node, area: Area3D) -> void:
+	if body != self:
+		return
+	print("[Car:%s] Entró en área '%s'" % [name, area.name])
+	_try_wall_damage(area)
+
+
+# Cuando el coche colisiona físicamente con un StaticBody3D asignado
+func _on_body_entered_vehicle(body: Node) -> void:
+	if body is StaticBody3D:
+		# Comprobar si este StaticBody3D está en nuestra lista del inspector
+		for path in wall_bodies:
+			var wall := get_node_or_null(path)
+			if wall == body:
+				print("[Car:%s] 🚧 Colisión con pared '%s'" % [name, body.name])
+				_try_wall_damage(body)
+				break
+
+# Aplica daño con cooldown
+func _try_wall_damage(source: Node = null) -> void:
+	var now := Time.get_unix_time_from_system()
+	if now < _wall_hit_cd_until:
+		return
+	apply_damage(wall_damage, source if source else self)
+=======
 # Función para detectar la colisión con un StaticBody3D
 func is_colliding_with_static_body(static_body: StaticBody3D) -> bool:
 	var vehicle_position = global_transform.origin
@@ -98,4 +151,3 @@ func _try_wall_damage() -> void:
 	if now < _wall_hit_cd_until:
 		return
 	apply_damage(wall_damage)
-	_wall_hit_cd_until = now + wall_cooldown
