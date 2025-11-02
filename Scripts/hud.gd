@@ -4,11 +4,17 @@ extends CanvasLayer
 @onready var timer_label: Label = $TimerLabel
 @onready var game_timer: Timer = $GameTimer
 
+@onready var collected_bar: ProgressBar = $CollectedBar
+@onready var collected_label: Label = $CollectedBar/CountLabel
+@onready var score_label: Label = $ScoreLabel
+
 signal time_over
 
 
 func _ready() -> void:
 	update_health(health_bar.max_value, health_bar.max_value)
+	update_collected(0, 1)  # inicializar barra
+	update_score(0)         # inicializar texto
 
 	game_timer.timeout.connect(_on_game_timer_timeout)
 
@@ -20,6 +26,30 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	_update_timer_label()
 
+func update_collected(value: int, max_value: int) -> void:
+	if not collected_bar:
+		return
+
+	collected_bar.max_value = max_value
+	collected_bar.value = value
+
+	# Texto dentro de la barra
+	collected_label.text = "%d / %d" % [value, max_value]
+
+	# Color fijo para evitar confusión con la barra de vida
+	var stylebox := StyleBoxFlat.new()
+	stylebox.bg_color = Color(0.2, 0.6, 1.0)  # azul suave
+	stylebox.corner_radius_top_left = 4
+	stylebox.corner_radius_top_right = 4
+	stylebox.corner_radius_bottom_left = 4
+	stylebox.corner_radius_bottom_right = 4
+	collected_bar.add_theme_stylebox_override("fill", stylebox)
+
+
+func update_score(value: int) -> void:
+	if not score_label:
+		return
+	score_label.text = "🏆 Puntaje: %d" % value
 
 func update_health(value: int, max_value: int) -> void:
 	if not health_bar:

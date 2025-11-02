@@ -4,7 +4,10 @@ signal vehicle_assigned(vehicle)
 
 @export var collected_count_max: int = -1  # Maximo de ítems recogidos
 @export var vehicle: VehicleBody3D  # El camión de basura
+@export var hud: NodePath
 @export var dumps: Array[Node3D] = []  # Lista de basureros (con Area3D)
+
+@onready var hud_node := get_node_or_null(hud)
 
 var trash_type_transported: String # Tipo transportado: general, plastico, vidrio, papel, metal
 var trash_type_transported_score: int = 0  # Valor en puntos del tipo de basura transportado
@@ -41,6 +44,10 @@ func _on_item_collected(item: Node3D, trash_type, trash_type_score):
 		trash_type_transported = trash_type
 		trash_type_transported_score = trash_type_score
 		print("[✅ TrashManager] Ítem recolectado:", item.name)
+		
+		if hud_node and hud_node.has_method("update_collected"):
+			hud_node.update_collected(collected_count, collected_count_max)
+		
 		var entry_arr = list_items.filter(func (entry):
 			return entry.point.global_position == item.global_position
 		)
@@ -60,6 +67,11 @@ func _on_item_deposited(_item: Node3D, dump_type):
 		collected_count -= 1
 		if collected_count == 0:
 			trash_type_transported = ""
+		if hud_node:
+			if hud_node.has_method("update_collected"):
+				hud_node.update_score(score)
+			if hud_node.has_method("update_score"):
+				hud_node.update_collected(collected_count, collected_count_max)
 	elif collected_count == 0:
 		print("[⚠️ TrashManager] Vehiculo vacio")
 	else:
