@@ -18,7 +18,7 @@ var score: int = 0  # Puntos ganados
 func _ready():
 	# Ejecuta la lógica del _ready del ItemSpawner 
 	super._ready()
-
+	
 	# Registrar los ítems generados(Basura, Basureros)
 	var items: Node3D = items_root if items_root else self
 	for item in items.get_children():
@@ -36,7 +36,11 @@ func _ready():
 			# Conectar la señal para asignar el vehículo
 			if dump.has_method("set_vehicle"):
 				connect("vehicle_assigned", Callable(dump, "set_vehicle"))
+				
 	emit_signal("vehicle_assigned", vehicle)
+	
+	if hud_node:
+		call_deferred("_sync_hud_initial")
 
 func _on_item_collected(item: Node3D, trash_type, trash_type_score):
 	if collected_count_max > collected_count or  collected_count_max == -1:
@@ -69,10 +73,17 @@ func _on_item_deposited(_item: Node3D, dump_type):
 			trash_type_transported = ""
 		if hud_node:
 			if hud_node.has_method("update_collected"):
-				hud_node.update_score(score)
-			if hud_node.has_method("update_score"):
 				hud_node.update_collected(collected_count, collected_count_max)
+			if hud_node.has_method("update_score"):
+				hud_node.update_score(score)
 	elif collected_count == 0:
 		print("[⚠️ TrashManager] Vehiculo vacio")
 	else:
 		print("[❌ TrashManager] Depósito incorrecto: llevaba", trash_type_transported, "intentó en", dump_type)
+
+func _sync_hud_initial():
+	if hud_node:
+		if hud_node.has_method("update_collected"):
+			hud_node.update_collected(collected_count, collected_count_max)
+		if hud_node.has_method("update_score"):
+			hud_node.update_score(score)

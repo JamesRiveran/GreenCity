@@ -29,12 +29,17 @@ func _process(_delta: float) -> void:
 func update_collected(value: int, max_value: int) -> void:
 	if not collected_bar:
 		return
-
-	collected_bar.max_value = max_value
-	collected_bar.value = value
-
-	# Texto dentro de la barra
-	collected_label.text = "%d / %d" % [value, max_value]
+		
+	# Caso sin límite
+	if max_value <= 0:
+		collected_bar.visible = true
+		collected_bar.value = 1
+		collected_bar.max_value = 1  # Evita divisiones por cero
+		collected_label.text = "%d / ∞" % value
+	else:
+		collected_bar.max_value = max_value
+		collected_bar.value = value
+		collected_label.text = "%d / %d" % [value, max_value]
 
 	# Color fijo para evitar confusión con la barra de vida
 	var stylebox := StyleBoxFlat.new()
