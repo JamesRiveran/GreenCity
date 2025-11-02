@@ -21,9 +21,11 @@ extends VehicleBody3D
 @export var max_health: int = 100
 var health: int = max_health
 
-# --- Daño configurable ---
+
 @export var wall_damage: int = 10
+@export var wall_range: int = 1
 @export var wall_cooldown: float = 0.30
+
 
 # --- Paredes y Áreas de daño ---
 @export var wall_bodies: Array[NodePath] = []  # <--- aquí asignas tus StaticBody3D (paredes)
@@ -58,7 +60,6 @@ func _ready():
 
 	print("[Car:%s] Vida inicial: %d" % [name, health])
 
-
 func _physics_process(_delta: float) -> void:
 	if not front_left_wheel or not front_right_wheel:
 		return
@@ -90,13 +91,18 @@ func _physics_process(_delta: float) -> void:
 		if wheel:
 			wheel.brake = brake_force
 
+	# Detectar colisión con StaticBodies3D
+	for static_body in _static_bodies:
+		if is_colliding_with_static_body(static_body):
+			_try_wall_damage()
 
 # --- Daño y colisiones ---
 
-func apply_damage(amount: int, source: Node = null) -> void:
+func apply_damage(amount: int) -> void:
 	health = max(health - amount, 0)
 	var src_name = source.name if source else "Desconocido"
 	print("[Car:%s] 💥 Daño recibido: %d | Fuente: %s | Vida restante: %d" % [name, amount, src_name, health])
+
 
 	# ✅ Actualizar barra de vida
 	if hud and hud.has_method("update_health"):
@@ -131,4 +137,17 @@ func _try_wall_damage(source: Node = null) -> void:
 	if now < _wall_hit_cd_until:
 		return
 	apply_damage(wall_damage, source if source else self)
-	_wall_hit_cd_until = now + wall_cooldown
+=======
+# Función para detectar la colisión con un StaticBody3D
+func is_colliding_with_static_body(static_body: StaticBody3D) -> bool:
+	var vehicle_position = global_transform.origin
+	var distance = vehicle_position.distance_to(static_body.global_transform.origin)
+	if distance < wall_range:  # Distancia de colisión (ajustar según lo necesites)
+		return true
+	return false
+
+func _try_wall_damage() -> void:
+	var now := Time.get_unix_time_from_system()
+	if now < _wall_hit_cd_until:
+		return
+	apply_damage(wall_damage)

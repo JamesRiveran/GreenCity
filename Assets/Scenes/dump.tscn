@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://d2ai043jjf2fr"]
+
+[ext_resource type="Script" uid="uid://nbos58pccelh" path="res://Scripts/DumpItem.gd" id="1_2gm8f"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_yiusr"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_57o58"]
+
+[node name="Dump" type="Node3D"]
+script = ExtResource("1_2gm8f")
+
+[node name="Area3D" type="Area3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+shape = SubResource("BoxShape3D_yiusr")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+mesh = SubResource("BoxMesh_57o58")
+skeleton = NodePath("")
