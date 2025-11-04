@@ -1,6 +1,7 @@
-[gd_scene load_steps=16 format=4 uid="uid://btkmt5nnpupi6"]
+[gd_scene load_steps=17 format=4 uid="uid://btkmt5nnpupi6"]
 
-[ext_resource type="Texture2D" uid="uid://c6t440u3oqudn" path="res://Models/low_poly_city-pack_0.png" id="1_dc5ec"]
+[ext_resource type="Texture2D" uid="uid://c6t440u3oqudn" path="res://Textures/low_poly_city-pack_0.png" id="1_dc5ec"]
+[ext_resource type="PackedScene" uid="uid://bo6tr76wnw8nr" path="res://Models/road.fbx" id="13_bl3i6"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_lrkyu"]
 
@@ -76,7 +77,7 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_y7gsu")
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_3r5u5"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_0dcg4"]
 _surfaces = [{
 "aabb": AABB(-9, 0.0024005682, -9, 18, 0.45329818, 18),
 "format": 34359742465,
@@ -108,7 +109,7 @@ _surfaces = [{
 "vertex_data": PackedByteArray("AAAQQaZWHTv//7/AaCj+QNpSHTsAABDBAAAQQdpSHTsAABDBXYu6QNpSHTsAABDBxAFmQNpSHTsAABDBzRe3wKZWHTv//7/A4fqtP9pSHTsAABDB/oWPv9pSHTsAABDBnERZwNpSHTsAABDBzRe3wNpSHTsAABDBAAAQwaZWHTv//7/AAAAQwStR6T4AABDBAAAQwTNR6T4AAMDAAAAQwdpSHTsAABDBAAAQwdpSHTsAABDBAAAQQaZWHTv//7/AAAAQQdpSHTsAABDBAAAQwaZWHTv//7/AAAAQQaZWHTv//7/AAAAQwTNR6T4AAMDAAAAQQTNR6T4AAMDAAAAQwaZWHTv//7/AAAAQQdpSHTsAABDBAAAQQTNR6T4AAMDAAAAQQStR6T4AABDBAAAQQaZWHTv//7/AAAAQQStR6T4AABDBAAAQwTNR6T4AAMDAAAAQwStR6T4AABDBAAAQQTNR6T4AAMDAAAAQwdpSHTsAABDBAAAQQStR6T4AABDBAAAQwStR6T4AABDBAAAQQdpSHTsAABDBAAAQwdplHTsAAMBAAAAQQaZpHTsAABBBAAAQQdplHTsAAMBAAAAQwaZpHTsAABBBAAAQwaZpHTsAABBBAAAQwVFR6T4AAMBAAAAQwVlR6T4AABBBAAAQwdplHTsAAMBAAAAQQaZpHTsAABBBAAAQwVlR6T4AABBBAAAQQVlR6T4AABBBAAAQwaZpHTsAABBBAAAQQdplHTsAAMBAAAAQQVlR6T4AABBBAAAQQVFR6T4AAMBAAAAQQaZpHTsAABBBAAAQQVFR6T4AAMBAAAAQwVlR6T4AABBBAAAQwVFR6T4AAMBAAAAQQVlR6T4AABBBAAAQwdplHTsAAMBAAAAQQVFR6T4AAMBAAAAQwVFR6T4AAMBAAAAQQdplHTsAAMBAAAAQQbllHTvLzLxAaCj+QP9dHTvizEy+AAAQQYFeHTvMzEw+AAAQQf9dHTvmzEy+AAAQQcdWHTvNzLzAaCj+QMdWHTvNzLzAAAAQwbllHTvLzLxAXYu6QP9dHTvezEy+aCj+QMdWHTvNzLzAXYu6QMdWHTvOzLzAXYu6QP9dHTvezEy+4fqtP4FeHTvMzEw+XYu6QMdWHTvOzLzA/oWPv8dWHTvOzLzA/oWPv/9dHTvUzEy+/oWPv4FeHTvMzEw+/oWPv4FeHTvMzEw+nERZwP9dHTvQzEy+nERZwP9dHTvQzEy+/oWPv8dWHTvOzLzAnERZwMdWHTvOzLzAzRe3wP9dHTvNzEy+nERZwMdWHTvOzLzAzRe3wMdWHTvNzLzAqLv9wP9dHTvKzEy+AAAQwYFeHTvMzEw+AAAQwf9dHTvGzEy+qLv9wMdWHTvNzLzAAAAQwcdWHTvNzLzAnERZwP9dHTvQzEy+/oWPv/9dHTvUzEy+/oWPv4FeHTvMzEw+AAAQwaZWHTv//7/AAAAQwdpSHTsAABDBqLv9wNpSHTsAABDBzRe3wNpSHTsAABDBzRe3wKZWHTv//7/AAAAQQdplHTsAAMBAAAAQwbllHTvLzLxAAAAQQbllHTvLzLxA4vqtP9plHTsAAMBAAAAQwdplHTsAAMBAaCj+QKZpHTsAABBBAAAQQdplHTsAAMBAAAAQQaZpHTsAABBBXYu6QKZpHTsAABBBxAFmQKZpHTsAABBB4vqtP9plHTsAAMBA4/qtP6ZpHTsAABBBAAAQwaZpHTsAABBBAAAQwdplHTsAAMBAqLv9wKZpHTsAABBBzRe3wKZpHTsAABBBnERZwKZpHTsAABBB4vqtP9plHTsAAMBA/IWPv6ZpHTsAABBB4/qtP6ZpHTsAABBBqLv9wP9dHTvKzEy+zRe3wMdWHTvNzLzAzRe3wP9dHTvNzEy+qLv9wMdWHTvNzLzAXYu6QMdWHTvOzLzAAAAQQaZWHTv//7/AaCj+QMdWHTvNzLzAAAAQQcdWHTvNzLzA/oWPv8dWHTvOzLzAzRe3wKZWHTv//7/AnERZwMdWHTvOzLzAzRe3wMdWHTvNzLzAqLv9wMdWHTvNzLzAAAAQwaZWHTv//7/AAAAQwcdWHTvNzLzAaCj+QKZWHTv//7/AaCj+QLllHTvLzLxAaCj+QIFeHTvMzEw+aCj+QIFeHTvMzEw+AAAQQYFeHTvMzEw+qLv9wIFeHTvMzEw+qLv9wIFeHTvMzEw+zRe3wP9dHTvNzEy+zRe3wIFeHTvMzEw+qLv9wP9dHTvKzEy+zRe3wIFeHTvMzEw+nERZwIFeHTvMzEw+nERZwIFeHTvMzEw+4fqtP/9dHTvYzEy+4fqtP4FeHTvMzEw+xAFmQP9dHTvbzEy+xAFmQIFeHTvMzEw+4fqtP/9dHTvYzEy+xAFmQIFeHTvMzEw+XYu6QIFeHTvMzEw+xAFmQP9dHTvbzEy+XYu6QIFeHTvMzEw+aCj+QP9dHTvizEy+aCj+QIFeHTvMzEw+XYu6QP9dHTvezEy+qLv9wIFeHTvMzEw+qLv9wLllHTvLzLxAAAAQwYFeHTvMzEw+qLv9wLllHTvLzLxAzRe3wIFeHTvMzEw+zRe3wLllHTvLzLxAqLv9wIFeHTvMzEw+zRe3wLllHTvLzLxAnERZwIFeHTvMzEw+nERZwLllHTvLzLxAzRe3wIFeHTvMzEw+nERZwLllHTvLzLxA/YWPv7llHTvLzLxAnERZwIFeHTvMzEw+4fqtP4FeHTvMzEw+4vqtP7llHTvLzLxAxAFmQIFeHTvMzEw+xAFmQLllHTvLzLxAXYu6QIFeHTvMzEw+XYu6QLllHTvLzLxAaCj+QIFeHTvMzEw+aCj+QLllHTvLzLxAqLv9wKZWHTv//7/AqLv9wKZWHTv//7/AqLv9wNpSHTsAABDBnERZwKZWHTsAAMDA/oWPv6ZWHTsAAMDA4fqtP6ZWHTsAAMDA4fqtP6ZWHTsAAMDAxAFmQKZWHTsAAMDA4fqtP9pSHTsAABDBxAFmQKZWHTsAAMDAXYu6QKZWHTsAAMDAxAFmQNpSHTsAABDBXYu6QKZWHTsAAMDAaCj+QNpSHTsAABDBaCj+QKZWHTv//7/AXYu6QNpSHTsAABDBXYu6QNplHTsAAMBAaCj+QLllHTvLzLxAaCj+QNplHTsAAMBAXYu6QLllHTvLzLxAxAFmQNplHTsAAMBAXYu6QLllHTvLzLxAXYu6QNplHTsAAMBAxAFmQLllHTvLzLxAxAFmQLllHTvLzLxAxAFmQNplHTsAAMBA4vqtP7llHTvLzLxA/YWPv9plHTsAAMBA4vqtP7llHTvLzLxA4vqtP9plHTsAAMBA/YWPv7llHTvLzLxAnERZwNplHTsAAMBA/YWPv7llHTvLzLxA/YWPv9plHTsAAMBAnERZwLllHTvLzLxAzRe3wNplHTsAAMBAnERZwLllHTvLzLxAnERZwNplHTsAAMBAzRe3wLllHTvLzLxAqLv9wNplHTsAAMBAzRe3wLllHTvLzLxAzRe3wNplHTsAAMBAqLv9wLllHTvLzLxAqLv9wLllHTvLzLxAqLv9wNplHTsAAMBAaCj+QNplHTsAAMBAaCj+QLllHTvLzLxAaCj+QNplHTsAAMBAqLv9wNplHTsAAMBAqLv9wKZpHTsAABBBzRe3wNplHTsAAMBAqLv9wNplHTsAAMBAzRe3wKZpHTsAABBBnERZwNplHTsAAMBAzRe3wNplHTsAAMBA/YWPv9plHTsAAMBAxAFmQNplHTsAAMBAxAFmQKZpHTsAABBBXYu6QNplHTsAAMBAxAFmQNplHTsAAMBAXYu6QKZpHTsAABBBaCj+QNplHTsAAMBAaCj+QKZpHTsAABBBXYu6QNplHTsAAMBAaCj+QP9dHTvizEy+xAFmQP9dHTvbzEy+XYu6QP9dHTvezEy+xAFmQMdWHTvOzLzA4fqtP/9dHTvYzEy+xAFmQMdWHTvOzLzAxAFmQP9dHTvbzEy+4fqtP8dWHTvOzLzA/oWPv/9dHTvUzEy+4fqtP8dWHTvOzLzA4fqtP/9dHTvYzEy+/oWPv/9dHTvUzEy+zRe3wP9dHTvNzEy+nERZwP9dHTvQzEy+AAAQwf9dHTvGzEy+qLv9wP9dHTvKzEy+aCj+QP9dHTvizEy+AAAQQf9dHTvmzEy+aCj+QKZWHTv//7/AXYu6QKZWHTsAAMDAxAFmQMdWHTvOzLzAXYu6QKZWHTsAAMDAXYu6QMdWHTvOzLzAxAFmQKZWHTsAAMDA4fqtP8dWHTvOzLzAxAFmQKZWHTsAAMDAxAFmQMdWHTvOzLzA4fqtP6ZWHTsAAMDA4fqtP6ZWHTsAAMDA4fqtP8dWHTvOzLzA/oWPv6ZWHTsAAMDA/oWPv6ZWHTsAAMDA/oWPv8dWHTvOzLzAnERZwKZWHTsAAMDAnERZwKZWHTsAAMDAnERZwMdWHTvOzLzAzRe3wKZWHTv//7/AzRe3wMdWHTvNzLzAqLv9wKZWHTv//7/AqLv9wKZWHTv//7/AqLv9wMdWHTvNzLzAaCj+QMdWHTvNzLzAaCj+QKZWHTv//7/A/3///////7//f///////v/9///////+//3///////7//f///////v/9///8snP8//3///////7//f///////v/9////gpP8//3///+i3/z8AAP9/////PwAA/3////8/AAD/f////z8AAP9/////P/9/AAD///8//38AAP///z//fwAA////P/9/AAD///8//3//f////z//f/9/////P/9//3////8//3//f////z/+//9/////P/7//3////8//v//f////z/+//9/////P/9///////+//3///////7//f///////v/9///////+//////////7//////////v/////////+//////////7//fwAA////P/9/AAD///8//38AAP///z//fwAA////PwAA/3////8/AAD/f////z8AAP9/////PwAA/3////8//3//f////z//f/9/////P/9//3////8//3//f////z/+//9/////P/7//3////8//v//f////z/+//9/////P/9///////+//3///////7//f///////v/9///////+//////////7//////////v/////////+//////////7//f///////v/9///////+//3///////7//f///////v/9///////+//3///////7//f///////v/9///8AAP8//3///wAA/z//f///AAD/P/9///////+//3///////7//f/////8Hkv9///////+//3///////7//f///////v/9///8AAP8//3///////7//f///AAD/P/9///8AAP8//3///wAA/z//f///////v/9//////xCC/3///wAAAID/f///////v/9///////+//3///////7//f///////v/9///////+//3///////7//f///////v/9///////+//3///////7//f///////v/9///////+//3///////7//f///////v/9///////+//3///////7//f///////v/9///////+//3///////7//f///////v/9///////+//3///////7//f///V0n/v/9///////+//3///1tJ/7//f///W0n/v/9///////+//3///////7//f///////v/9///////+//3///////7//f/////9XT/9//////4JM/3///////z//f//////+f/9///////5//3///////n//f//////+f/9///////+//3///////7//f///////v/9///////+//3///////7//f///////v/9///////+//3///////7//f///////v/9///////+//3///////7//f///////v/9///////+//3///////7//f///////v/9///////+//3///////7//f///HI7/v/9///+M4f+//3///1zs/7//f////3//v/9///////+//3///////7//f///////v/9///////+//3///////7//f///////v/9///////+//3///////7//f///////v/9///////+//3///////7//f///////v/9///////+//3///////7//f///////v/9///////+//3///////7//f///////v/9///////+//3///////7//f///////v/9///////+//3//////jJL/f/////+Mkv9///////+//3//////jJL/f/////8/kv9///8AAP8//3///////7//f///////v/9///////+//3///////7//f///////v/9///////+//3///////7//f///////v/9///////+//3///////7//f///////v/9///////+//3////9//z//f///////v/9///////+//3///////7//f///////v/9///////+//3///////7//f///////v/9///////+//3///////7//f///////v/9///////+//3///////7//f///////v/9///////+//3///////7//f///////v/9///////+//3///////7//f///////v/9///////+//3///////7//f///////v/9///////+//3///////7//f///////v/9///////+//3///////7//f///////v/9///////+//3///////7//f///////v/9///////+//3///////7//f///////v/9///////+//3///////7//f///////v/9///////+//3///////7//f///////v/9///////+//3///////7//f///////v/9///////+//3///////7//f///////v/9///////+//3///////7//f///////v/9///////+//3///////7//f/////8dWP9///9bSf+//3///1dJ/7//f///V0n/v/9///////+//3///////7//f///////v/9///////+//3///////7//f///////v/9//////weS/3//////B5L/f///////v/9///////+//3///////7//f///////v/9///////+//3///////7//f///////v/9///////+//3///////7//f//////vhf9//////6mH/3///////7//f///////v/9///////+//3///////7//f///////v/9///////+//3///////7//f///////v/9///////+//3///////7//f///////v/9///////+//3///////7//f///////v/9///////+//3///////7//f///////v/9///////+//3///////7//f///////v/9///////+//3///////7//f///////v/9///////+//3///////7//f///////v/9///////+//3///////7//f///////vw==")
 }]
 blend_shape_mode = 0
-shadow_mesh = SubResource("ArrayMesh_3r5u5")
+shadow_mesh = SubResource("ArrayMesh_0dcg4")
 
 [sub_resource type="ArrayMesh" id="ArrayMesh_2whrp"]
 _surfaces = [{
@@ -214,127 +215,139 @@ transform = Transform3D(100, 0, 0, 0, 0.5, 0, 0, 0, 100, 0, 0, 0)
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
 shape = SubResource("BoxShape3D_lrkyu")
 
-[node name="Crossroads" type="MeshInstance3D" parent="."]
+[node name="Roads" type="Node3D" parent="."]
+
+[node name="Crossroads" type="MeshInstance3D" parent="Roads"]
 transform = Transform3D(0.005, 0, 0, 0, 0.5, 0, 0, 0, 0.005, 0, 0, 0)
 mesh = SubResource("ArrayMesh_si5bl")
 skeleton = NodePath("")
 
-[node name="Crossroads2" type="MeshInstance3D" parent="."]
+[node name="Crossroads2" type="MeshInstance3D" parent="Roads"]
 transform = Transform3D(0.005, 0, 0, 0, 0.5, 0, 0, 0, 0.005, -0.45, 0, 0)
 mesh = SubResource("ArrayMesh_si5bl")
 skeleton = NodePath("")
 
-[node name="Crossroads3" type="MeshInstance3D" parent="."]
+[node name="Crossroads3" type="MeshInstance3D" parent="Roads"]
 transform = Transform3D(0.005, 0, 0, 0, 0.5, 0, 0, 0, 0.005, 0, 0, 0.45)
 mesh = SubResource("ArrayMesh_si5bl")
 skeleton = NodePath("")
 
-[node name="Crossroads4" type="MeshInstance3D" parent="."]
+[node name="Crossroads4" type="MeshInstance3D" parent="Roads"]
 transform = Transform3D(0.005, 0, 0, 0, 0.5, 0, 0, 0, 0.005, 0.45, 0, 0)
 mesh = SubResource("ArrayMesh_si5bl")
 skeleton = NodePath("")
 
-[node name="Crossroads5" type="MeshInstance3D" parent="."]
+[node name="Crossroads5" type="MeshInstance3D" parent="Roads"]
 transform = Transform3D(0.005, 0, 0, 0, 0.5, 0, 0, 0, 0.005, 0, 0, -0.45)
 mesh = SubResource("ArrayMesh_si5bl")
 skeleton = NodePath("")
 
-[node name="RoadCorner" type="MeshInstance3D" parent="."]
-transform = Transform3D(-0.005, 0, -7.5497897e-10, 0, 0.5, 0, 7.5497897e-10, 0, -0.005, -0.45, 0, 0.45)
+[node name="RoadCorner" type="MeshInstance3D" parent="Roads"]
+transform = Transform3D(-0.005, 0, -7.549789e-10, 0, 0.5, 0, 7.549789e-10, 0, -0.005, -0.45, 0, 0.45)
 mesh = SubResource("ArrayMesh_f6367")
 skeleton = NodePath("")
 
-[node name="RoadCorner2" type="MeshInstance3D" parent="."]
+[node name="RoadCorner2" type="MeshInstance3D" parent="Roads"]
 transform = Transform3D(-2.1855694e-10, 0, -0.005, 0, 0.5, 0, 0.005, 0, -2.1855694e-10, 0.45, 0, 0.45)
 mesh = SubResource("ArrayMesh_f6367")
 skeleton = NodePath("")
 
-[node name="RoadCorner3" type="MeshInstance3D" parent="."]
+[node name="RoadCorner3" type="MeshInstance3D" parent="Roads"]
 transform = Transform3D(0.005, 0, 0, 0, 0.5, 0, 0, 0, 0.005, 0.45, 0, -0.45)
 mesh = SubResource("ArrayMesh_f6367")
 skeleton = NodePath("")
 
-[node name="RoadCorner4" type="MeshInstance3D" parent="."]
+[node name="RoadCorner4" type="MeshInstance3D" parent="Roads"]
 transform = Transform3D(-2.1855694e-10, 0, 0.005, 0, 0.5, 0, -0.005, 0, -2.1855694e-10, -0.45, 0, -0.45)
 mesh = SubResource("ArrayMesh_f6367")
 skeleton = NodePath("")
 
-[node name="Road" type="MeshInstance3D" parent="."]
+[node name="Road" type="MeshInstance3D" parent="Roads"]
 transform = Transform3D(0.02, 0, 0, 0, 0.5, 0, 0, 0, 0.005, -0.225, 0, 0)
 mesh = SubResource("ArrayMesh_0hi58")
 skeleton = NodePath("")
 
-[node name="Road2" type="MeshInstance3D" parent="."]
+[node name="Road2" type="MeshInstance3D" parent="Roads"]
 transform = Transform3D(-8.7422775e-10, 0, 0.005, 0, 0.5, 0, -0.02, 0, -2.1855694e-10, 0, 0, 0.225)
 mesh = SubResource("ArrayMesh_0hi58")
 skeleton = NodePath("")
 
-[node name="Road3" type="MeshInstance3D" parent="."]
+[node name="Road3" type="MeshInstance3D" parent="Roads"]
 transform = Transform3D(0.02, 0, 0, 0, 0.5, 0, 0, 0, 0.005, 0.225, 0, 0)
 mesh = SubResource("ArrayMesh_0hi58")
 skeleton = NodePath("")
 
-[node name="Road4" type="MeshInstance3D" parent="."]
+[node name="Road4" type="MeshInstance3D" parent="Roads"]
 transform = Transform3D(-8.7422775e-10, 0, 0.005, 0, 0.5, 0, -0.02, 0, -2.1855694e-10, 0, 0, -0.225)
 mesh = SubResource("ArrayMesh_0hi58")
 skeleton = NodePath("")
 
-[node name="Road5" type="MeshInstance3D" parent="."]
+[node name="Road5" type="MeshInstance3D" parent="Roads"]
 transform = Transform3D(-8.7422775e-10, 0, 0.005, 0, 0.5, 0, -0.02, 0, -2.1855694e-10, -0.45, 0, 0.225)
 mesh = SubResource("ArrayMesh_0hi58")
 skeleton = NodePath("")
 
-[node name="Road6" type="MeshInstance3D" parent="."]
+[node name="Road6" type="MeshInstance3D" parent="Roads"]
 transform = Transform3D(0.02, 0, 0, 0, 0.5, 0, 0, 0, 0.005, -0.225, 0, 0.45)
 mesh = SubResource("ArrayMesh_0hi58")
 skeleton = NodePath("")
 
-[node name="Road7" type="MeshInstance3D" parent="."]
+[node name="Road7" type="MeshInstance3D" parent="Roads"]
 transform = Transform3D(0.02, 0, 0, 0, 0.5, 0, 0, 0, 0.005, 0.225, 0, 0.45)
 mesh = SubResource("ArrayMesh_0hi58")
 skeleton = NodePath("")
 
-[node name="Road8" type="MeshInstance3D" parent="."]
+[node name="Road8" type="MeshInstance3D" parent="Roads"]
 transform = Transform3D(-8.7422775e-10, 0, 0.005, 0, 0.5, 0, -0.02, 0, -2.1855694e-10, 0.45, 0, 0.225)
 mesh = SubResource("ArrayMesh_0hi58")
 skeleton = NodePath("")
 
-[node name="Road9" type="MeshInstance3D" parent="."]
+[node name="Road9" type="MeshInstance3D" parent="Roads"]
 transform = Transform3D(-8.7422775e-10, 0, 0.005, 0, 0.5, 0, -0.02, 0, -2.1855694e-10, 0.45, 0, -0.225)
 mesh = SubResource("ArrayMesh_0hi58")
 skeleton = NodePath("")
 
-[node name="Road10" type="MeshInstance3D" parent="."]
+[node name="Road13" type="MeshInstance3D" parent="Roads"]
+transform = Transform3D(-9.500497e-10, 0, 0.005, 0, 0.5, 0, -0.021734599, 0, -2.1855694e-10, -0.242, 0.23, -0.225)
+mesh = SubResource("ArrayMesh_0hi58")
+skeleton = NodePath("")
+
+[node name="Road10" type="MeshInstance3D" parent="Roads"]
 transform = Transform3D(0.02, 0, 0, 0, 0.5, 0, 0, 0, 0.005, 0.225, 0, -0.45)
 mesh = SubResource("ArrayMesh_0hi58")
 skeleton = NodePath("")
 
-[node name="Road11" type="MeshInstance3D" parent="."]
+[node name="Road11" type="MeshInstance3D" parent="Roads"]
 transform = Transform3D(0.02, 0, 0, 0, 0.5, 0, 0, 0, 0.005, -0.225, 0, -0.45)
 mesh = SubResource("ArrayMesh_0hi58")
 skeleton = NodePath("")
 
-[node name="Road12" type="MeshInstance3D" parent="."]
+[node name="Road12" type="MeshInstance3D" parent="Roads"]
 transform = Transform3D(-8.7422775e-10, 0, 0.005, 0, 0.5, 0, -0.02, 0, -2.1855694e-10, -0.45, 0, -0.225)
 mesh = SubResource("ArrayMesh_0hi58")
 skeleton = NodePath("")
 
-[node name="GroundWhite" type="MeshInstance3D" parent="."]
+[node name="Mesh" type="Node3D" parent="."]
+
+[node name="GroundWhite" type="MeshInstance3D" parent="Mesh"]
 transform = Transform3D(0.02, 0, 0, 0, 0.5, 0, 0, 0, 0.02, -0.2254377, -9.536743e-07, 0.22499923)
 mesh = SubResource("ArrayMesh_dc5ec")
 skeleton = NodePath("")
 
-[node name="GroundWhite2" type="MeshInstance3D" parent="."]
+[node name="GroundWhite2" type="MeshInstance3D" parent="Mesh"]
 transform = Transform3D(0.02, 0, 0, 0, 0.5, 0, 0, 0, 0.02, -0.225, 0, -0.225)
 mesh = SubResource("ArrayMesh_dc5ec")
 skeleton = NodePath("")
 
-[node name="GroundGrey" type="MeshInstance3D" parent="."]
+[node name="GroundGrey" type="MeshInstance3D" parent="Mesh"]
 transform = Transform3D(0.02, 0, 0, 0, 0.5, 0, 0, 0, 0.02, 0.225, 0, 0.225)
 mesh = SubResource("ArrayMesh_augdx")
 skeleton = NodePath("")
 
-[node name="GroundGreen" type="MeshInstance3D" parent="."]
+[node name="GroundGreen" type="MeshInstance3D" parent="Mesh"]
 transform = Transform3D(0.02, 0, 0, 0, 0.5, 0, 0, 0, 0.02, 0.225, 0, -0.225)
 mesh = SubResource("ArrayMesh_yu81e")
 skeleton = NodePath("")
+
+[node name="road" parent="." instance=ExtResource("13_bl3i6")]
+transform = Transform3D(-7.856802e-09, 0, 0.033918276, 0, 1.762481, 0, -0.17974268, 0, -1.4826149e-09, 0.18060088, -0.13888335, 0.22357738)

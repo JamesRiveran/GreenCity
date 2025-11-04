@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=3 uid="uid://bpvs6unrhmgga"]
 
-[ext_resource type="PackedScene" uid="uid://btkmt5nnpupi6" path="res://Assets/Scenes/floor.tscn" id="1_skivu"]
+[ext_resource type="PackedScene" uid="uid://cdn81qieoaycd" path="res://Scenes/Buildings.tscn" id="1_morkg"]
 [ext_resource type="Script" uid="uid://bcbdnxj17ojxi" path="res://Scripts/TrashManager.gd" id="2_6o2em"]
 [ext_resource type="PackedScene" uid="uid://ctuq3lki53eau" path="res://Assets/Scenes/bag.tscn" id="2_wmxxr"]
 [ext_resource type="PackedScene" uid="uid://d1dncn6cckwmj" path="res://Assets/Scenes/player.tscn" id="4_wmxxr"]
@@ -31,7 +31,7 @@ transform = Transform3D(1, 0, 0, 0, 0.13305214, 0.9911091, 0, -0.9911091, 0.1330
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldEnvironment"]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 30, 0)
 
-[node name="Floor" parent="." instance=ExtResource("1_skivu")]
+[node name="City" parent="." instance=ExtResource("1_morkg")]
 
 [node name="Items" type="Node3D" parent="." node_paths=PackedStringArray("vehicle", "dumps", "items_root")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1, 0)
@@ -106,8 +106,6 @@ transform = Transform3D(38, 0, 0, 0, 10, 0, 0, 0, 38, 22.5, 5.189, -22.5)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="TownAreas/Area4/Area3D"]
 shape = SubResource("BoxShape3D_wmxxr")
-
-[node name="TownBuildings" type="Node3D" parent="."]
 
 [node name="Walls" type="Node3D" parent="."]
 
