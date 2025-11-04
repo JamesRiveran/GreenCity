@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://dh4557su02b8x"
-path="res://.godot/imported/Parking Lot.glb-1294daf26fecee8a8161024f6bf129d8.scn"
+uid="uid://fa0n7elxgga2"
+path="res://.godot/imported/Basketball court.glb-0e8f2777ec845642cabb7a9719b6fdbf.scn"
 
 [deps]
 
-source_file="res://Models/Parking Lot.glb"
-dest_files=["res://.godot/imported/Parking Lot.glb-1294daf26fecee8a8161024f6bf129d8.scn"]
+source_file="res://Models/Sports/Basketball court.glb"
+dest_files=["res://.godot/imported/Basketball court.glb-0e8f2777ec845642cabb7a9719b6fdbf.scn"]
 
 [params]
 

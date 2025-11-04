@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://b5yuyl3dg6o2j"
-path="res://.godot/imported/Football stadium.glb-eaf9641fac1e0add15d869f357823f63.scn"
+uid="uid://b0ano7b0quy8x"
+path="res://.godot/imported/Ferris wheel.glb-055bbdf65f876c8802edb1f24f06b09a.scn"
 
 [deps]
 
-source_file="res://Models/Buildings/Football stadium.glb"
-dest_files=["res://.godot/imported/Football stadium.glb-eaf9641fac1e0add15d869f357823f63.scn"]
+source_file="res://Models/Park/Ferris wheel.glb"
+dest_files=["res://.godot/imported/Ferris wheel.glb-055bbdf65f876c8802edb1f24f06b09a.scn"]
 
 [params]
 

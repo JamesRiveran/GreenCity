@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://b0ano7b0quy8x"
-path="res://.godot/imported/Ferris wheel.glb-c1a0c0360535d0a030b12465b3e54392.scn"
+uid="uid://cs81cqmkv2kgk"
+path="res://.godot/imported/Jungle gym.glb-a273c89eb7e4f6da9cbe817c15c0653b.scn"
 
 [deps]
 
-source_file="res://Models/Ferris wheel.glb"
-dest_files=["res://.godot/imported/Ferris wheel.glb-c1a0c0360535d0a030b12465b3e54392.scn"]
+source_file="res://Models/Park/Jungle gym.glb"
+dest_files=["res://.godot/imported/Jungle gym.glb-a273c89eb7e4f6da9cbe817c15c0653b.scn"]
 
 [params]
 

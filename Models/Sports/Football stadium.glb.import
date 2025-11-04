@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://dhqdf1n4udwmm"
-path="res://.godot/imported/low_poly_public_buildings_pack.glb-e4e57a09afcb1a221dcac2e4d9ef0003.scn"
+uid="uid://b5yuyl3dg6o2j"
+path="res://.godot/imported/Football stadium.glb-d5374f1cb85719d3a124cc168042dd2c.scn"
 
 [deps]
 
-source_file="res://Models/low_poly_public_buildings_pack.glb"
-dest_files=["res://.godot/imported/low_poly_public_buildings_pack.glb-e4e57a09afcb1a221dcac2e4d9ef0003.scn"]
+source_file="res://Models/Sports/Football stadium.glb"
+dest_files=["res://.godot/imported/Football stadium.glb-d5374f1cb85719d3a124cc168042dd2c.scn"]
 
 [params]
 

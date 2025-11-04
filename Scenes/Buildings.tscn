@@ -1,20 +1,27 @@
-[gd_scene load_steps=16 format=3 uid="uid://cdn81qieoaycd"]
+[gd_scene load_steps=23 format=3 uid="uid://cdn81qieoaycd"]
 
 [ext_resource type="PackedScene" uid="uid://btkmt5nnpupi6" path="res://Assets/Scenes/floor.tscn" id="1_mvbk7"]
 [ext_resource type="PackedScene" uid="uid://di72gw34202s7" path="res://Models/Buildings/apartment.fbx" id="4_jtxgw"]
 [ext_resource type="PackedScene" uid="uid://cfo0b6my687oq" path="res://Models/Buildings/business_center.fbx" id="5_k3d76"]
-[ext_resource type="PackedScene" uid="uid://bxcq4o7rgoxhh" path="res://Models/Services/hotel.fbx" id="6_2dfmi"]
 [ext_resource type="PackedScene" uid="uid://cbsvkhaiqeu8y" path="res://Models/Houses/house1_w_fence.fbx" id="7_l8dw0"]
-[ext_resource type="PackedScene" uid="uid://dhqdf1n4udwmm" path="res://Models/low_poly_public_buildings_pack.glb" id="8_2dfmi"]
+[ext_resource type="PackedScene" uid="uid://dhqdf1n4udwmm" path="res://Models/Buildings/low_poly_public_buildings_pack.glb" id="8_2dfmi"]
 [ext_resource type="PackedScene" uid="uid://deo3iu71fsnsk" path="res://Models/Houses/house2_w_fence.fbx" id="8_ktkho"]
 [ext_resource type="PackedScene" uid="uid://dsajhec4en7ub" path="res://Models/Houses/house4_w_fence.fbx" id="10_s4x6d"]
 [ext_resource type="PackedScene" uid="uid://dfpawfhjxcsdf" path="res://Models/Houses/house1.fbx" id="13_ktkho"]
 [ext_resource type="PackedScene" uid="uid://b87xs0eoqxhmx" path="res://Models/Houses/house2.fbx" id="14_rc87w"]
 [ext_resource type="PackedScene" uid="uid://otn6kv7x0xqr" path="res://Models/Houses/house3.fbx" id="15_s4x6d"]
-[ext_resource type="PackedScene" uid="uid://dh4557su02b8x" path="res://Models/Parking Lot.glb" id="16_ktkho"]
-[ext_resource type="PackedScene" uid="uid://cgoguywq4jucu" path="res://Models/Buildings/Tennis court.glb" id="16_l8dw0"]
-[ext_resource type="PackedScene" uid="uid://b5yuyl3dg6o2j" path="res://Models/Buildings/Football stadium.glb" id="17_ktkho"]
-[ext_resource type="PackedScene" uid="uid://b0ano7b0quy8x" path="res://Models/Ferris wheel.glb" id="17_rc87w"]
+[ext_resource type="PackedScene" uid="uid://cs81cqmkv2kgk" path="res://Models/Park/Jungle gym.glb" id="16_dfsoa"]
+[ext_resource type="PackedScene" uid="uid://dh4557su02b8x" path="res://Models/Parkins/Parking Lot.glb" id="16_ktkho"]
+[ext_resource type="PackedScene" uid="uid://cgoguywq4jucu" path="res://Models/Sports/Tennis court.glb" id="16_l8dw0"]
+[ext_resource type="PackedScene" uid="uid://fa0n7elxgga2" path="res://Models/Sports/Basketball court.glb" id="16_rc87w"]
+[ext_resource type="PackedScene" uid="uid://c8fcsismd1urq" path="res://Models/Buildings/hotel.fbx" id="16_s4x6d"]
+[ext_resource type="PackedScene" uid="uid://b5yuyl3dg6o2j" path="res://Models/Sports/Football stadium.glb" id="17_ktkho"]
+[ext_resource type="PackedScene" uid="uid://b0ano7b0quy8x" path="res://Models/Park/Ferris wheel.glb" id="17_rc87w"]
+[ext_resource type="PackedScene" uid="uid://dijfxlqbner55" path="res://Models/Park/Seesaw.glb" id="18_j4uai"]
+[ext_resource type="PackedScene" uid="uid://byi6h0g8pqg3p" path="res://Models/Park/Play Structure.glb" id="19_s4x6d"]
+[ext_resource type="PackedScene" uid="uid://bx3y823d8txe4" path="res://Models/Park/Gazebo.glb" id="20_j4uai"]
+[ext_resource type="PackedScene" uid="uid://b18y141yeyd33" path="res://Models/Park/Santo Spirito Fountain.glb" id="21_nebp7"]
+[ext_resource type="PackedScene" uid="uid://bj2hsjil1x502" path="res://Models/Park/Town Center Second Age.glb" id="22_nebp7"]
 
 [node name="Node3D" type="Node3D"]
 
@@ -59,8 +66,8 @@ transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 9.24
 [node name="business_center" parent="Buildings" instance=ExtResource("5_k3d76")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 28.492, 0, 34.456)
 
-[node name="hotel" parent="Buildings" instance=ExtResource("6_2dfmi")]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 26.575956, 0, 9.548728)
+[node name="hotel" parent="Buildings" instance=ExtResource("16_s4x6d")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 26.406, 0, 9.470782)
 
 [node name="Parkings" type="Node3D" parent="."]
 
@@ -73,13 +80,45 @@ transform = Transform3D(-1.09278474e-07, 0, -2.5, 0, 2.5, 0, 2.5, 0, -1.09278474
 [node name="Parking Lot3" parent="Parkings" instance=ExtResource("16_ktkho")]
 transform = Transform3D(-1.09278474e-07, 0, 2.5, 0, 2.5, 0, -2.5, 0, -1.09278474e-07, 9.5, 0, -35.73593)
 
-[node name="Ferris wheel" parent="." instance=ExtResource("17_rc87w")]
-transform = Transform3D(-1.3113416e-07, 0, 3, 0, 3, 0, -3, 0, -1.3113416e-07, 27.978962, 3.5541072, -10.405286)
-
 [node name="Sports" type="Node3D" parent="."]
 
 [node name="Tennis court" parent="Sports" instance=ExtResource("16_l8dw0")]
-transform = Transform3D(-2.5978666e-08, 0, 0.5645688, 0, 1, 0, -0.5943226, 0, -2.467809e-08, 9.325852, 0, 21.292326)
+transform = Transform3D(-1.5688327e-08, 0, 0.3668753, 0, 1, 0, -0.35890707, 0, -1.6036628e-08, 27.579947, 0, -9.403709)
+
+[node name="Tennis court2" parent="Sports" instance=ExtResource("16_l8dw0")]
+transform = Transform3D(-1.5688327e-08, 0, 0.3668753, 0, 1, 0, -0.35890707, 0, -1.6036628e-08, 19.2211, 0, -9.403709)
 
 [node name="Football stadium" parent="Sports" instance=ExtResource("17_ktkho")]
-transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 22.89352, -2.914032, -25.559322)
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 22.89352, -2.914032, -22.649708)
+
+[node name="Basketball court" parent="Sports" instance=ExtResource("16_rc87w")]
+transform = Transform3D(-2.38549e-08, 0, 0.4825277, 0, 0.6560192, 0, -0.54573655, 0, -2.1091957e-08, 21.572199, 0, -35.899)
+
+[node name="Park" type="Node3D" parent="."]
+
+[node name="Jungle gym" parent="Park" instance=ExtResource("16_dfsoa")]
+transform = Transform3D(0.445, 0, 0, 0, 0.31, 0, 0, 0, 0.47, 34.305, 0, -36.266)
+
+[node name="Ferris wheel" parent="Park" instance=ExtResource("17_rc87w")]
+transform = Transform3D(-1.3113416e-07, 0, 3, 0, 3, 0, -3, 0, -1.3113416e-07, 12.222633, 3.5541072, 22.908508)
+
+[node name="Seesaw" parent="Park" instance=ExtResource("18_j4uai")]
+transform = Transform3D(0.17, 0, 0, 0, 0.272, 0, 0, 0, 0.272, 36.674164, 0, -31)
+
+[node name="Seesaw2" parent="Park" instance=ExtResource("18_j4uai")]
+transform = Transform3D(0.17, 0, 0, 0, 0.272, 0, 0, 0, 0.272, 36.674164, 0, -28)
+
+[node name="Seesaw3" parent="Park" instance=ExtResource("18_j4uai")]
+transform = Transform3D(0.17, 0, 0, 0, 0.272, 0, 0, 0, 0.272, 36.674164, 0, -25)
+
+[node name="Play Structure" parent="Park" instance=ExtResource("19_s4x6d")]
+transform = Transform3D(-3.7591793e-08, 0, -0.86, 0, 0.86, 0, 0.86, 0, -3.7591793e-08, 37.182, 1, -22)
+
+[node name="Gazebo" parent="Park" instance=ExtResource("20_j4uai")]
+transform = Transform3D(0.39, 0, 0, 0, 0.39, 0, 0, 0, 0.39, 36.696, 0, -8.971032)
+
+[node name="Santo Spirito Fountain" parent="Park" instance=ExtResource("21_nebp7")]
+transform = Transform3D(2.275, 0, 0, 0, 2.275, 0, 0, 0, 2.275, 36.614, 0.37042606, -13.90473)
+
+[node name="Fount" parent="Park" instance=ExtResource("22_nebp7")]
+transform = Transform3D(-6.228873e-08, 0, -1.425, 0, 1.425, 0, 1.425, 0, -6.228873e-08, 8.860283, 0, -7.3065047)

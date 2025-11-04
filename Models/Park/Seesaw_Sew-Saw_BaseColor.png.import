@@ -2,20 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d04vfpsj8y0ue"
-path.s3tc="res://.godot/imported/Tennis court_TennisCourt_BaseColor.png-d19dbbda58ebbe42492bb5a4a3e61bd1.s3tc.ctex"
+uid="uid://cej173u68cuvc"
+path.s3tc="res://.godot/imported/Seesaw_Sew-Saw_BaseColor.png-c5ec96dc081bd1918be57669bc28c189.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 generator_parameters={
-"md5": "9fa7cd8aa1c369f5fa8bdc5963ef1a25"
+"md5": "decb807edd4121d8b8eea0df6151811b"
 }
 
 [deps]
 
-source_file="res://Models/Buildings/Tennis court_TennisCourt_BaseColor.png"
-dest_files=["res://.godot/imported/Tennis court_TennisCourt_BaseColor.png-d19dbbda58ebbe42492bb5a4a3e61bd1.s3tc.ctex"]
+source_file="res://Models/Park/Seesaw_Sew-Saw_BaseColor.png"
+dest_files=["res://.godot/imported/Seesaw_Sew-Saw_BaseColor.png-c5ec96dc081bd1918be57669bc28c189.s3tc.ctex"]
 
 [params]
 
