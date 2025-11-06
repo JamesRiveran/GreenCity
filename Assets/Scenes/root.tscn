@@ -1,10 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://bpvs6unrhmgga"]
+[gd_scene load_steps=18 format=3 uid="uid://bpvs6unrhmgga"]
 
-[ext_resource type="PackedScene" uid="uid://btkmt5nnpupi6" path="res://Assets/Scenes/floor.tscn" id="1_skivu"]
+[ext_resource type="PackedScene" uid="uid://cdn81qieoaycd" path="res://Assets/Scenes/main/city.tscn" id="1_morkg"]
+[ext_resource type="Script" uid="uid://duefghhm48a04" path="res://Scripts/camera.gd" id="1_vc8ck"]
 [ext_resource type="Script" uid="uid://bcbdnxj17ojxi" path="res://Scripts/TrashManager.gd" id="2_6o2em"]
-[ext_resource type="PackedScene" uid="uid://ctuq3lki53eau" path="res://Assets/Scenes/bag.tscn" id="2_wmxxr"]
-[ext_resource type="PackedScene" uid="uid://d1dncn6cckwmj" path="res://Assets/Scenes/player.tscn" id="4_wmxxr"]
+[ext_resource type="PackedScene" uid="uid://d1dncn6cckwmj" path="res://Assets/Scenes/main/player.tscn" id="4_wmxxr"]
 [ext_resource type="Script" uid="uid://ce501i3lptkkq" path="res://Scripts/hud.gd" id="5_morkg"]
+[ext_resource type="PackedScene" uid="uid://dsyptwhduse0g" path="res://Assets/Models/Trash/Trash Bag.glb" id="6_vc8ck"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_wmxxr"]
 
@@ -15,7 +16,26 @@ sky_material = SubResource("ProceduralSkyMaterial_wmxxr")
 background_mode = 2
 sky = SubResource("Sky_5qytm")
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_vc8ck"]
+size = Vector3(0.5136719, 1, 0.9423218)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_d5rut"]
+size = Vector3(0.22949219, 1, 0.9454956)
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_wmxxr"]
+size = Vector3(0.9463501, 1, 0.9784546)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_lhmy0"]
+size = Vector3(0.25289917, 1, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vxctq"]
+size = Vector3(0.47857666, 1, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_24s64"]
+size = Vector3(0.6865845, 1, 0.9412842)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_hoaef"]
+size = Vector3(0.2600708, 1, 0.14074707)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_morkg"]
 size = Vector3(100.388, 15, 1)
@@ -25,125 +45,135 @@ size = Vector3(100.388, 15, 1)
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_tr35v")
 
-[node name="Camera3D" type="Camera3D" parent="WorldEnvironment"]
-transform = Transform3D(1, 0, 0, 0, 0.13305214, 0.9911091, 0, -0.9911091, 0.13305214, 0, 74.204796, 11.666693)
-
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldEnvironment"]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 30, 0)
 
-[node name="Floor" parent="." instance=ExtResource("1_skivu")]
-
-[node name="Items" type="Node3D" parent="." node_paths=PackedStringArray("vehicle", "dumps", "items_root")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1, 0)
-script = ExtResource("2_6o2em")
-collected_count_max = 3
-vehicle = NodePath("../Player")
-hud = NodePath("../HUD")
-dumps = [null]
-item_templates = Array[PackedScene]([ExtResource("2_wmxxr")])
-spawn_points = Array[NodePath]([NodePath("../SpawnPointsItems/Point"), NodePath("../SpawnPointsItems/Point2"), NodePath("../SpawnPointsItems/Point3"), NodePath("../SpawnPointsItems/Point4")])
-items_root = NodePath(".")
-clear_old_items = true
-
-[node name="SpawnPointsItems" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
-
-[node name="Point" type="Marker3D" parent="SpawnPointsItems"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5, 0, 0)
-
-[node name="Point2" type="Marker3D" parent="SpawnPointsItems"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5, 0, 0)
-
-[node name="Point3" type="Marker3D" parent="SpawnPointsItems"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5, 0, 1.7988217)
-
-[node name="Point4" type="Marker3D" parent="SpawnPointsItems"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5, 0, 1.7988217)
-
 [node name="Player" parent="." instance=ExtResource("4_wmxxr")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5591593, 0, -4.9478016)
-wall_bodies = Array[NodePath]([NodePath("../Walls/WallE/StaticBody3D"), NodePath("../Walls/WallO/StaticBody3D"), NodePath("../Walls/WallS/StaticBody3D"), NodePath("../Walls/WallN/StaticBody3D")])
-wall_areas = Array[NodePath]([NodePath("../TownAreas/Area1/Area3D"), NodePath("../TownAreas/Area2/Area3D"), NodePath("../TownAreas/Area3/Area3D"), NodePath("../TownAreas/Area4/Area3D")])
+mass = 3000.0
+engine_force_strength = 4000.0
+steering_angle_max = 0.1
+wall_bodies = Array[NodePath]([NodePath("../Collisions/Walls/WallE/StaticBody3D"), NodePath("../Collisions/Walls/WallO/StaticBody3D"), NodePath("../Collisions/Walls/WallS/StaticBody3D"), NodePath("../Collisions/Walls/WallN/StaticBody3D")])
+wall_areas = Array[NodePath]([NodePath("../Collisions/TownAreas/BuildingCity/Area3D"), NodePath("../Collisions/TownAreas/BuildingCity/Area3D2"), NodePath("../Collisions/TownAreas/Area2/Area3D"), NodePath("../Collisions/TownAreas/Area3/Area3D"), NodePath("../Collisions/TownAreas/Area3/Area3D2"), NodePath("../Collisions/TownAreas/Area4/Area3D"), NodePath("../Collisions/TownAreas/Area4/Area3D2")])
 hud_path = NodePath("../HUD")
 
-[node name="SpringArm3D" type="SpringArm3D" parent="Player"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.42687464, 0)
-spring_length = 5.0
+[node name="TruckCamara" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.13305214, 0.9911091, 0, -0.9911091, 0.13305214, 0, 74.204796, 11.666693)
+script = ExtResource("1_vc8ck")
 
-[node name="FollowCamera" type="Camera3D" parent="Player/SpringArm3D"]
-transform = Transform3D(-1, 6.181725e-08, -6.181724e-08, -1.511168e-08, 0.57423383, 0.8186914, 8.6106795e-08, 0.8186914, -0.57423383, 0.0062217712, 3.9252052, 1.6783996)
+[node name="City" parent="." instance=ExtResource("1_morkg")]
 
-[node name="TownAreas" type="Node3D" parent="."]
+[node name="SpawnPointsItems" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7366333, 0)
 
-[node name="Area1" type="Node3D" parent="TownAreas"]
+[node name="Point1" type="Marker3D" parent="SpawnPointsItems"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -43.8187, 0, -19.125385)
+
+[node name="Point2" type="Marker3D" parent="SpawnPointsItems"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.629045, 0, 43.786785)
+
+[node name="Point3" type="Marker3D" parent="SpawnPointsItems"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 43.805866, 0, -31.141638)
+
+[node name="Point4" type="Marker3D" parent="SpawnPointsItems"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25.642498, 0, -40.454803)
+
+[node name="Point5" type="Marker3D" parent="SpawnPointsItems"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.153542, 0, -19.972256)
+
+[node name="Collisions" type="Node3D" parent="."]
+
+[node name="TownAreas" type="Node3D" parent="Collisions"]
+
+[node name="BuildingCity" type="Node3D" parent="Collisions/TownAreas"]
 transform = Transform3D(38, 0, 0, 0, 10, 0, 0, 0, 38, 22.5, 5.189189, 22.5)
 
-[node name="Area3D" type="Area3D" parent="TownAreas/Area1"]
+[node name="Area3D" type="Area3D" parent="Collisions/TownAreas/BuildingCity"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="TownAreas/Area1/Area3D"]
-shape = SubResource("BoxShape3D_wmxxr")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Collisions/TownAreas/BuildingCity/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.21679688, 0, -0.0015563965)
+shape = SubResource("BoxShape3D_vc8ck")
 
-[node name="Area2" type="Node3D" parent="TownAreas"]
+[node name="Area3D2" type="Area3D" parent="Collisions/TownAreas/BuildingCity"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Collisions/TownAreas/BuildingCity/Area3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.35595703, 0, 0.0054626465)
+shape = SubResource("BoxShape3D_d5rut")
+
+[node name="Area2" type="Node3D" parent="Collisions/TownAreas"]
 transform = Transform3D(38, 0, 0, 0, 10, 0, 0, 0, 38, -22.5, 5.189, 22.5)
 
-[node name="Area3D" type="Area3D" parent="TownAreas/Area2"]
+[node name="Area3D" type="Area3D" parent="Collisions/TownAreas/Area2"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="TownAreas/Area2/Area3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Collisions/TownAreas/Area2/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0009460449, 0, 0.0028381348)
 shape = SubResource("BoxShape3D_wmxxr")
 
-[node name="Area3" type="Node3D" parent="TownAreas"]
+[node name="Area3" type="Node3D" parent="Collisions/TownAreas"]
 transform = Transform3D(38, 0, 0, 0, 10, 0, 0, 0, 38, -22.5, 5.189, -22.5)
 
-[node name="Area3D" type="Area3D" parent="TownAreas/Area3"]
+[node name="Area3D" type="Area3D" parent="Collisions/TownAreas/Area3"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="TownAreas/Area3/Area3D"]
-shape = SubResource("BoxShape3D_wmxxr")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Collisions/TownAreas/Area3/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.253891, 0, 0)
+shape = SubResource("BoxShape3D_lhmy0")
 
-[node name="Area4" type="Node3D" parent="TownAreas"]
+[node name="Area3D2" type="Area3D" parent="Collisions/TownAreas/Area3"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Collisions/TownAreas/Area3/Area3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.27236938, 0, 0)
+shape = SubResource("BoxShape3D_vxctq")
+
+[node name="Area4" type="Node3D" parent="Collisions/TownAreas"]
 transform = Transform3D(38, 0, 0, 0, 10, 0, 0, 0, 38, 22.5, 5.189, -22.5)
 
-[node name="Area3D" type="Area3D" parent="TownAreas/Area4"]
+[node name="Area3D" type="Area3D" parent="Collisions/TownAreas/Area4"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="TownAreas/Area4/Area3D"]
-shape = SubResource("BoxShape3D_wmxxr")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Collisions/TownAreas/Area4/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.12557983, 0, 0.0004272461)
+shape = SubResource("BoxShape3D_24s64")
 
-[node name="TownBuildings" type="Node3D" parent="."]
+[node name="Area3D2" type="Area3D" parent="Collisions/TownAreas/Area4"]
 
-[node name="Walls" type="Node3D" parent="."]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Collisions/TownAreas/Area4/Area3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.34231567, 0, 0.40045166)
+shape = SubResource("BoxShape3D_hoaef")
 
-[node name="WallE" type="Node3D" parent="Walls"]
+[node name="Walls" type="Node3D" parent="Collisions"]
+
+[node name="WallE" type="Node3D" parent="Collisions/Walls"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 50)
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Walls/WallE"]
+[node name="StaticBody3D" type="StaticBody3D" parent="Collisions/Walls/WallE"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Walls/WallE/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Collisions/Walls/WallE/StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.51568604, 0.8994601, 0)
 shape = SubResource("BoxShape3D_morkg")
 
-[node name="WallO" type="Node3D" parent="Walls"]
+[node name="WallO" type="Node3D" parent="Collisions/Walls"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -50)
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Walls/WallO"]
+[node name="StaticBody3D" type="StaticBody3D" parent="Collisions/Walls/WallO"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Walls/WallO/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Collisions/Walls/WallO/StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.51568604, 0.8994601, 0)
 shape = SubResource("BoxShape3D_morkg")
 
-[node name="WallS" type="Node3D" parent="Walls"]
+[node name="WallS" type="Node3D" parent="Collisions/Walls"]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -50, 0, 0)
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Walls/WallS"]
+[node name="StaticBody3D" type="StaticBody3D" parent="Collisions/Walls/WallS"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Walls/WallS/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Collisions/Walls/WallS/StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7868347, 0.8994601, 0)
 shape = SubResource("BoxShape3D_morkg")
 
-[node name="WallN" type="Node3D" parent="Walls"]
+[node name="WallN" type="Node3D" parent="Collisions/Walls"]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 50, 0, 0)
 
-[node name="StaticBody3D" type="StaticBody3D" parent="Walls/WallN"]
+[node name="StaticBody3D" type="StaticBody3D" parent="Collisions/Walls/WallN"]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Walls/WallN/StaticBody3D"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Collisions/Walls/WallN/StaticBody3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7868347, 0.8994601, 0)
 shape = SubResource("BoxShape3D_morkg")
 
@@ -192,3 +222,12 @@ offset_top = 60.0
 offset_right = 700.0
 offset_bottom = 85.0
 text = "Score"
+
+[node name="Items" type="Node3D" parent="." node_paths=PackedStringArray("vehicle", "items_root")]
+script = ExtResource("2_6o2em")
+collected_count_max = 4
+vehicle = NodePath("../Player")
+hud = NodePath("../HUD")
+item_templates = Array[PackedScene]([ExtResource("6_vc8ck")])
+spawn_points = Array[NodePath]([NodePath("../SpawnPointsItems/Point1"), NodePath("../SpawnPointsItems/Point2"), NodePath("../SpawnPointsItems/Point3"), NodePath("../SpawnPointsItems/Point4")])
+items_root = NodePath(".")

@@ -22,8 +22,13 @@ extends VehicleBody3D
 var health: int = max_health
 
 # --- Daño configurable ---
-@export var wall_damage: int = 10
-@export var wall_cooldown: float = 0.30
+# --- Daño configurable ---
+@export var collision_damage: int = 10      # Daño por colisiones físicas (paredes, edificios)
+@export var area_damage: int = 5            # Daño por entrar a un Area3D
+@export var wall_cooldown: float = 0.30     # Tiempo mínimo entre daños consecutivos
+
+# --- Colisiones a ignorar ---
+@export var ignored_nodes: Array[String] = ["Floor"]
 
 # --- Paredes y Áreas de daño ---
 @export var wall_bodies: Array[NodePath] = []  # <--- aquí asignas tus StaticBody3D (paredes)
@@ -110,25 +115,30 @@ func apply_damage(amount: int, source: Node = null) -> void:
 func _on_wall_area_body_entered(body: Node, area: Area3D) -> void:
 	if body != self:
 		return
-	print("[Car:%s] Entró en área '%s'" % [name, area.name])
-	_try_wall_damage(area)
+
+	print("[Car:%s] ⚠️ Entró en área '%s' (daño %d)" % [name, area.name, area_damage])
+	_try_damage_with_amount(area_damage, area)
 
 
-# Cuando el coche colisiona físicamente con un StaticBody3D asignado
 func _on_body_entered_vehicle(body: Node) -> void:
 	if body is StaticBody3D:
-		# Comprobar si este StaticBody3D está en nuestra lista del inspector
-		for path in wall_bodies:
-			var wall := get_node_or_null(path)
-			if wall == body:
-				print("[Car:%s] 🚧 Colisión con pared '%s'" % [name, body.name])
-				_try_wall_damage(body)
-				break
+		var safe := false
+		
+		if "is_safe_surface" in body and body.get("is_safe_surface"):
+			safe = true
+		elif body.get_parent() and "is_safe_surface" in body.get_parent() and body.get_parent().get("is_safe_surface"):
+			safe = true
+		
+		if safe:
+			return
 
-# Aplica daño con cooldown
-func _try_wall_damage(source: Node = null) -> void:
+		print("[Car:%s] 🚧 Colisión con '%s' (daño %d)" % [name, body.name, collision_damage])
+		_try_damage_with_amount(collision_damage, body)
+
+
+func _try_damage_with_amount(amount: int, source: Node = null) -> void:
 	var now := Time.get_unix_time_from_system()
 	if now < _wall_hit_cd_until:
 		return
-	apply_damage(wall_damage, source if source else self)
+	apply_damage(amount, source if source else self)
 	_wall_hit_cd_until = now + wall_cooldown

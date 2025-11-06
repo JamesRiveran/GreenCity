@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://lpvpglmbn74y"]
+
+[ext_resource type="Script" uid="uid://nbos58pccelh" path="res://Scripts/DumpItem.gd" id="1_44etq"]
+[ext_resource type="Script" uid="uid://ci7gpcpnujtvy" path="res://Scripts/ItemRotator.gd" id="2_818gm"]
+[ext_resource type="PackedScene" uid="uid://dka0bjrs00sk2" path="res://Assets/Models/Dumpsters/Glass.glb" id="3_se7el"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_sb37e"]
+size = Vector3(1.2647504, 1.0051627, 0.754066)
+
+[node name="Glass" type="Node3D"]
+script = ExtResource("1_44etq")
+rotation_enabled = false
+
+[node name="Area3D" type="Area3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.016306818, 0.5346472, 0.018459558)
+shape = SubResource("BoxShape3D_sb37e")
+
+[node name="Label3D" type="Label3D" parent="."]
+transform = Transform3D(2.1739864, 0, 0, 0, 1.8599751, 0, 0, 0, 1, 0, 1.1701425, 0)
+text = "Vidrio"
+script = ExtResource("2_818gm")
+floating_enabled = true
+
+[node name="Root Scene" parent="." instance=ExtResource("3_se7el")]
+transform = Transform3D(0.24333735, 0, 0, 0, 0.24333735, 0, 0, 0, 0.24333735, 0, 0, 0)
