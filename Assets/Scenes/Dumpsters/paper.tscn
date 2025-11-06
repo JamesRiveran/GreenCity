@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://d3x275cbw7mah"]
+
+[ext_resource type="Script" uid="uid://nbos58pccelh" path="res://Scripts/DumpItem.gd" id="1_2iaat"]
+[ext_resource type="PackedScene" uid="uid://cg4kmissqebt3" path="res://Assets/Models/Dumpsters/Paper.glb" id="1_670i1"]
+[ext_resource type="Script" uid="uid://ci7gpcpnujtvy" path="res://Scripts/ItemRotator.gd" id="2_2iaat"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7xgqv"]
+size = Vector3(4.201197, 2.287912, 2.6669056)
+
+[node name="Paper" type="Node3D"]
+script = ExtResource("1_2iaat")
+rotation_enabled = false
+
+[node name="Area3D" type="Area3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.008985758, -0.12247157, -0.016038895)
+shape = SubResource("BoxShape3D_7xgqv")
+
+[node name="Label3D" type="Label3D" parent="."]
+transform = Transform3D(2.1739864, 0, 0, 0, 1.8599751, 0, 0, 0, 1, 0, 0.98257864, 0)
+text = "Papel"
+script = ExtResource("2_2iaat")
+floating_enabled = true
+
+[node name="Paper" parent="." instance=ExtResource("1_670i1")]
+transform = Transform3D(-1.5905373e-08, 0, -0.3638725, 0, 0.3638725, 0, 0.3638725, 0, -1.5905373e-08, 0, 0, 0)
