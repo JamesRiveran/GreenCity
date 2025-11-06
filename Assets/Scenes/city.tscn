@@ -1,6 +1,7 @@
-[gd_scene load_steps=51 format=4 uid="uid://cdn81qieoaycd"]
+[gd_scene load_steps=53 format=4 uid="uid://cdn81qieoaycd"]
 
 [ext_resource type="PackedScene" uid="uid://btkmt5nnpupi6" path="res://Assets/Scenes/floor.tscn" id="1_mvbk7"]
+[ext_resource type="Script" uid="uid://doqa80tqde8w0" path="res://Scripts/collisions.gd" id="2_m8mrs"]
 [ext_resource type="PackedScene" uid="uid://di72gw34202s7" path="res://Models/Buildings/apartment.fbx" id="4_jtxgw"]
 [ext_resource type="PackedScene" uid="uid://cfo0b6my687oq" path="res://Models/Buildings/business_center.fbx" id="5_k3d76"]
 [ext_resource type="PackedScene" uid="uid://cbsvkhaiqeu8y" path="res://Models/Houses/house1_w_fence.fbx" id="7_l8dw0"]
@@ -432,7 +433,11 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_01fnf")
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_mosra"]
+size = Vector3(1.9500732, 1.677002, 0.6034546)
+
 [node name="City" type="Node3D"]
+script = ExtResource("2_m8mrs")
 
 [node name="Floor" parent="." instance=ExtResource("1_mvbk7")]
 
@@ -631,6 +636,12 @@ transform = Transform3D(0.445, 0, 0, 0, 0.31, 0, 0, 0, 0.47, 31.99517, 0, -36.26
 
 [node name="Ferris wheel" parent="SportsCity/Park" instance=ExtResource("17_rc87w")]
 transform = Transform3D(-1.3113416e-07, 0, 3, 0, 3, 0, -3, 0, -1.3113416e-07, 36.638046, 3.5541072, -20.648066)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="SportsCity/Park/Ferris wheel"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SportsCity/Park/Ferris wheel/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0010375977, -0.33850098, -0.008880615)
+shape = SubResource("BoxShape3D_mosra")
 
 [node name="Seesaw" parent="SportsCity/Park" instance=ExtResource("18_j4uai")]
 transform = Transform3D(0.17, 0, 0, 0, 0.272, 0, 0, 0, 0.272, 36.674, 0, -36.163727)
