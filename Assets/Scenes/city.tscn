@@ -437,11 +437,11 @@ shadow_mesh = SubResource("ArrayMesh_01fnf")
 size = Vector3(1.9500732, 1.677002, 0.6034546)
 
 [node name="City" type="Node3D"]
-script = ExtResource("2_m8mrs")
 
 [node name="Floor" parent="." instance=ExtResource("1_mvbk7")]
 
 [node name="HousesCity" type="Node3D" parent="."]
+script = ExtResource("2_m8mrs")
 
 [node name="house1_w_fence" parent="HousesCity" instance=ExtResource("7_l8dw0")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32.213, 0.2, -7.847)
@@ -468,6 +468,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.5, 0.25, -6.653)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.5, 0.25, -22.20948)
 
 [node name="ServiceCity" type="Node3D" parent="."]
+script = ExtResource("2_m8mrs")
 
 [node name="Services" type="Node3D" parent="ServiceCity"]
 transform = Transform3D(1, 0, 0, 0, 2.220446e-16, 1, 0, -0.77013195, 1.7100364e-16, -15.348, 0.1, 21.62915)
@@ -575,6 +576,7 @@ mesh = SubResource("ArrayMesh_7hv8x")
 skeleton = NodePath("")
 
 [node name="BuildingsCity" type="Node3D" parent="."]
+script = ExtResource("2_m8mrs")
 
 [node name="apartment" parent="BuildingsCity" instance=ExtResource("4_jtxgw")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 26.177025, 0, 21.056797)
@@ -600,6 +602,7 @@ transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 10.1
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 10.186762, 0, 12.953003)
 
 [node name="SportsCity" type="Node3D" parent="."]
+script = ExtResource("2_m8mrs")
 
 [node name="Parkings" type="Node3D" parent="SportsCity"]
 

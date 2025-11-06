@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bpvs6unrhmgga"]
+[gd_scene load_steps=16 format=3 uid="uid://bpvs6unrhmgga"]
 
 [ext_resource type="PackedScene" uid="uid://cdn81qieoaycd" path="res://Assets/Scenes/city.tscn" id="1_morkg"]
 [ext_resource type="Script" uid="uid://duefghhm48a04" path="res://Scripts/camera.gd" id="1_vc8ck"]
@@ -14,7 +14,26 @@ sky_material = SubResource("ProceduralSkyMaterial_wmxxr")
 background_mode = 2
 sky = SubResource("Sky_5qytm")
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_vc8ck"]
+size = Vector3(0.5136719, 1, 0.9423218)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_d5rut"]
+size = Vector3(0.22949219, 1, 0.9454956)
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_wmxxr"]
+size = Vector3(0.9463501, 1, 0.9784546)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_lhmy0"]
+size = Vector3(0.34655762, 1, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vxctq"]
+size = Vector3(0.47857666, 1, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_24s64"]
+size = Vector3(0.6865845, 1, 0.9412842)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_hoaef"]
+size = Vector3(0.2600708, 1, 0.14074707)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_morkg"]
 size = Vector3(100.388, 15, 1)
@@ -30,8 +49,10 @@ transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 3
 [node name="Player" parent="." instance=ExtResource("4_wmxxr")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5591593, 0, -4.9478016)
 mass = 3500.0
+engine_force_strength = 4000.0
+steering_angle_max = 0.1
 wall_bodies = Array[NodePath]([NodePath("../Collisions/Walls/WallE/StaticBody3D"), NodePath("../Collisions/Walls/WallO/StaticBody3D"), NodePath("../Collisions/Walls/WallS/StaticBody3D"), NodePath("../Collisions/Walls/WallN/StaticBody3D")])
-wall_areas = Array[NodePath]([NodePath("../Collisions/TownAreas/Area1/Area3D"), NodePath("../Collisions/TownAreas/Area2/Area3D"), NodePath("../Collisions/TownAreas/Area3/Area3D"), NodePath("../Collisions/TownAreas/Area4/Area3D")])
+wall_areas = Array[NodePath]([NodePath("../Collisions/TownAreas/Area1/Area3D"), NodePath("../Collisions/TownAreas/Area1/Area3D2"), NodePath("../Collisions/TownAreas/Area2/Area3D"), NodePath("../Collisions/TownAreas/Area3/Area3D"), NodePath("../Collisions/TownAreas/Area3/Area3D2"), NodePath("../Collisions/TownAreas/Area4/Area3D"), NodePath("../Collisions/TownAreas/Area4/Area3D2")])
 hud_path = NodePath("../HUD")
 
 [node name="TruckCamara" type="Camera3D" parent="."]
@@ -65,7 +86,14 @@ transform = Transform3D(38, 0, 0, 0, 10, 0, 0, 0, 38, 22.5, 5.189189, 22.5)
 [node name="Area3D" type="Area3D" parent="Collisions/TownAreas/Area1"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Collisions/TownAreas/Area1/Area3D"]
-shape = SubResource("BoxShape3D_wmxxr")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.21679688, 0, -0.0015563965)
+shape = SubResource("BoxShape3D_vc8ck")
+
+[node name="Area3D2" type="Area3D" parent="Collisions/TownAreas/Area1"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Collisions/TownAreas/Area1/Area3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.35595703, 0, 0.0054626465)
+shape = SubResource("BoxShape3D_d5rut")
 
 [node name="Area2" type="Node3D" parent="Collisions/TownAreas"]
 transform = Transform3D(38, 0, 0, 0, 10, 0, 0, 0, 38, -22.5, 5.189, 22.5)
@@ -73,6 +101,7 @@ transform = Transform3D(38, 0, 0, 0, 10, 0, 0, 0, 38, -22.5, 5.189, 22.5)
 [node name="Area3D" type="Area3D" parent="Collisions/TownAreas/Area2"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Collisions/TownAreas/Area2/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0009460449, 0, 0.0028381348)
 shape = SubResource("BoxShape3D_wmxxr")
 
 [node name="Area3" type="Node3D" parent="Collisions/TownAreas"]
@@ -81,7 +110,14 @@ transform = Transform3D(38, 0, 0, 0, 10, 0, 0, 0, 38, -22.5, 5.189, -22.5)
 [node name="Area3D" type="Area3D" parent="Collisions/TownAreas/Area3"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Collisions/TownAreas/Area3/Area3D"]
-shape = SubResource("BoxShape3D_wmxxr")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.3007202, 0, 0)
+shape = SubResource("BoxShape3D_lhmy0")
+
+[node name="Area3D2" type="Area3D" parent="Collisions/TownAreas/Area3"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Collisions/TownAreas/Area3/Area3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.27236938, 0, 0)
+shape = SubResource("BoxShape3D_vxctq")
 
 [node name="Area4" type="Node3D" parent="Collisions/TownAreas"]
 transform = Transform3D(38, 0, 0, 0, 10, 0, 0, 0, 38, 22.5, 5.189, -22.5)
@@ -89,7 +125,14 @@ transform = Transform3D(38, 0, 0, 0, 10, 0, 0, 0, 38, 22.5, 5.189, -22.5)
 [node name="Area3D" type="Area3D" parent="Collisions/TownAreas/Area4"]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Collisions/TownAreas/Area4/Area3D"]
-shape = SubResource("BoxShape3D_wmxxr")
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.12557983, 0, 0.0004272461)
+shape = SubResource("BoxShape3D_24s64")
+
+[node name="Area3D2" type="Area3D" parent="Collisions/TownAreas/Area4"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Collisions/TownAreas/Area4/Area3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.34231567, 0, 0.40045166)
+shape = SubResource("BoxShape3D_hoaef")
 
 [node name="Walls" type="Node3D" parent="Collisions"]
 

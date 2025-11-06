@@ -2,6 +2,7 @@ extends Node3D
 
 func _ready():
 	var meshes = get_tree().get_nodes_in_group("") # dummy
+	
 
 	# Recorre todos los nodos dentro del City
 	for child in get_children_recursive(self):
@@ -15,6 +16,7 @@ func _ready():
 			collision.shape = shape
 			static_body.add_child(collision)
 			collision.owner = self
+
 
 func get_children_recursive(node: Node) -> Array:
 	var arr: Array = []
