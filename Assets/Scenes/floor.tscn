@@ -350,4 +350,4 @@ mesh = SubResource("ArrayMesh_yu81e")
 skeleton = NodePath("")
 
 [node name="road" parent="." instance=ExtResource("13_bl3i6")]
-transform = Transform3D(-7.856802e-09, 0, 0.033918276, 0, 1.762481, 0, -0.17974268, 0, -1.4826149e-09, 0.18060088, -0.13888335, 0.22357738)
+transform = Transform3D(-7.856802e-09, 0, 0.033918276, 0, 1.762481, 0, -0.17974268, 0, -1.4826149e-09, 0.1687764, -0.13888335, 0.22357738)
