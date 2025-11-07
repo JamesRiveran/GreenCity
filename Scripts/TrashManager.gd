@@ -9,6 +9,8 @@ signal vehicle_assigned(vehicle)
 @export var allow_cross_dump: bool = false
 @export var subtract_score_cross_dump: bool = false
 @export var allow_negative_score: bool = false
+@export var add_time_correct_deposit: bool = false
+@export var time_added_correct_deposit: int = 10
 @export var dumps: Array[Node3D] = []  # Lista de basureros (con Area3D)
 
 @onready var hud_node := get_node_or_null(hud)
@@ -72,6 +74,8 @@ func _on_item_deposited(_item: Node3D, dump_type):
 		print("[✅ TrashManager] Score:", score, " -> ", score + trash_type_transported_score)
 		if trash_type_transported == dump_type:
 			score += trash_type_transported_score
+			if add_time_correct_deposit:
+				hud_node.add_time(time_added_correct_deposit)
 		elif subtract_score_cross_dump and (score > 0 or allow_negative_score):
 			score -= trash_type_transported_score
 		count_items -= 1

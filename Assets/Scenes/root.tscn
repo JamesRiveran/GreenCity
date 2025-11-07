@@ -173,14 +173,19 @@ shape = SubResource("BoxShape3D_morkg")
 
 [node name="Items" type="Node3D" parent="." node_paths=PackedStringArray("vehicle", "dumps", "items_root")]
 script = ExtResource("2_6o2em")
+collected_count_max = 1
 vehicle = NodePath("../Player")
 hud = NodePath("../HUD")
 allow_cross_dump = true
+subtract_score_cross_dump = true
+allow_negative_score = true
+add_time_correct_deposit = true
 dumps = [NodePath("../Dumpsters/DumpGeneral"), NodePath("../Dumpsters/DumpGlass"), NodePath("../Dumpsters/DumpMetal"), NodePath("../Dumpsters/DumpPaper"), NodePath("../Dumpsters/DumpPlastic")]
 item_templates = Array[PackedScene]([ExtResource("5_hoaef"), ExtResource("6_udl0k"), ExtResource("7_txhe7"), ExtResource("8_ycjpv"), ExtResource("9_weavm"), ExtResource("10_w7cdi"), ExtResource("11_gmobi"), ExtResource("12_pq7br")])
 root_spawn_points = NodePath("../SpawnPointsItems")
 items_root = NodePath(".")
 clear_old_items = true
+max_items = 10
 
 [node name="SpawnPointsItems" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7366333, 0)

@@ -123,6 +123,9 @@ func respawn_missing_items():
 	randomized_points.shuffle()
 	
 	for entry in randomized_points:
+		if max_items > 0 and count_items >= max_items:
+			break
+			
 		var template: PackedScene = item_templates.pick_random()
 		if template == null:
 			push_warning("[⚠️ ItemSpawner] No hay plantillas asignadas en item_templates.")
