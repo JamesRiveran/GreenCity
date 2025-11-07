@@ -1,10 +1,8 @@
-[gd_scene load_steps=11 format=4 uid="uid://d2ai043jjf2fr"]
+[gd_scene load_steps=15 format=4 uid="uid://d2ai043jjf2fr"]
 
 [ext_resource type="Script" uid="uid://nbos58pccelh" path="res://Scripts/DumpItem.gd" id="1_n2072"]
 [ext_resource type="Script" uid="uid://ci7gpcpnujtvy" path="res://Scripts/ItemRotator.gd" id="2_yv8sl"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_yiusr"]
-size = Vector3(4.4676485, 2.746544, 3.000229)
+[ext_resource type="Material" uid="uid://b0a2bnepp0h65" path="res://Assets/Materials/MarkerArea.tres" id="3_yv8sl"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0kbu7"]
 resource_name = "Material.013"
@@ -185,26 +183,82 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_bb7y1")
 
-[node name="General" type="Node3D"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_yiusr"]
+size = Vector3(1.9981269, 1.9900184, 1.9986491)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_n2072"]
+material = ExtResource("3_yv8sl")
+top_radius = 0.25
+bottom_radius = 0.0
+height = 1.0
+
+[sub_resource type="BoxMesh" id="BoxMesh_n2072"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_yv8sl"]
+
+[node name="DumpGeneral" type="Node3D"]
 script = ExtResource("1_n2072")
+dump_trash_type = "General"
 rotation_enabled = false
 
-[node name="Area3D" type="Area3D" parent="."]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.003133297, 0.5230751, 0.06932974)
-shape = SubResource("BoxShape3D_yiusr")
-
-[node name="Label3D" type="Label3D" parent="."]
-transform = Transform3D(3.2, 0, 0, 0, 3.415, 0, 0, 0, 0.992, 0, 2.192847, 0)
-text = "General"
-script = ExtResource("2_yv8sl")
-floating_enabled = true
-float_amplitude = 0.5
-float_speed = 5.0
-
-[node name="General" type="MeshInstance3D" parent="."]
-transform = Transform3D(99.397, 0, 0, 0, -6.319792e-06, 53.014256, 0, -53.014256, -6.319792e-06, 0, 0, 0)
+[node name="MeshDumpGeneral" type="MeshInstance3D" parent="."]
+transform = Transform3D(45, 0, 0, 0, -9.835062e-07, 22.5, 0, -22.5, -9.835062e-07, 0, 0.25, 0)
 mesh = SubResource("ArrayMesh_am0ds")
 skeleton = NodePath("")
+
+[node name="Area3D" type="Area3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.5, 2)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0023269057, 0.0037081242, -0.001316309)
+shape = SubResource("BoxShape3D_yiusr")
+
+[node name="GeneralLabel3DFront" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+pixel_size = 0.015
+double_sided = false
+text = "General"
+script = ExtResource("2_yv8sl")
+rotation_speed = 50.0
+floating_enabled = true
+float_amplitude = 1.5
+float_speed = 1.5
+
+[node name="GeneralLabel3DBack" type="Label3D" parent="."]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 1.5, 0)
+pixel_size = 0.015
+double_sided = false
+text = "General"
+script = ExtResource("2_yv8sl")
+rotation_speed = 50.0
+floating_enabled = true
+float_amplitude = 1.5
+float_speed = 1.5
+
+[node name="MeshMarkerAreaGeneral" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 2)
+mesh = SubResource("CylinderMesh_n2072")
+skeleton = NodePath("")
+script = ExtResource("2_yv8sl")
+rotation_enabled = false
+floating_enabled = true
+float_amplitude = 2.0
+float_speed = 2.5
+
+[node name="TampletesDumps" type="Node3D" parent="."]
+visible = false
+
+[node name="MeshTemplateDump" type="MeshInstance3D" parent="TampletesDumps"]
+transform = Transform3D(1, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.3437674, 0)
+mesh = SubResource("BoxMesh_n2072")
+skeleton = NodePath("../..")
+
+[node name="MeshTemplateDumpArea" type="MeshInstance3D" parent="TampletesDumps"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 2)
+mesh = SubResource("BoxMesh_n2072")
+skeleton = NodePath("../..")
+
+[node name="MeshTemplateDumpLabel" type="MeshInstance3D" parent="TampletesDumps"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -0.1, 0, 1, -4.371139e-09, 0, 1.5, 0)
+mesh = SubResource("PlaneMesh_yv8sl")
+skeleton = NodePath("../..")

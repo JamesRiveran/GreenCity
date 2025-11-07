@@ -5,14 +5,15 @@
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_qthco"]
 
-[node name="Bag" type="Node3D"]
+[node name="TrashBag" type="Node3D"]
 script = ExtResource("1_qthco")
+trash_type = "General"
 trash_type_score = 20
 floating_enabled = true
 float_amplitude = 0.3
 float_speed = 2.5
 
-[node name="BagMesh" parent="." instance=ExtResource("1_qtmei")]
+[node name="MeshTrashBag" parent="." instance=ExtResource("1_qtmei")]
 
 [node name="Area3D" type="Area3D" parent="."]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.25, 0)
