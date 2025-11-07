@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=4 uid="uid://d2ai043jjf2fr"]
+[gd_scene load_steps=16 format=4 uid="uid://d2ai043jjf2fr"]
 
 [ext_resource type="Script" uid="uid://nbos58pccelh" path="res://Scripts/DumpItem.gd" id="1_n2072"]
 [ext_resource type="Script" uid="uid://ci7gpcpnujtvy" path="res://Scripts/ItemRotator.gd" id="2_yv8sl"]
@@ -196,6 +196,8 @@ height = 1.0
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_yv8sl"]
 
+[sub_resource type="BoxMesh" id="BoxMesh_dddqh"]
+
 [node name="DumpGeneral" type="Node3D"]
 script = ExtResource("1_n2072")
 dump_trash_type = "General"
@@ -262,3 +264,7 @@ skeleton = NodePath("../..")
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -0.1, 0, 1, -4.371139e-09, 0, 1.5, 0)
 mesh = SubResource("PlaneMesh_yv8sl")
 skeleton = NodePath("../..")
+
+[node name="MeshTemplateTrash" type="MeshInstance3D" parent="TampletesDumps"]
+transform = Transform3D(0.6, 0, 0, 0, 0.6, 0, 0, 0, 0.6, -3.7447133, 0.30192843, 0)
+mesh = SubResource("BoxMesh_dddqh")

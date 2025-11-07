@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://dsohkrr1kayx4"]
+
+[ext_resource type="PackedScene" uid="uid://be8vog5qj337y" path="res://Assets/Models/Trash/Water Bottle.glb" id="1_kovsg"]
+[ext_resource type="Script" uid="uid://c2pl3m8iayn7l" path="res://Scripts/TrashItem.gd" id="1_q6a4d"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_q6a4d"]
+size = Vector3(0.5129554, 1.4368057, 0.5146662)
+
+[node name="TrashWaterBottle" type="Node3D"]
+script = ExtResource("1_q6a4d")
+trash_type = "Plastico"
+trash_type_score = 10
+floating_enabled = true
+float_amplitude = 0.3
+float_speed = 2.5
+
+[node name="Area3D" type="Area3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.25, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00017797947, 0.21725845, -0.0053363442)
+shape = SubResource("BoxShape3D_q6a4d")
+
+[node name="MeshWaterBottle" parent="." instance=ExtResource("1_kovsg")]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)

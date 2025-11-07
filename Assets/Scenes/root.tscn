@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://bpvs6unrhmgga"]
+[gd_scene load_steps=30 format=3 uid="uid://bpvs6unrhmgga"]
 
 [ext_resource type="PackedScene" uid="uid://cdn81qieoaycd" path="res://Assets/Scenes/main/city.tscn" id="1_morkg"]
 [ext_resource type="Script" uid="uid://duefghhm48a04" path="res://Scripts/camera.gd" id="1_vc8ck"]
@@ -7,10 +7,17 @@
 [ext_resource type="PackedScene" uid="uid://ctuq3lki53eau" path="res://Assets/Scenes/Trashes/TrashBag.tscn" id="5_hoaef"]
 [ext_resource type="Script" uid="uid://ce501i3lptkkq" path="res://Scripts/hud.gd" id="5_morkg"]
 [ext_resource type="PackedScene" uid="uid://d2ai043jjf2fr" path="res://Assets/Scenes/Dumpsters/DumpGeneral.tscn" id="6_hoaef"]
+[ext_resource type="PackedScene" uid="uid://ykjcnopkskj6" path="res://Assets/Scenes/Trashes/TrashBags.tscn" id="6_udl0k"]
 [ext_resource type="PackedScene" uid="uid://ccsoyj23wl5r8" path="res://Assets/Scenes/Dumpsters/DumpPlastic.tscn" id="7_msmft"]
+[ext_resource type="PackedScene" uid="uid://ikw4fpcwecaf" path="res://Assets/Scenes/Trashes/TrashRubbish.tscn" id="7_txhe7"]
 [ext_resource type="PackedScene" uid="uid://d3x275cbw7mah" path="res://Assets/Scenes/Dumpsters/DumpPaper.tscn" id="8_n4vqs"]
+[ext_resource type="PackedScene" uid="uid://bf7s1sa5dutl2" path="res://Assets/Scenes/Trashes/TrashCanBroken.tscn" id="8_ycjpv"]
 [ext_resource type="PackedScene" uid="uid://c8tljjn7qiabb" path="res://Assets/Scenes/Dumpsters/DumpMetal.tscn" id="9_dfvf4"]
+[ext_resource type="PackedScene" uid="uid://c8iimf8daq140" path="res://Assets/Scenes/Trashes/TrashSodaCrushed.tscn" id="9_weavm"]
 [ext_resource type="PackedScene" uid="uid://lpvpglmbn74y" path="res://Assets/Scenes/Dumpsters/DumpGlass.tscn" id="10_2l25m"]
+[ext_resource type="PackedScene" uid="uid://b53p34u8yxfpc" path="res://Assets/Scenes/Trashes/TrashSoda.tscn" id="10_w7cdi"]
+[ext_resource type="PackedScene" uid="uid://dsohkrr1kayx4" path="res://Assets/Scenes/Trashes/TrashWaterBottle.tscn" id="11_gmobi"]
+[ext_resource type="PackedScene" uid="uid://1vkxa5m4qqt4" path="res://Assets/Scenes/Trashes/TrashCardboardBoxes.tscn" id="12_pq7br"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_wmxxr"]
 
@@ -166,16 +173,14 @@ shape = SubResource("BoxShape3D_morkg")
 
 [node name="Items" type="Node3D" parent="." node_paths=PackedStringArray("vehicle", "dumps", "items_root")]
 script = ExtResource("2_6o2em")
-collected_count_max = 1
 vehicle = NodePath("../Player")
 hud = NodePath("../HUD")
 allow_cross_dump = true
 dumps = [NodePath("../Dumpsters/DumpGeneral"), NodePath("../Dumpsters/DumpGlass"), NodePath("../Dumpsters/DumpMetal"), NodePath("../Dumpsters/DumpPaper"), NodePath("../Dumpsters/DumpPlastic")]
-item_templates = Array[PackedScene]([ExtResource("5_hoaef")])
+item_templates = Array[PackedScene]([ExtResource("5_hoaef"), ExtResource("6_udl0k"), ExtResource("7_txhe7"), ExtResource("8_ycjpv"), ExtResource("9_weavm"), ExtResource("10_w7cdi"), ExtResource("11_gmobi"), ExtResource("12_pq7br")])
 root_spawn_points = NodePath("../SpawnPointsItems")
 items_root = NodePath(".")
 clear_old_items = true
-max_items = 10
 
 [node name="SpawnPointsItems" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7366333, 0)
@@ -257,15 +262,15 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.5, 0, 30)
 [node name="Dumpsters" type="Node3D" parent="."]
 
 [node name="DumpGeneral" parent="Dumpsters" instance=ExtResource("6_hoaef")]
-transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -25, 0, 39.5)
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -6.826702, 0, 39.5)
 deposit_time = 5.0
 
 [node name="DumpGlass" parent="Dumpsters" instance=ExtResource("10_2l25m")]
-transform = Transform3D(-8.742278e-08, 0, 2, 0, 2, 0, -2, 0, -8.742278e-08, 39.5, 0, -38)
+transform = Transform3D(-8.742278e-08, 0, 2, 0, 2, 0, -2, 0, -8.742278e-08, 39.5, 0, -20)
 deposit_time = 5.0
 
 [node name="DumpMetal" parent="Dumpsters" instance=ExtResource("9_dfvf4")]
-transform = Transform3D(-8.742278e-08, 0, 2, 0, 2, 0, -2, 0, -8.742278e-08, 39.5, 0, 25)
+transform = Transform3D(-8.742278e-08, 0, 2, 0, 2, 0, -2, 0, -8.742278e-08, 39.5, 0, 32)
 deposit_time = 5.0
 
 [node name="DumpPaper" parent="Dumpsters" instance=ExtResource("8_n4vqs")]

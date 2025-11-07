@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://lpvpglmbn74y"]
+[gd_scene load_steps=7 format=3 uid="uid://lpvpglmbn74y"]
 
 [ext_resource type="Script" uid="uid://nbos58pccelh" path="res://Scripts/DumpItem.gd" id="1_44etq"]
 [ext_resource type="Script" uid="uid://ci7gpcpnujtvy" path="res://Scripts/ItemRotator.gd" id="2_818gm"]
@@ -13,10 +13,6 @@ material = ExtResource("4_f8fb3")
 top_radius = 0.25
 bottom_radius = 0.0
 height = 1.0
-
-[sub_resource type="BoxMesh" id="BoxMesh_dsy2n"]
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_0h2h0"]
 
 [node name="DumpGlass" type="Node3D"]
 script = ExtResource("1_44etq")
@@ -66,21 +62,3 @@ rotation_enabled = false
 floating_enabled = true
 float_amplitude = 2.0
 float_speed = 2.5
-
-[node name="TampletesDumps" type="Node3D" parent="."]
-visible = false
-
-[node name="MeshTemplateDump" type="MeshInstance3D" parent="TampletesDumps"]
-transform = Transform3D(1, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.3437674, 0)
-mesh = SubResource("BoxMesh_dsy2n")
-skeleton = NodePath("../..")
-
-[node name="MeshTemplateDumpArea" type="MeshInstance3D" parent="TampletesDumps"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 2)
-mesh = SubResource("BoxMesh_dsy2n")
-skeleton = NodePath("../..")
-
-[node name="MeshTemplateDumpLabel" type="MeshInstance3D" parent="TampletesDumps"]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -0.1, 0, 1, -4.371139e-09, 0, 1.5, 0)
-mesh = SubResource("PlaneMesh_0h2h0")
-skeleton = NodePath("../..")

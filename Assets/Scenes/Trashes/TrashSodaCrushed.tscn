@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://c8iimf8daq140"]
+
+[ext_resource type="PackedScene" uid="uid://cu3yv68nx3faa" path="res://Assets/Models/Trash/Soda Can Crushed.glb" id="1_ffrte"]
+[ext_resource type="Script" uid="uid://c2pl3m8iayn7l" path="res://Scripts/TrashItem.gd" id="1_rd6gx"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_rd6gx"]
+size = Vector3(1.4917428, 0.96972847, 1.4917703)
+
+[node name="TrashSodaCrushed" type="Node3D"]
+script = ExtResource("1_rd6gx")
+trash_type = "Metal"
+trash_type_score = 10
+floating_enabled = true
+float_amplitude = 0.3
+float_speed = 2.5
+
+[node name="Area3D" type="Area3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.25, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.008757353, -0.016280174, -0.005012274)
+shape = SubResource("BoxShape3D_rd6gx")
+
+[node name="MeshSofaCrushed" parent="." instance=ExtResource("1_ffrte")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)

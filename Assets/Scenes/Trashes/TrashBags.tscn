@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://ykjcnopkskj6"]
+
+[ext_resource type="Script" uid="uid://c2pl3m8iayn7l" path="res://Scripts/TrashItem.gd" id="1_127yf"]
+[ext_resource type="PackedScene" uid="uid://bqo8e2phk6kyo" path="res://Assets/Models/Trash/Trash Bags.glb" id="2_127yf"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qthco"]
+size = Vector3(1.7819443, 1.0388336, 1.042633)
+
+[node name="TrashBags" type="Node3D"]
+script = ExtResource("1_127yf")
+trash_type = "General"
+trash_type_score = 30
+floating_enabled = true
+float_amplitude = 0.3
+float_speed = 2.5
+
+[node name="MeshTrashBags" parent="." instance=ExtResource("2_127yf")]
+transform = Transform3D(1.1, 0, 0, 0, 1.1, 0, 0, 0, 1.1, 0, 0, 0)
+
+[node name="Area3D" type="Area3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.25, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.06692886, 0.0182724, 0.044815063)
+shape = SubResource("BoxShape3D_qthco")
