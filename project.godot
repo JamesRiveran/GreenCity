@@ -11,9 +11,13 @@ config_version=5
 [application]
 
 config/name="RecyclaCity"
-run/main_scene="uid://bpvs6unrhmgga"
+run/main_scene="uid://8f5863qki7h4"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
+
+[autoload]
+
+Game="*res://Scripts/GameManager.gd"
 
 [filesystem]
 
