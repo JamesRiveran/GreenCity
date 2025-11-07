@@ -1,4 +1,4 @@
-[gd_scene load_steps=177 format=4 uid="uid://cdn81qieoaycd"]
+[gd_scene load_steps=172 format=4 uid="uid://cdn81qieoaycd"]
 
 [ext_resource type="PackedScene" uid="uid://btkmt5nnpupi6" path="res://Assets/Scenes/main/floor.tscn" id="1_mvbk7"]
 [ext_resource type="Script" uid="uid://doqa80tqde8w0" path="res://Scripts/collisions.gd" id="2_m8mrs"]
@@ -26,11 +26,6 @@
 [ext_resource type="PackedScene" uid="uid://bj2hsjil1x502" path="res://Assets/Models/Park/Town Center Second Age.glb" id="22_nebp7"]
 [ext_resource type="PackedScene" uid="uid://5ejqsmncgik4" path="res://Assets/Models/Buildings/Apartment building.glb" id="23_qh6tv"]
 [ext_resource type="Material" uid="uid://cgockmj1nq3j2" path="res://Assets/Materials/Portal.tres" id="26_5kpo1"]
-[ext_resource type="PackedScene" uid="uid://d2ai043jjf2fr" path="res://Assets/Scenes/Dumpsters/general.tscn" id="27_mosra"]
-[ext_resource type="PackedScene" uid="uid://ccsoyj23wl5r8" path="res://Assets/Scenes/Dumpsters/plastic.tscn" id="28_w4rrg"]
-[ext_resource type="PackedScene" uid="uid://d3x275cbw7mah" path="res://Assets/Scenes/Dumpsters/paper.tscn" id="29_w4rrg"]
-[ext_resource type="PackedScene" uid="uid://c8tljjn7qiabb" path="res://Assets/Scenes/Dumpsters/metal.tscn" id="30_vct3g"]
-[ext_resource type="PackedScene" uid="uid://lpvpglmbn74y" path="res://Assets/Scenes/Dumpsters/glass.tscn" id="31_qyxt6"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cdnd6"]
 resource_name = "Collider"
@@ -2817,20 +2812,3 @@ transform = Transform3D(2.275, 0, 0, 0, 2.275, 0, 0, 0, 2.275, 36.614, 0.3704260
 
 [node name="Fount" parent="SportsCity/Park" instance=ExtResource("22_nebp7")]
 transform = Transform3D(-6.228873e-08, 0, -1.425, 0, 1.425, 0, 1.425, 0, -6.228873e-08, 8.860283, 0, -7.3065047)
-
-[node name="Dumpsters" type="Node3D" parent="."]
-
-[node name="General" parent="Dumpsters" instance=ExtResource("27_mosra")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -39.297527, 0.37695384, -9.139587)
-
-[node name="Plastic" parent="Dumpsters" instance=ExtResource("28_w4rrg")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -38.960655, 0.40130377, -22.51321)
-
-[node name="Paper" parent="Dumpsters" instance=ExtResource("29_w4rrg")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -39.314598, 0.6196101, -37.812)
-
-[node name="metal" parent="Dumpsters" instance=ExtResource("30_vct3g")]
-transform = Transform3D(-9.922485e-08, 0, 2.27, 0, 2.27, 0, -2.27, 0, -9.922485e-08, 37.66147, 0, 29.509996)
-
-[node name="Glass" parent="Dumpsters" instance=ExtResource("31_qyxt6")]
-transform = Transform3D(-9.922485e-08, 0, 2.27, 0, 2.27, 0, -2.27, 0, -9.922485e-08, 37.66354, 0, 32.439987)

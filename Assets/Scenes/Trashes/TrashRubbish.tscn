@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://ikw4fpcwecaf"]
+
+[ext_resource type="PackedScene" uid="uid://cn74kex3q6vhk" path="res://Assets/Models/Trash/Rubbish.glb" id="1_dtvsf"]
+[ext_resource type="Script" uid="uid://c2pl3m8iayn7l" path="res://Scripts/TrashItem.gd" id="1_qmsnt"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qmsnt"]
+size = Vector3(2.840165, 1.0955582, 1.1237662)
+
+[node name="TrashRubbish" type="Node3D"]
+script = ExtResource("1_qmsnt")
+trash_type = "General"
+floating_enabled = true
+float_amplitude = 0.3
+float_speed = 2.5
+
+[node name="Area3D" type="Area3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.25, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.18570185, 0.046634674, -0.05458057)
+shape = SubResource("BoxShape3D_qmsnt")
+
+[node name="MeshRubbish" parent="." instance=ExtResource("1_dtvsf")]
+transform = Transform3D(0.015, 0, 0, 0, 0.015, 0, 0, 0, 0.015, 0, 0, -0.25)

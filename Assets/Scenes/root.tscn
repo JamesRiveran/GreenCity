@@ -1,11 +1,23 @@
-[gd_scene load_steps=18 format=3 uid="uid://bpvs6unrhmgga"]
+[gd_scene load_steps=30 format=3 uid="uid://bpvs6unrhmgga"]
 
 [ext_resource type="PackedScene" uid="uid://cdn81qieoaycd" path="res://Assets/Scenes/main/city.tscn" id="1_morkg"]
 [ext_resource type="Script" uid="uid://duefghhm48a04" path="res://Scripts/camera.gd" id="1_vc8ck"]
 [ext_resource type="Script" uid="uid://bcbdnxj17ojxi" path="res://Scripts/TrashManager.gd" id="2_6o2em"]
 [ext_resource type="PackedScene" uid="uid://d1dncn6cckwmj" path="res://Assets/Scenes/main/player.tscn" id="4_wmxxr"]
+[ext_resource type="PackedScene" uid="uid://ctuq3lki53eau" path="res://Assets/Scenes/Trashes/TrashBag.tscn" id="5_hoaef"]
 [ext_resource type="Script" uid="uid://ce501i3lptkkq" path="res://Scripts/hud.gd" id="5_morkg"]
-[ext_resource type="PackedScene" uid="uid://dsyptwhduse0g" path="res://Assets/Models/Trash/Trash Bag.glb" id="6_vc8ck"]
+[ext_resource type="PackedScene" uid="uid://d2ai043jjf2fr" path="res://Assets/Scenes/Dumpsters/DumpGeneral.tscn" id="6_hoaef"]
+[ext_resource type="PackedScene" uid="uid://ykjcnopkskj6" path="res://Assets/Scenes/Trashes/TrashBags.tscn" id="6_udl0k"]
+[ext_resource type="PackedScene" uid="uid://ccsoyj23wl5r8" path="res://Assets/Scenes/Dumpsters/DumpPlastic.tscn" id="7_msmft"]
+[ext_resource type="PackedScene" uid="uid://ikw4fpcwecaf" path="res://Assets/Scenes/Trashes/TrashRubbish.tscn" id="7_txhe7"]
+[ext_resource type="PackedScene" uid="uid://d3x275cbw7mah" path="res://Assets/Scenes/Dumpsters/DumpPaper.tscn" id="8_n4vqs"]
+[ext_resource type="PackedScene" uid="uid://bf7s1sa5dutl2" path="res://Assets/Scenes/Trashes/TrashCanBroken.tscn" id="8_ycjpv"]
+[ext_resource type="PackedScene" uid="uid://c8tljjn7qiabb" path="res://Assets/Scenes/Dumpsters/DumpMetal.tscn" id="9_dfvf4"]
+[ext_resource type="PackedScene" uid="uid://c8iimf8daq140" path="res://Assets/Scenes/Trashes/TrashSodaCrushed.tscn" id="9_weavm"]
+[ext_resource type="PackedScene" uid="uid://lpvpglmbn74y" path="res://Assets/Scenes/Dumpsters/DumpGlass.tscn" id="10_2l25m"]
+[ext_resource type="PackedScene" uid="uid://b53p34u8yxfpc" path="res://Assets/Scenes/Trashes/TrashSoda.tscn" id="10_w7cdi"]
+[ext_resource type="PackedScene" uid="uid://dsohkrr1kayx4" path="res://Assets/Scenes/Trashes/TrashWaterBottle.tscn" id="11_gmobi"]
+[ext_resource type="PackedScene" uid="uid://1vkxa5m4qqt4" path="res://Assets/Scenes/Trashes/TrashCardboardBoxes.tscn" id="12_pq7br"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_wmxxr"]
 
@@ -62,24 +74,6 @@ transform = Transform3D(1, 0, 0, 0, 0.13305214, 0.9911091, 0, -0.9911091, 0.1330
 script = ExtResource("1_vc8ck")
 
 [node name="City" parent="." instance=ExtResource("1_morkg")]
-
-[node name="SpawnPointsItems" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7366333, 0)
-
-[node name="Point1" type="Marker3D" parent="SpawnPointsItems"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -43.8187, 0, -19.125385)
-
-[node name="Point2" type="Marker3D" parent="SpawnPointsItems"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.629045, 0, 43.786785)
-
-[node name="Point3" type="Marker3D" parent="SpawnPointsItems"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 43.805866, 0, -31.141638)
-
-[node name="Point4" type="Marker3D" parent="SpawnPointsItems"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25.642498, 0, -40.454803)
-
-[node name="Point5" type="Marker3D" parent="SpawnPointsItems"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8.153542, 0, -19.972256)
 
 [node name="Collisions" type="Node3D" parent="."]
 
@@ -177,6 +171,121 @@ transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 50, 
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7868347, 0.8994601, 0)
 shape = SubResource("BoxShape3D_morkg")
 
+[node name="Items" type="Node3D" parent="." node_paths=PackedStringArray("vehicle", "dumps", "items_root")]
+script = ExtResource("2_6o2em")
+collected_count_max = 1
+vehicle = NodePath("../Player")
+hud = NodePath("../HUD")
+allow_cross_dump = true
+subtract_score_cross_dump = true
+allow_negative_score = true
+add_time_correct_deposit = true
+dumps = [NodePath("../Dumpsters/DumpGeneral"), NodePath("../Dumpsters/DumpGlass"), NodePath("../Dumpsters/DumpMetal"), NodePath("../Dumpsters/DumpPaper"), NodePath("../Dumpsters/DumpPlastic")]
+item_templates = Array[PackedScene]([ExtResource("5_hoaef"), ExtResource("6_udl0k"), ExtResource("7_txhe7"), ExtResource("8_ycjpv"), ExtResource("9_weavm"), ExtResource("10_w7cdi"), ExtResource("11_gmobi"), ExtResource("12_pq7br")])
+root_spawn_points = NodePath("../SpawnPointsItems")
+items_root = NodePath(".")
+clear_old_items = true
+max_items = 10
+
+[node name="SpawnPointsItems" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7366333, 0)
+
+[node name="Point1" type="Marker3D" parent="SpawnPointsItems"]
+
+[node name="Point2" type="Marker3D" parent="SpawnPointsItems"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 45)
+
+[node name="Point3" type="Marker3D" parent="SpawnPointsItems"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -45)
+
+[node name="Point4" type="Marker3D" parent="SpawnPointsItems"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -45, 0, 0)
+
+[node name="Point5" type="Marker3D" parent="SpawnPointsItems"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 45, 0, 0)
+
+[node name="Point6" type="Marker3D" parent="SpawnPointsItems"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -45, 0, -45)
+
+[node name="Point7" type="Marker3D" parent="SpawnPointsItems"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 45, 0, -45)
+
+[node name="Point8" type="Marker3D" parent="SpawnPointsItems"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 45, 0, 45)
+
+[node name="Point9" type="Marker3D" parent="SpawnPointsItems"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -45, 0, 45)
+
+[node name="Point10" type="Marker3D" parent="SpawnPointsItems"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25, 0, 45)
+
+[node name="Point11" type="Marker3D" parent="SpawnPointsItems"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25, 0, 45)
+
+[node name="Point12" type="Marker3D" parent="SpawnPointsItems"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25, 0, -45)
+
+[node name="Point13" type="Marker3D" parent="SpawnPointsItems"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25, 0, -45)
+
+[node name="Point14" type="Marker3D" parent="SpawnPointsItems"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -45, 0, -25)
+
+[node name="Point15" type="Marker3D" parent="SpawnPointsItems"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -45, 0, 25)
+
+[node name="Point16" type="Marker3D" parent="SpawnPointsItems"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 45, 0, 25)
+
+[node name="Point17" type="Marker3D" parent="SpawnPointsItems"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 45, 0, -25)
+
+[node name="Point18" type="Marker3D" parent="SpawnPointsItems"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -25)
+
+[node name="Point19" type="Marker3D" parent="SpawnPointsItems"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 25)
+
+[node name="Point20" type="Marker3D" parent="SpawnPointsItems"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25, 0, 0)
+
+[node name="Point21" type="Marker3D" parent="SpawnPointsItems"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25, 0, 0)
+
+[node name="Point22" type="Marker3D" parent="SpawnPointsItems"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24, 0, -12)
+
+[node name="Point25" type="Marker3D" parent="SpawnPointsItems"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24, 0, -30)
+
+[node name="Point23" type="Marker3D" parent="SpawnPointsItems"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.5, 0, 12)
+
+[node name="Point24" type="Marker3D" parent="SpawnPointsItems"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.5, 0, 30)
+
+[node name="Dumpsters" type="Node3D" parent="."]
+
+[node name="DumpGeneral" parent="Dumpsters" instance=ExtResource("6_hoaef")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -6.826702, 0, 39.5)
+deposit_time = 5.0
+
+[node name="DumpGlass" parent="Dumpsters" instance=ExtResource("10_2l25m")]
+transform = Transform3D(-8.742278e-08, 0, 2, 0, 2, 0, -2, 0, -8.742278e-08, 39.5, 0, -20)
+deposit_time = 5.0
+
+[node name="DumpMetal" parent="Dumpsters" instance=ExtResource("9_dfvf4")]
+transform = Transform3D(-8.742278e-08, 0, 2, 0, 2, 0, -2, 0, -8.742278e-08, 39.5, 0, 32)
+deposit_time = 5.0
+
+[node name="DumpPaper" parent="Dumpsters" instance=ExtResource("8_n4vqs")]
+transform = Transform3D(-2, 0, -1.7484555e-07, 0, 2, 0, 1.7484555e-07, 0, -2, -15, 0, -39.5)
+deposit_time = 5.0
+
+[node name="DumpPlastic" parent="Dumpsters" instance=ExtResource("7_msmft")]
+transform = Transform3D(-8.742278e-08, 0, -2, 0, 2, 0, 2, 0, -8.742278e-08, -39.5, 0, -22.513)
+deposit_time = 5.0
+
 [node name="HUD" type="CanvasLayer" parent="."]
 script = ExtResource("5_morkg")
 
@@ -222,12 +331,3 @@ offset_top = 60.0
 offset_right = 700.0
 offset_bottom = 85.0
 text = "Score"
-
-[node name="Items" type="Node3D" parent="." node_paths=PackedStringArray("vehicle", "items_root")]
-script = ExtResource("2_6o2em")
-collected_count_max = 4
-vehicle = NodePath("../Player")
-hud = NodePath("../HUD")
-item_templates = Array[PackedScene]([ExtResource("6_vc8ck")])
-spawn_points = Array[NodePath]([NodePath("../SpawnPointsItems/Point1"), NodePath("../SpawnPointsItems/Point2"), NodePath("../SpawnPointsItems/Point3"), NodePath("../SpawnPointsItems/Point4")])
-items_root = NodePath(".")

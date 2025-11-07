@@ -1,10 +1,8 @@
-[gd_scene load_steps=9 format=4 uid="uid://ccsoyj23wl5r8"]
+[gd_scene load_steps=11 format=4 uid="uid://ccsoyj23wl5r8"]
 
 [ext_resource type="Script" uid="uid://nbos58pccelh" path="res://Scripts/DumpItem.gd" id="1_wdm42"]
 [ext_resource type="Script" uid="uid://ci7gpcpnujtvy" path="res://Scripts/ItemRotator.gd" id="2_6xgla"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_vhjkl"]
-size = Vector3(2.593184, 1.9665947, 1.9723186)
+[ext_resource type="Material" uid="uid://b0a2bnepp0h65" path="res://Assets/Materials/MarkerArea.tres" id="3_qrpmd"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4jmt5"]
 resource_name = "mat10"
@@ -94,24 +92,62 @@ _surfaces = [{
 blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_5egi3")
 
-[node name="Plastic" type="Node3D"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_8k8pw"]
+size = Vector3(1.9981269, 1.9900184, 1.9986491)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_8gulv"]
+material = ExtResource("3_qrpmd")
+top_radius = 0.25
+bottom_radius = 0.0
+height = 1.0
+
+[node name="DumpPalstic" type="Node3D"]
 script = ExtResource("1_wdm42")
+dump_trash_type = "Plastico"
 rotation_enabled = false
 
-[node name="Area3D" type="Area3D" parent="."]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.040263414, 0.42973518, -0.0084757805)
-shape = SubResource("BoxShape3D_vhjkl")
-
-[node name="Label3D" type="Label3D" parent="."]
-transform = Transform3D(2.0174775, 0, 0, 0, 2.6581216, 0, 0, 0, 0.9, 0, 1.2802174, 0)
-text = "Plastico"
-script = ExtResource("2_6xgla")
-floating_enabled = true
-
-[node name="Plastic" type="MeshInstance3D" parent="."]
-transform = Transform3D(-5.323496e-08, 0, -1.2178739, 0, 1.2178739, 0, 1.2178739, 0, -5.323496e-08, 0, 0, 0)
+[node name="MeshDumpPlastic" type="MeshInstance3D" parent="."]
+transform = Transform3D(-3.4969112e-08, 0, -0.8, 0, 0.8, 0, 0.8, 0, -3.4969112e-08, 0, 0.25, 0)
 mesh = SubResource("ArrayMesh_xekgv")
 skeleton = NodePath("")
+
+[node name="Area3D" type="Area3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.5, 2)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0023269057, 0.0037081242, -0.001316309)
+shape = SubResource("BoxShape3D_8k8pw")
+
+[node name="PlasticLabel3DFront" type="Label3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+pixel_size = 0.015
+double_sided = false
+text = "Plastico
+"
+script = ExtResource("2_6xgla")
+rotation_speed = 50.0
+floating_enabled = true
+float_amplitude = 1.5
+float_speed = 1.5
+
+[node name="PlasticLabel3DBack" type="Label3D" parent="."]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 1.5, 0)
+pixel_size = 0.015
+double_sided = false
+text = "Plastico
+"
+script = ExtResource("2_6xgla")
+rotation_speed = 50.0
+floating_enabled = true
+float_amplitude = 1.5
+float_speed = 1.5
+
+[node name="MeshMarkerAreaPlastic" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 2)
+mesh = SubResource("CylinderMesh_8gulv")
+skeleton = NodePath("")
+script = ExtResource("2_6xgla")
+rotation_enabled = false
+floating_enabled = true
+float_amplitude = 2.0
+float_speed = 2.5

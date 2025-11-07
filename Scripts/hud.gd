@@ -103,3 +103,16 @@ func _on_game_timer_timeout() -> void:
 	timer_label.add_theme_color_override("font_color", Color.RED)
 	print("[HUD] ¡Se acabó el tiempo!")
 	emit_signal("time_over")
+	
+func add_time(extra_seconds: float) -> void:
+	if not game_timer:
+		return
+	
+	var remaining := game_timer.time_left + extra_seconds
+	
+	# Reiniciar el temporizador con el nuevo tiempo
+	game_timer.stop()
+	game_timer.start(remaining)
+	print("[Hud] Tiempo agregado: +", extra_seconds, "s (nuevo total:", remaining, "s)")
+	
+	_update_timer_label()

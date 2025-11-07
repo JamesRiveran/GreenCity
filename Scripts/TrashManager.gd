@@ -5,6 +5,12 @@ signal vehicle_assigned(vehicle)
 @export var collected_count_max: int = -1  # Maximo de ítems recogidos
 @export var vehicle: VehicleBody3D  # El camión de basura
 @export var hud: NodePath
+# Si es true, permite depositar en cualquier tipo de contenedor pero restando si no es el correcto.
+@export var allow_cross_dump: bool = false
+@export var subtract_score_cross_dump: bool = false
+@export var allow_negative_score: bool = false
+@export var add_time_correct_deposit: bool = false
+@export var time_added_correct_deposit: int = 10
 @export var dumps: Array[Node3D] = []  # Lista de basureros (con Area3D)
 
 @onready var hud_node := get_node_or_null(hud)
@@ -53,22 +59,28 @@ func _on_item_collected(item: Node3D, trash_type, trash_type_score):
 			hud_node.update_collected(collected_count, collected_count_max)
 		
 		var entry_arr = list_items.filter(func (entry):
-			return entry.point.global_position == item.global_position
+			return entry.items.has(item)
 		)
 		if not entry_arr.is_empty():
 			entry_arr[0].items.erase(item)
-		count_items -= 1
-		item.queue_free()
+			item.queue_free()
 	else:
 		print("[❌ TrashManager] Maxima capasidad no se puede recolectar item:", item.name)
 
 func _on_item_deposited(_item: Node3D, dump_type):
-	if trash_type_transported == dump_type:
-		print("[✅ TrashManager] Depósito correcto:", dump_type)
-		print("[✅ TrashManager] Items transportados:", collected_count," -> ", collected_count-1)
+	if collected_count > 0 and (allow_cross_dump or trash_type_transported == dump_type):
+		print("[✅ TrashManager] Depósito:", dump_type)
+		print("[✅ TrashManager] Items depositados:", collected_count," -> ", collected_count-1)
 		print("[✅ TrashManager] Score:", score, " -> ", score + trash_type_transported_score)
-		score += trash_type_transported_score
+		if trash_type_transported == dump_type:
+			score += trash_type_transported_score
+			if add_time_correct_deposit:
+				hud_node.add_time(time_added_correct_deposit)
+		elif subtract_score_cross_dump and (score > 0 or allow_negative_score):
+			score -= trash_type_transported_score
+		count_items -= 1
 		collected_count -= 1
+		respawn_missing_items()
 		if collected_count == 0:
 			trash_type_transported = ""
 		if hud_node:
@@ -79,7 +91,7 @@ func _on_item_deposited(_item: Node3D, dump_type):
 	elif collected_count == 0:
 		print("[⚠️ TrashManager] Vehiculo vacio")
 	else:
-		print("[❌ TrashManager] Depósito incorrecto: llevaba", trash_type_transported, "intentó en", dump_type)
+		print("[❌ TrashManager] Depósito incorrecto: llevaba ", trash_type_transported, " intentó en ", dump_type)
 
 func _sync_hud_initial():
 	if hud_node:
@@ -87,3 +99,19 @@ func _sync_hud_initial():
 			hud_node.update_collected(collected_count, collected_count_max)
 		if hud_node.has_method("update_score"):
 			hud_node.update_score(score)
+
+func respawn_missing_items():
+	# Ejecuta la lógica base del ItemSpawner
+	super.respawn_missing_items()
+
+	# 🔹 Reconecta las señales de los nuevos ítems generados
+	var items: Node3D = items_root if items_root else self
+	for item in items.get_children():
+		if item is Node3D and not item.is_connected("collected", Callable(self, "_on_item_collected")):
+			if item.has_signal("collected"):
+				item.connect("collected", Callable(self, "_on_item_collected"))
+			if item.has_method("set_vehicle"):
+				connect("vehicle_assigned", Callable(item, "set_vehicle"))
+
+	# Reemitir el vehículo asignado
+	emit_signal("vehicle_assigned", vehicle)
