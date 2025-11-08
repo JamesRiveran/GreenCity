@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://bpvs6unrhmgga"]
+[gd_scene load_steps=33 format=3 uid="uid://bpvs6unrhmgga"]
 
 [ext_resource type="PackedScene" uid="uid://cdn81qieoaycd" path="res://Assets/Scenes/main/city.tscn" id="1_morkg"]
 [ext_resource type="Script" uid="uid://duefghhm48a04" path="res://Scripts/camera.gd" id="1_vc8ck"]
@@ -18,6 +18,9 @@
 [ext_resource type="PackedScene" uid="uid://b53p34u8yxfpc" path="res://Assets/Scenes/Trashes/TrashSoda.tscn" id="10_w7cdi"]
 [ext_resource type="PackedScene" uid="uid://dsohkrr1kayx4" path="res://Assets/Scenes/Trashes/TrashWaterBottle.tscn" id="11_gmobi"]
 [ext_resource type="PackedScene" uid="uid://1vkxa5m4qqt4" path="res://Assets/Scenes/Trashes/TrashCardboardBoxes.tscn" id="12_pq7br"]
+[ext_resource type="Script" uid="uid://b1uajdngr6i5o" path="res://Scripts/NPC/NPCSpawner.gd" id="13_ycjpv"]
+[ext_resource type="Script" uid="uid://d3ckluomlkngx" path="res://Scripts/NPC/RoadNode.gd" id="14_weavm"]
+[ext_resource type="PackedScene" uid="uid://b4r4e43s5sd7d" path="res://Assets/Scenes/NPC/CarRed.tscn" id="19_txhe7"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_wmxxr"]
 
@@ -184,7 +187,7 @@ dumps = [NodePath("../Dumpsters/DumpGeneral"), NodePath("../Dumpsters/DumpGlass"
 item_templates = Array[PackedScene]([ExtResource("5_hoaef"), ExtResource("6_udl0k"), ExtResource("7_txhe7"), ExtResource("8_ycjpv"), ExtResource("9_weavm"), ExtResource("10_w7cdi"), ExtResource("11_gmobi"), ExtResource("12_pq7br")])
 root_spawn_points = NodePath("../SpawnPointsItems")
 items_root = NodePath(".")
-clear_old_items = true
+auto_spawn = false
 max_items = 10
 
 [node name="SpawnPointsItems" type="Node3D" parent="."]
@@ -263,6 +266,45 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.5, 0, 12)
 
 [node name="Point24" type="Marker3D" parent="SpawnPointsItems"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.5, 0, 30)
+
+[node name="Cars" type="Node3D" parent="." node_paths=PackedStringArray("cars_root")]
+script = ExtResource("13_ycjpv")
+car_scenes = Array[PackedScene]([ExtResource("19_txhe7")])
+spawn_points = Array[NodePath]([NodePath("../RoadNodes/RoadNode")])
+max_cars = 1
+cars_root = NodePath(".")
+
+[node name="RoadNodes" type="Node3D" parent="."]
+
+[node name="RoadNode" type="Marker3D" parent="RoadNodes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5551553, 0.31080782, -6.2809176)
+gizmo_extents = 0.5
+script = ExtResource("14_weavm")
+neighbors = Array[NodePath]([NodePath("../RoadNode2"), NodePath("../RoadNode3")])
+
+[node name="RoadNode2" type="Marker3D" parent="RoadNodes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.296826, 0.31080782, 1.3784595)
+gizmo_extents = 0.5
+script = ExtResource("14_weavm")
+neighbors = Array[NodePath]([NodePath("../RoadNode4")])
+
+[node name="RoadNode4" type="Marker3D" parent="RoadNodes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.138233, 0.31080782, 1.3784595)
+gizmo_extents = 0.5
+script = ExtResource("14_weavm")
+is_sink = true
+
+[node name="RoadNode3" type="Marker3D" parent="RoadNodes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4072633, 0.31080782, 5.1167097)
+gizmo_extents = 0.5
+script = ExtResource("14_weavm")
+neighbors = Array[NodePath]([NodePath("../RoadNode5")])
+
+[node name="RoadNode5" type="Marker3D" parent="RoadNodes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4072633, 0.31080782, 21.256561)
+gizmo_extents = 0.5
+script = ExtResource("14_weavm")
+is_sink = true
 
 [node name="Dumpsters" type="Node3D" parent="."]
 

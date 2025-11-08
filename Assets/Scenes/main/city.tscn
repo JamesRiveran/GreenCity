@@ -1,4 +1,4 @@
-[gd_scene load_steps=172 format=4 uid="uid://cdn81qieoaycd"]
+[gd_scene load_steps=173 format=4 uid="uid://cdn81qieoaycd"]
 
 [ext_resource type="PackedScene" uid="uid://btkmt5nnpupi6" path="res://Assets/Scenes/main/floor.tscn" id="1_mvbk7"]
 [ext_resource type="Script" uid="uid://doqa80tqde8w0" path="res://Scripts/collisions.gd" id="2_m8mrs"]
@@ -2396,10 +2396,12 @@ shadow_mesh = SubResource("ArrayMesh_o22g6")
 [sub_resource type="BoxShape3D" id="BoxShape3D_mosra"]
 size = Vector3(1.9500732, 1.677002, 0.6034546)
 
+[sub_resource type="NavigationMesh" id="NavigationMesh_h8ybm"]
+vertices = PackedVector3Array(-50.463203, 0.3667221, -48.193626, -50.463203, 0.3667221, 50.806374, 48.536797, 0.3667221, 50.806374, 48.536797, 0.3667221, -48.193626)
+polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
+
 [node name="City" type="Node3D"]
 script = ExtResource("2_m8mrs")
-
-[node name="Floor" parent="." instance=ExtResource("1_mvbk7")]
 
 [node name="HousesCity" type="Node3D" parent="."]
 
@@ -2812,3 +2814,10 @@ transform = Transform3D(2.275, 0, 0, 0, 2.275, 0, 0, 0, 2.275, 36.614, 0.3704260
 
 [node name="Fount" parent="SportsCity/Park" instance=ExtResource("22_nebp7")]
 transform = Transform3D(-6.228873e-08, 0, -1.425, 0, 1.425, 0, 1.425, 0, -6.228873e-08, 8.860283, 0, -7.3065047)
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.963204, 0.3832779, -1.306375)
+navigation_mesh = SubResource("NavigationMesh_h8ybm")
+
+[node name="Floor" parent="NavigationRegion3D" instance=ExtResource("1_mvbk7")]
+transform = Transform3D(100, 0, 0, 0, 0.5, 0, 0, 0, 100, -0.963204, -0.3832779, 1.306375)
