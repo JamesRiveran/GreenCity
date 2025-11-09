@@ -18,6 +18,7 @@ ray_front = NodePath("RayCast3D")
 eps_forward = 0.2
 eps_lateral = 0.0
 eps_turn_forward = 0.0
+debug_curve_detection = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0020446777, 0.37271118, 0.028503418)
