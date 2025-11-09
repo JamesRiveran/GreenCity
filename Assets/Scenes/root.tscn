@@ -1,8 +1,8 @@
 [gd_scene load_steps=33 format=3 uid="uid://bpvs6unrhmgga"]
 
 [ext_resource type="PackedScene" uid="uid://cdn81qieoaycd" path="res://Assets/Scenes/main/city.tscn" id="1_morkg"]
-[ext_resource type="Script" uid="uid://duefghhm48a04" path="res://Scripts/camera.gd" id="1_vc8ck"]
 [ext_resource type="Script" uid="uid://bcbdnxj17ojxi" path="res://Scripts/TrashManager.gd" id="2_6o2em"]
+[ext_resource type="Script" uid="uid://duefghhm48a04" path="res://Scripts/camera.gd" id="2_weavm"]
 [ext_resource type="PackedScene" uid="uid://d1dncn6cckwmj" path="res://Assets/Scenes/main/player.tscn" id="4_wmxxr"]
 [ext_resource type="PackedScene" uid="uid://ctuq3lki53eau" path="res://Assets/Scenes/Trashes/TrashBag.tscn" id="5_hoaef"]
 [ext_resource type="Script" uid="uid://ce501i3lptkkq" path="res://Scripts/hud.gd" id="5_morkg"]
@@ -74,7 +74,7 @@ hud_path = NodePath("../HUD")
 
 [node name="TruckCamara" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.13305214, 0.9911091, 0, -0.9911091, 0.13305214, 0, 74.204796, 11.666693)
-script = ExtResource("1_vc8ck")
+script = ExtResource("2_weavm")
 
 [node name="City" parent="." instance=ExtResource("1_morkg")]
 
@@ -474,13 +474,13 @@ neighbors = Array[NodePath]([NodePath("../../ExitRoad/CentralRoadNode7"), NodePa
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 43.5, 0, -43.5)
 gizmo_extents = 1.0
 script = ExtResource("14_weavm")
-neighbors = Array[NodePath]([NodePath("../-XYRoadNode7")])
+neighbors = Array[NodePath]([NodePath("../-XYRoadNode5")])
 
 [node name="-XYRoadNode7" type="Marker3D" parent="RoadNodes/Section-XY"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 43.5, 0, -5)
 gizmo_extents = 1.0
 script = ExtResource("14_weavm")
-neighbors = Array[NodePath]([NodePath("../../ExitRoad/CentralRoadNode5"), NodePath("../../Section-X-Y/-X-YRoadNode2")])
+neighbors = Array[NodePath]([NodePath("../-XYRoadNode6")])
 
 [node name="CentralRoad" type="Node3D" parent="RoadNodes"]
 
@@ -554,7 +554,7 @@ neighbors = Array[NodePath]([NodePath("../CentralRoadNode9")])
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, 1.5)
 gizmo_extents = 1.0
 script = ExtResource("14_weavm")
-neighbors = Array[NodePath]([NodePath("../CentralRoadNode14"), NodePath("../CentralRoadNode4"), NodePath("../CentralRoadNode6")])
+neighbors = Array[NodePath]([NodePath("../CentralRoadNode14"), NodePath("../CentralRoadNode3"), NodePath("../CentralRoadNode6")])
 
 [node name="CentralRoadNode13" type="Marker3D" parent="RoadNodes/CentralRoad"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, -1.5)
