@@ -22,9 +22,6 @@ func set_blocked(v: bool) -> void:
 	emit_signal("state_changed", blocked, is_sink)
 
 func pick_next_neighbor() -> Node3D:
-	if blocked:
-		return null
-
 	var opts: Array[Node3D] = []
 	for p in neighbors:
 		var n: Node3D = get_node_or_null(p) as Node3D
