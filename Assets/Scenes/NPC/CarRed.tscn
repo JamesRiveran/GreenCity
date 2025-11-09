@@ -8,7 +8,7 @@ size = Vector3(1.2538452, 1.1137085, 2.4486084)
 
 [node name="CharacterBody3D" type="CharacterBody3D" node_paths=PackedStringArray("agent", "ray_front")]
 collision_layer = 8
-collision_mask = 16
+collision_mask = 8
 platform_floor_layers = 4294967294
 script = ExtResource("1_628ms")
 speed = 5.0
