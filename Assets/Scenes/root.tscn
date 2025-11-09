@@ -64,7 +64,7 @@ environment = SubResource("Environment_tr35v")
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 30, 0)
 
 [node name="Player" parent="." instance=ExtResource("4_wmxxr")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5591593, 0, -4.9478016)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 40, 0, -1.5)
 mass = 3000.0
 engine_force_strength = 4000.0
 steering_angle_max = 0.1
@@ -270,41 +270,93 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.5, 0, 30)
 [node name="Cars" type="Node3D" parent="." node_paths=PackedStringArray("cars_root")]
 script = ExtResource("13_ycjpv")
 car_scenes = Array[PackedScene]([ExtResource("19_txhe7")])
-spawn_points = Array[NodePath]([NodePath("../RoadNodes/RoadNode")])
+spawn_points = Array[NodePath]([NodePath("../RoadNodes/Spawners/SpawnRoadNode")])
 max_cars = 1
 cars_root = NodePath(".")
 
 [node name="RoadNodes" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0)
 
-[node name="RoadNode" type="Marker3D" parent="RoadNodes"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5551553, 0.31080782, -6.2809176)
-gizmo_extents = 0.5
+[node name="Spawners" type="Node3D" parent="RoadNodes"]
+
+[node name="SpawnRoadNode" type="Marker3D" parent="RoadNodes/Spawners"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 60, 0, -1.5)
+gizmo_extents = 1.0
 script = ExtResource("14_weavm")
-neighbors = Array[NodePath]([NodePath("../RoadNode2"), NodePath("../RoadNode3")])
+neighbors = Array[NodePath]([NodePath("../../RoadNode")])
 
-[node name="RoadNode2" type="Marker3D" parent="RoadNodes"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.296826, 0.31080782, 1.3784595)
-gizmo_extents = 0.5
+[node name="SpawnRoadNode2" type="Marker3D" parent="RoadNodes/Spawners"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -60, 0, 1.5)
+gizmo_extents = 1.0
+script = ExtResource("14_weavm")
+
+[node name="SpawnRoadNode3" type="Marker3D" parent="RoadNodes/Spawners"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0, 60)
+gizmo_extents = 1.0
+script = ExtResource("14_weavm")
+
+[node name="SpawnRoadNode4" type="Marker3D" parent="RoadNodes/Spawners"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0, -60)
+gizmo_extents = 1.0
+script = ExtResource("14_weavm")
+
+[node name="Despawners" type="Node3D" parent="RoadNodes"]
+
+[node name="DespawnRoadNode" type="Marker3D" parent="RoadNodes/Despawners"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 60, 0, 1.5)
+gizmo_extents = 1.0
+script = ExtResource("14_weavm")
+is_sink = true
+
+[node name="DespawnRoadNode2" type="Marker3D" parent="RoadNodes/Despawners"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -60, 0, -1.5)
+gizmo_extents = 1.0
+script = ExtResource("14_weavm")
+is_sink = true
+
+[node name="DespawnRoadNode3" type="Marker3D" parent="RoadNodes/Despawners"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0, -60)
+gizmo_extents = 1.0
+script = ExtResource("14_weavm")
+is_sink = true
+
+[node name="DespawnRoadNode4" type="Marker3D" parent="RoadNodes/Despawners"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0, 60)
+gizmo_extents = 1.0
+script = ExtResource("14_weavm")
+is_sink = true
+
+[node name="Section-x-y" type="Node3D" parent="RoadNodes"]
+
+[node name="RoadNode2" type="Marker3D" parent="RoadNodes/Section-x-y"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 46.5, 0, -5)
+gizmo_extents = 1.0
+script = ExtResource("14_weavm")
+neighbors = Array[NodePath]([NodePath("../RoadNode3")])
+
+[node name="RoadNode3" type="Marker3D" parent="RoadNodes/Section-x-y"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 46.5, 0, -46.5)
+gizmo_extents = 1.0
 script = ExtResource("14_weavm")
 neighbors = Array[NodePath]([NodePath("../RoadNode4")])
 
-[node name="RoadNode4" type="Marker3D" parent="RoadNodes"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.138233, 0.31080782, 1.3784595)
-gizmo_extents = 0.5
-script = ExtResource("14_weavm")
-is_sink = true
-
-[node name="RoadNode3" type="Marker3D" parent="RoadNodes"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4072633, 0.31080782, 5.1167097)
-gizmo_extents = 0.5
+[node name="RoadNode4" type="Marker3D" parent="RoadNodes/Section-x-y"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, -46.5)
+gizmo_extents = 1.0
 script = ExtResource("14_weavm")
 neighbors = Array[NodePath]([NodePath("../RoadNode5")])
 
-[node name="RoadNode5" type="Marker3D" parent="RoadNodes"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.4072633, 0.31080782, 21.256561)
-gizmo_extents = 0.5
+[node name="RoadNode5" type="Marker3D" parent="RoadNodes/Section-x-y"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0, -50)
+gizmo_extents = 1.0
 script = ExtResource("14_weavm")
-is_sink = true
+neighbors = Array[NodePath]([NodePath("../../Despawners/DespawnRoadNode3")])
+
+[node name="RoadNode" type="Marker3D" parent="RoadNodes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50, 0, -1.5)
+gizmo_extents = 1.0
+script = ExtResource("14_weavm")
+neighbors = Array[NodePath]([NodePath("../Section-x-y/RoadNode2")])
 
 [node name="Dumpsters" type="Node3D" parent="."]
 

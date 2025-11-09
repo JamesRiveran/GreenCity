@@ -270,8 +270,18 @@ transform = Transform3D(0.02, 0, 0, 0, 0.5, 0, 0, 0, 0.005, -0.225, 0, 0)
 mesh = SubResource("ArrayMesh_0hi58")
 skeleton = NodePath("")
 
+[node name="Road17" type="MeshInstance3D" parent="Roads"]
+transform = Transform3D(0.02, 0, 0, 0, 0.5, 0, 0, 0, 0.005, -0.675, 0, 0)
+mesh = SubResource("ArrayMesh_0hi58")
+skeleton = NodePath("")
+
 [node name="Road2" type="MeshInstance3D" parent="Roads"]
 transform = Transform3D(-8.7422775e-10, 0, 0.005, 0, 0.5, 0, -0.02, 0, -2.1855694e-10, 0, 0, 0.225)
+mesh = SubResource("ArrayMesh_0hi58")
+skeleton = NodePath("")
+
+[node name="Road18" type="MeshInstance3D" parent="Roads"]
+transform = Transform3D(-8.7422775e-10, 0, 0.005, 0, 0.5, 0, -0.02, 0, -2.1855694e-10, 0, 0, 0.675)
 mesh = SubResource("ArrayMesh_0hi58")
 skeleton = NodePath("")
 
@@ -280,8 +290,18 @@ transform = Transform3D(0.02, 0, 0, 0, 0.5, 0, 0, 0, 0.005, 0.225, 0, 0)
 mesh = SubResource("ArrayMesh_0hi58")
 skeleton = NodePath("")
 
+[node name="Road15" type="MeshInstance3D" parent="Roads"]
+transform = Transform3D(0.02, 0, 0, 0, 0.5, 0, 0, 0, 0.005, 0.675, 0, 0)
+mesh = SubResource("ArrayMesh_0hi58")
+skeleton = NodePath("")
+
 [node name="Road4" type="MeshInstance3D" parent="Roads"]
 transform = Transform3D(-8.7422775e-10, 0, 0.005, 0, 0.5, 0, -0.02, 0, -2.1855694e-10, 0, 0, -0.225)
+mesh = SubResource("ArrayMesh_0hi58")
+skeleton = NodePath("")
+
+[node name="Road16" type="MeshInstance3D" parent="Roads"]
+transform = Transform3D(-8.7422775e-10, 0, 0.005, 0, 0.5, 0, -0.02, 0, -2.1855694e-10, 0, 0, -0.675)
 mesh = SubResource("ArrayMesh_0hi58")
 skeleton = NodePath("")
 
