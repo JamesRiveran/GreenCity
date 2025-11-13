@@ -1,0 +1,51 @@
+[gd_scene load_steps=3 format=3 uid="uid://dh3u1e1a1fiu7"]
+
+[ext_resource type="Script" uid="uid://cpa8quirbm8rc" path="res://Scripts/LoseMenu.gd" id="1_y43tc"]
+[ext_resource type="Texture2D" uid="uid://brq2uq5eskywi" path="res://Textures/lose.png" id="2_t1ri0"]
+
+[node name="LoseMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_y43tc")
+
+[node name="BG" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = -1.0
+offset_right = 1151.0
+offset_bottom = 648.0
+texture = ExtResource("2_t1ri0")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
+layout_mode = 0
+offset_left = 464.0
+offset_top = 451.0
+offset_right = 683.0
+offset_bottom = 563.0
+
+[node name="Title" type="Label" parent="Panel/VBoxContainer"]
+layout_mode = 2
+horizontal_alignment = 1
+
+[node name="ScoreLabel" type="Label" parent="Panel/VBoxContainer"]
+layout_mode = 2
+
+[node name="BestLabel" type="Label" parent="Panel/VBoxContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel/VBoxContainer"]
+layout_mode = 2
+
+[node name="RetryButton" type="Button" parent="Panel/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Reintentar"
+
+[node name="MenuButton" type="Button" parent="Panel/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Volver al menu"
