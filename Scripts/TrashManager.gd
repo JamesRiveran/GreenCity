@@ -34,7 +34,6 @@ func _ready():
 			# Conectar la señal para asignar el vehículo
 			if item.has_method("set_vehicle"):
 				connect("vehicle_assigned", Callable(item, "set_vehicle"))
-	
 	for dump in dumps:
 		if dump is Node3D:
 			if dump.has_signal("deposited"):
