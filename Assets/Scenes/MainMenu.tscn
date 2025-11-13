@@ -1,7 +1,9 @@
 [gd_scene load_steps=3 format=3 uid="uid://8f5863qki7h4"]
 
 [ext_resource type="Script" uid="uid://cii3wyl1q135h" path="res://Scripts/MainMenu.gd" id="1_hywc3"]
-[ext_resource type="Texture2D" uid="uid://dosygwartvcsj" path="res://Textures/menu.png" id="2_pi1tf"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_hywc3"]
+load_path = "res://.godot/imported/menu.png-08ac179b929f17b757762787aec96bbf.ctex"
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -17,7 +19,7 @@ layout_mode = 0
 offset_left = 1.0
 offset_right = 1153.0
 offset_bottom = 648.0
-texture = ExtResource("2_pi1tf")
+texture = SubResource("CompressedTexture2D_hywc3")
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 layout_mode = 0
@@ -55,3 +57,7 @@ text = "Ayuda"
 [node name="QuitButton" type="Button" parent="CenterContainer/Panel/VBoxContainer"]
 layout_mode = 2
 text = "Salir"
+
+[node name="CreditsButton" type="Button" parent="CenterContainer/Panel/VBoxContainer"]
+layout_mode = 2
+text = "Creditos"
