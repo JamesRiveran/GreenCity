@@ -22,7 +22,6 @@ extends VehicleBody3D
 var health: int = max_health
 
 # --- Daño configurable ---
-# --- Daño configurable ---
 @export var collision_damage: int = 10      # Daño por colisiones físicas (paredes, edificios)
 @export var area_damage: int = 5            # Daño por entrar a un Area3D
 @export var wall_cooldown: float = 0.30     # Tiempo mínimo entre daños consecutivos
@@ -33,10 +32,16 @@ var health: int = max_health
 # --- Paredes y Áreas de daño ---
 @export var wall_bodies: Array[NodePath] = []  # <--- aquí asignas tus StaticBody3D (paredes)
 @export var wall_areas: Array[NodePath] = []   # opcional, si tienes Area3D también
+
+# --- HUD y TrashManager (para mandar tiempo/score al perder) ---
 @export var hud_path: NodePath
 @onready var hud := get_node_or_null(hud_path)
 
+@export var trash_manager_path: NodePath
+@onready var trash_manager := get_node_or_null(trash_manager_path)
+
 var _wall_hit_cd_until := 0.0
+var has_lost: bool = false
 
 func _ready():
 	# Configurar estabilidad del vehículo
@@ -62,7 +67,6 @@ func _ready():
 			print("[Car:%s] ⚠️ Área inválida en path: %s" % [name, str(path)])
 
 	print("[Car:%s] Vida inicial: %d" % [name, health])
-
 
 func _physics_process(_delta: float) -> void:
 	if not front_left_wheel or not front_right_wheel:
@@ -95,9 +99,17 @@ func _physics_process(_delta: float) -> void:
 		if wheel:
 			wheel.brake = brake_force
 
+# ---------- Utilidad para tiempo transcurrido (opcional) ----------
+func _elapsed_time() -> float:
+	if hud and hud.has_method("get_elapsed_time"):
+		return float(hud.get_elapsed_time())
+	if hud and hud.has_node("GameTimer"):
+		var t := hud.get_node("GameTimer") as Timer
+		if t and t.wait_time > 0.0:
+			return t.wait_time - t.time_left
+	return 0.0
 
 # --- Daño y colisiones ---
-
 func apply_damage(amount: int, source: Node = null) -> void:
 	health = max(health - amount, 0)
 	var src_name = source.name if source else "Desconocido"
@@ -109,7 +121,12 @@ func apply_damage(amount: int, source: Node = null) -> void:
 
 	if health == 0:
 		print("[Car:%s] 🚗💀 ¡Vehículo destruido!" % name)
-
+		if not has_lost:
+			has_lost = true
+			var score := 0
+			if trash_manager and ("score" in trash_manager):
+				score = trash_manager.score
+			Game.lose(score, _elapsed_time())
 
 # Cuando una de las áreas detecta que el coche entró
 func _on_wall_area_body_entered(body: Node, area: Area3D) -> void:
@@ -119,22 +136,20 @@ func _on_wall_area_body_entered(body: Node, area: Area3D) -> void:
 	print("[Car:%s] ⚠️ Entró en área '%s' (daño %d)" % [name, area.name, area_damage])
 	_try_damage_with_amount(area_damage, area)
 
-
 func _on_body_entered_vehicle(body: Node) -> void:
 	if body is StaticBody3D:
 		var safe := false
-		
+
 		if "is_safe_surface" in body and body.get("is_safe_surface"):
 			safe = true
 		elif body.get_parent() and "is_safe_surface" in body.get_parent() and body.get_parent().get("is_safe_surface"):
 			safe = true
-		
+
 		if safe:
 			return
 
 		print("[Car:%s] 🚧 Colisión con '%s' (daño %d)" % [name, body.name, collision_damage])
 		_try_damage_with_amount(collision_damage, body)
-
 
 func _try_damage_with_amount(amount: int, source: Node = null) -> void:
 	var now := Time.get_unix_time_from_system()
