@@ -183,7 +183,7 @@ allow_cross_dump = true
 subtract_score_cross_dump = true
 allow_negative_score = true
 add_time_correct_deposit = true
-dumps = [NodePath("../Dumpsters/DumpGeneral"), NodePath("../Dumpsters/DumpGlass"), NodePath("../Dumpsters/DumpMetal"), NodePath("../Dumpsters/DumpPaper"), NodePath("../Dumpsters/DumpPlastic")]
+dumps = [NodePath("../Dumpsters/DumpGeneral"), NodePath("../Dumpsters/DumpGlass"), NodePath("../Dumpsters/DumpMetal"), NodePath("../Dumpsters/DumpPaper"), NodePath("")]
 item_templates = Array[PackedScene]([ExtResource("5_hoaef"), ExtResource("6_udl0k"), ExtResource("7_txhe7"), ExtResource("8_ycjpv"), ExtResource("9_weavm"), ExtResource("10_w7cdi"), ExtResource("11_gmobi"), ExtResource("12_pq7br")])
 root_spawn_points = NodePath("../SpawnPointsItems")
 items_root = NodePath(".")
@@ -656,9 +656,8 @@ deposit_time = 5.0
 transform = Transform3D(-2, 0, -1.7484555e-07, 0, 2, 0, 1.7484555e-07, 0, -2, -15, 0, -39.5)
 deposit_time = 5.0
 
-[node name="DumpPlastic" parent="Dumpsters" instance=ExtResource("7_msmft")]
-transform = Transform3D(-8.742278e-08, 0, -2, 0, 2, 0, 2, 0, -8.742278e-08, -39.5, 0, -22.513)
-deposit_time = 5.0
+[node name="DumpPalstic" parent="Dumpsters" instance=ExtResource("7_msmft")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.401891, 0, -5.8102865)
 
 [node name="HUD" type="CanvasLayer" parent="."]
 script = ExtResource("5_morkg")
