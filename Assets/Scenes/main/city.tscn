@@ -2441,6 +2441,7 @@ transform = Transform3D(1, 0, 0, 0, 2.220446e-16, 1, 0, -0.77013195, 1.7100364e-
 transform = Transform3D(0.01, 0, 0, 0, 0, -0.01, 0, 0.01, 0, 0, 0, 0)
 
 [node name="Root" type="Node3D" parent="ServiceCity/Services/PublicBuildings"]
+transform = Transform3D(0.87542284, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 
 [node name="Police" type="Node3D" parent="ServiceCity/Services/PublicBuildings/Root"]
 
@@ -2778,10 +2779,10 @@ transform = Transform3D(-1.5688327e-08, 0, 0.3668753, 0, 1, 0, -0.35890707, 0, -
 transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 22.89352, -2.914032, -22.649708)
 
 [node name="Basketball court" parent="SportsCity/Sports" instance=ExtResource("16_rc87w")]
-transform = Transform3D(0.23, 0, 0, 0, 0.276, 0, 0, 0, 0.204, 19.811754, 0, -35.899)
+transform = Transform3D(0.23, 0, 0, 0, 0.276, 0, 0, 0, 0.204, 19.812, 0.06, -35.899)
 
 [node name="Basketball court2" parent="SportsCity/Sports" instance=ExtResource("16_rc87w")]
-transform = Transform3D(0.23, 0, 0, 0, 0.276, 0, 0, 0, 0.204, 25.271338, 0, -35.899)
+transform = Transform3D(0.23, 0, 0, 0, 0.276, 0, 0, 0, 0.204, 25.271, 0.04, -35.899)
 
 [node name="Park" type="Node3D" parent="SportsCity"]
 

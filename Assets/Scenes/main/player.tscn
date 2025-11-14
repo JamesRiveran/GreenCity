@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://ckfs4qx3kh6hv" path="res://Scripts/vehicleController.gd" id="1_tpd1a"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_vc4ur"]
-size = Vector3(1.9130859, 2.124298, 5.4001465)
+size = Vector3(1.9130859, 1.4566803, 3.5016327)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_a20vf"]
 resource_name = "Silver.001"
@@ -10642,14 +10642,13 @@ rear_left_wheel = NodePath("VehicleWheelRearLeft")
 rear_right_wheel = NodePath("VehicleWheelRearRight")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0043945313, 1.3705902, -0.6654053)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0043945313, 1.0367813, -0.40903473)
 shape = SubResource("BoxShape3D_vc4ur")
 
 [node name="VehicleWheelFrontLeft" type="VehicleWheel3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.69654715, 0.27809697, 1.0513052)
+transform = Transform3D(0.45, 0, 0, 0, 0.45, 0, 0, 0, 0.45, 0.49962604, 0.3026649, 0.7)
 use_as_steering = true
 wheel_radius = 0.35
-suspension_stiffness = 50.0
 
 [node name="WheelFrontLeft" type="Node3D" parent="VehicleWheelFrontLeft"]
 transform = Transform3D(0.006, 0, 0, 0, 0.006, 0, 0, 0, 0.006, -0.004748106, -0.00055348873, -0.0031986237)
@@ -10792,10 +10791,9 @@ mesh = SubResource("ArrayMesh_yx4a8")
 skeleton = NodePath("")
 
 [node name="VehicleWheelFrontRight" type="VehicleWheel3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.719278, 0.28471255, 1.0494322)
+transform = Transform3D(0.45, 0, 0, 0, 0.45, 0, 0, 0, 0.45, -0.5118364, 0.3026649, 0.7)
 use_as_steering = true
 wheel_radius = 0.35
-suspension_stiffness = 50.0
 
 [node name="WheelFrontRight" type="Node3D" parent="VehicleWheelFrontRight"]
 transform = Transform3D(0.006, 0, 0, 0, 0.006, 0, 0, 0, 0.006, -0.0014424324, -0.0033415556, -0.0032205582)
@@ -10938,10 +10936,9 @@ mesh = SubResource("ArrayMesh_nsmeq")
 skeleton = NodePath("")
 
 [node name="VehicleWheelRearLeft" type="VehicleWheel3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7014634, 0.2766784, -1.7484927)
+transform = Transform3D(0.45, 0, 0, 0, 0.45, 0, 0, 0, 0.45, 0.49962604, 0.3026649, -1.182)
 use_as_traction = true
 wheel_radius = 0.35
-suspension_stiffness = 50.0
 
 [node name="WheelRearLeft" type="Node3D" parent="VehicleWheelRearLeft"]
 transform = Transform3D(0.006, 0, 0, 0, 0.006, 0, 0, 0, 0.006, -0.004224777, 0.0008829832, -0.004178047)
@@ -11091,10 +11088,9 @@ mesh = SubResource("ArrayMesh_wifi7")
 skeleton = NodePath("")
 
 [node name="VehicleWheelRearLeft2" type="VehicleWheel3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7014634, 0.2766784, -0.922815)
+transform = Transform3D(0.45, 0, 0, 0, 0.45, 0, 0, 0, 0.45, 0.49962604, 0.3026649, -0.616)
 use_as_traction = true
 wheel_radius = 0.35
-suspension_stiffness = 50.0
 
 [node name="WheelRearLeft" type="Node3D" parent="VehicleWheelRearLeft2"]
 transform = Transform3D(0.006, 0, 0, 0, 0.006, 0, 0, 0, 0.006, -0.004224777, 0.0008829832, -0.004178047)
@@ -11244,10 +11240,9 @@ mesh = SubResource("ArrayMesh_wifi7")
 skeleton = NodePath("")
 
 [node name="VehicleWheelRearRight" type="VehicleWheel3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.71357167, 0.27975336, -1.748)
+transform = Transform3D(0.45, 0, 0, 0, 0.45, 0, 0, 0, 0.45, -0.525, 0.3026649, -1.182)
 use_as_traction = true
 wheel_radius = 0.35
-suspension_stiffness = 50.0
 
 [node name="WheelRearRight" type="Node3D" parent="VehicleWheelRearRight"]
 transform = Transform3D(0.006, 0, 0, 0, 0.006, 0, 0, 0, 0.006, -0.0030500889, -0.0017852783, -0.00065135956)
@@ -11397,10 +11392,9 @@ mesh = SubResource("ArrayMesh_qhdu5")
 skeleton = NodePath("")
 
 [node name="VehicleWheelRearRight2" type="VehicleWheel3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.71357167, 0.27975336, -0.92966914)
+transform = Transform3D(0.45, 0, 0, 0, 0.45, 0, 0, 0, 0.45, -0.5079335, 0.3026649, -0.592)
 use_as_traction = true
 wheel_radius = 0.35
-suspension_stiffness = 50.0
 
 [node name="WheelRearRight" type="Node3D" parent="VehicleWheelRearRight2"]
 transform = Transform3D(0.006, 0, 0, 0, 0.006, 0, 0, 0, 0.006, -0.0030500889, -0.0017852783, -0.00065135956)
@@ -11550,7 +11544,7 @@ mesh = SubResource("ArrayMesh_qhdu5")
 skeleton = NodePath("")
 
 [node name="Body" type="Node3D" parent="."]
-transform = Transform3D(0.006, 0, 0, 0, 0.006, 0, 0, 0, 0.006, 0, 0, 0)
+transform = Transform3D(0.004, 0, 0, 0, 0.004, 0, 0, 0, 0.004, 0, 0, 0)
 
 [node name="Cube_091" type="Node3D" parent="Body"]
 transform = Transform3D(100, 0, 0, 0, -1.6292068e-05, 100, 0, -100, -1.6292068e-05, -0.74884033, 278.51392, -281.96655)
