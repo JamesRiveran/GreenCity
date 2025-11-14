@@ -1,4 +1,8 @@
-[gd_scene format=3 uid="uid://b4owe4d854k3y"]
+[gd_scene load_steps=4 format=3 uid="uid://b4owe4d854k3y"]
+
+[ext_resource type="Script" uid="uid://cxdt38ubkfe4d" path="res://Scripts/Menus/CreditsMenu.gd" id="1_5g7os"]
+[ext_resource type="Texture2D" uid="uid://blltyqiebhxr7" path="res://Textures/creditos.png" id="1_o1dyp"]
+[ext_resource type="Texture2D" uid="uid://doo2okufm1gq" path="res://Textures/boton.png" id="3_afp4b"]
 
 [node name="CreditsMenu" type="Control"]
 layout_mode = 3
@@ -7,3 +11,53 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_5g7os")
+
+[node name="BG" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 1.0
+offset_right = 1153.0
+offset_bottom = 648.0
+texture = ExtResource("1_o1dyp")
+
+[node name="BG3" type="TextureRect" parent="BG"]
+layout_mode = 0
+offset_left = 217.00002
+offset_top = 542.0
+offset_right = 1753.0
+offset_bottom = 1566.0
+scale = Vector2(0.09625894, 0.06948929)
+texture = ExtResource("3_afp4b")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Panel" type="Panel" parent="CenterContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/Panel"]
+layout_mode = 0
+offset_left = 231.0
+offset_top = 91.0
+offset_right = 999.0
+offset_bottom = 592.0
+
+[node name="Title" type="Label" parent="CenterContainer/Panel/VBoxContainer"]
+layout_mode = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="CenterContainer/Panel/VBoxContainer"]
+layout_mode = 2
+
+[node name="Body" type="RichTextLabel" parent="CenterContainer/Panel/VBoxContainer/ScrollContainer"]
+layout_mode = 2
+bbcode_enabled = true
+autowrap_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/Panel/VBoxContainer"]
+layout_mode = 2
+
+[node name="BackButton" type="Button" parent="CenterContainer/Panel/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Volver al menu"
