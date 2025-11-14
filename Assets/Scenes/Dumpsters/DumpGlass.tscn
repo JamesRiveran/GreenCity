@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://lpvpglmbn74y"]
+[gd_scene load_steps=8 format=3 uid="uid://lpvpglmbn74y"]
 
 [ext_resource type="Script" uid="uid://nbos58pccelh" path="res://Scripts/DumpItem.gd" id="1_44etq"]
 [ext_resource type="Script" uid="uid://ci7gpcpnujtvy" path="res://Scripts/ItemRotator.gd" id="2_818gm"]
+[ext_resource type="Script" uid="uid://doqa80tqde8w0" path="res://Scripts/collisions.gd" id="3_iwuag"]
 [ext_resource type="PackedScene" uid="uid://dka0bjrs00sk2" path="res://Assets/Models/Dumpsters/Glass.glb" id="3_se7el"]
 [ext_resource type="Material" uid="uid://b0a2bnepp0h65" path="res://Assets/Materials/MarkerArea.tres" id="4_f8fb3"]
 
@@ -20,7 +21,8 @@ dump_trash_type = "Vidrio"
 rotation_enabled = false
 
 [node name="MeshDumpGlass" parent="." instance=ExtResource("3_se7el")]
-transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0.03, 0)
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.03, 0)
+script = ExtResource("3_iwuag")
 
 [node name="Area3D" type="Area3D" parent="."]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.5, 2)

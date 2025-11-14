@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://b4r4e43s5sd7d"]
+[gd_scene load_steps=5 format=3 uid="uid://b4r4e43s5sd7d"]
 
 [ext_resource type="Script" uid="uid://b67ec67onukkr" path="res://Scripts/NPC/CarAgent.gd" id="1_628ms"]
 [ext_resource type="PackedScene" uid="uid://b4ky1diwcxved" path="res://Assets/Models/NPC/Car Hatchback.glb" id="1_qqt4s"]
+[ext_resource type="Script" uid="uid://doqa80tqde8w0" path="res://Scripts/collisions.gd" id="3_h1l58"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_qqt4s"]
 size = Vector3(1.2538452, 1.1137085, 2.4486084)
@@ -30,6 +31,7 @@ shape = SubResource("BoxShape3D_qqt4s")
 
 [node name="MeshCarRed" parent="." instance=ExtResource("1_qqt4s")]
 transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
+script = ExtResource("3_h1l58")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 path_desired_distance = 0.6

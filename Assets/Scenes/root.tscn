@@ -1,32 +1,29 @@
-[gd_scene load_steps=39 format=3 uid="uid://bpvs6unrhmgga"]
+[gd_scene load_steps=36 format=3 uid="uid://bpvs6unrhmgga"]
 
 [ext_resource type="PackedScene" uid="uid://cdn81qieoaycd" path="res://Assets/Scenes/main/city.tscn" id="1_morkg"]
 [ext_resource type="Script" uid="uid://bcbdnxj17ojxi" path="res://Scripts/TrashManager.gd" id="2_6o2em"]
 [ext_resource type="Script" uid="uid://duefghhm48a04" path="res://Scripts/camera.gd" id="2_weavm"]
+[ext_resource type="PackedScene" uid="uid://bat62dpipkj1e" path="res://Assets/Scenes/Trashes/General.tscn" id="4_pq7br"]
 [ext_resource type="PackedScene" uid="uid://d1dncn6cckwmj" path="res://Assets/Scenes/main/player.tscn" id="4_wmxxr"]
-[ext_resource type="PackedScene" uid="uid://ctuq3lki53eau" path="res://Assets/Scenes/Trashes/TrashBag.tscn" id="5_hoaef"]
 [ext_resource type="Script" uid="uid://ce501i3lptkkq" path="res://Scripts/hud.gd" id="5_morkg"]
+[ext_resource type="PackedScene" uid="uid://dalnllm1frp1q" path="res://Assets/Scenes/Trashes/Vidrio.tscn" id="5_uavya"]
 [ext_resource type="PackedScene" uid="uid://d2ai043jjf2fr" path="res://Assets/Scenes/Dumpsters/DumpGeneral.tscn" id="6_hoaef"]
-[ext_resource type="PackedScene" uid="uid://ykjcnopkskj6" path="res://Assets/Scenes/Trashes/TrashBags.tscn" id="6_udl0k"]
+[ext_resource type="PackedScene" uid="uid://cmpg22kup51fc" path="res://Assets/Scenes/Trashes/Metal.tscn" id="6_xcekw"]
+[ext_resource type="PackedScene" uid="uid://cwuo8ho50ekbt" path="res://Assets/Scenes/Trashes/Papel.tscn" id="7_3dsbg"]
 [ext_resource type="PackedScene" uid="uid://ccsoyj23wl5r8" path="res://Assets/Scenes/Dumpsters/DumpPlastic.tscn" id="7_msmft"]
-[ext_resource type="PackedScene" uid="uid://ikw4fpcwecaf" path="res://Assets/Scenes/Trashes/TrashRubbish.tscn" id="7_txhe7"]
+[ext_resource type="PackedScene" uid="uid://cxmbq3rjkj5t0" path="res://Assets/Scenes/Trashes/Plastico.tscn" id="8_g137x"]
 [ext_resource type="PackedScene" uid="uid://d3x275cbw7mah" path="res://Assets/Scenes/Dumpsters/DumpPaper.tscn" id="8_n4vqs"]
-[ext_resource type="PackedScene" uid="uid://bf7s1sa5dutl2" path="res://Assets/Scenes/Trashes/TrashCanBroken.tscn" id="8_ycjpv"]
 [ext_resource type="PackedScene" uid="uid://c8tljjn7qiabb" path="res://Assets/Scenes/Dumpsters/DumpMetal.tscn" id="9_dfvf4"]
-[ext_resource type="PackedScene" uid="uid://c8iimf8daq140" path="res://Assets/Scenes/Trashes/TrashSodaCrushed.tscn" id="9_weavm"]
 [ext_resource type="PackedScene" uid="uid://lpvpglmbn74y" path="res://Assets/Scenes/Dumpsters/DumpGlass.tscn" id="10_2l25m"]
-[ext_resource type="PackedScene" uid="uid://b53p34u8yxfpc" path="res://Assets/Scenes/Trashes/TrashSoda.tscn" id="10_w7cdi"]
-[ext_resource type="PackedScene" uid="uid://dsohkrr1kayx4" path="res://Assets/Scenes/Trashes/TrashWaterBottle.tscn" id="11_gmobi"]
-[ext_resource type="PackedScene" uid="uid://1vkxa5m4qqt4" path="res://Assets/Scenes/Trashes/TrashCardboardBoxes.tscn" id="12_pq7br"]
 [ext_resource type="Script" uid="uid://b1uajdngr6i5o" path="res://Scripts/NPC/NPCSpawner.gd" id="13_ycjpv"]
 [ext_resource type="Script" uid="uid://d3ckluomlkngx" path="res://Scripts/NPC/RoadNode.gd" id="14_weavm"]
 [ext_resource type="PackedScene" uid="uid://b4r4e43s5sd7d" path="res://Assets/Scenes/NPC/CarRed.tscn" id="19_txhe7"]
-[ext_resource type="Texture2D" uid="uid://djyb5k5km8fg4" path="res://Textures/general.png" id="22_xcekw"]
-[ext_resource type="Texture2D" uid="uid://detp5b05obnyh" path="res://Textures/vidrio.png" id="23_3dsbg"]
-[ext_resource type="Texture2D" uid="uid://cwgimefaybsjn" path="res://Textures/plastico.png" id="24_g137x"]
-[ext_resource type="Texture2D" uid="uid://beh04qdrh1v7f" path="res://Textures/metal.png" id="25_fjug3"]
-[ext_resource type="Texture2D" uid="uid://bbhci6q38ugpp" path="res://Textures/papel.png" id="26_ie6bs"]
-[ext_resource type="Texture2D" uid="uid://cqsqqs283irp1" path="res://Textures/truck.png" id="27_3dsbg"]
+[ext_resource type="Texture2D" uid="uid://djyb5k5km8fg4" path="res://Assets/Textures/general.png" id="22_xcekw"]
+[ext_resource type="Texture2D" uid="uid://detp5b05obnyh" path="res://Assets/Textures/vidrio.png" id="23_3dsbg"]
+[ext_resource type="Texture2D" uid="uid://cwgimefaybsjn" path="res://Assets/Textures/plastico.png" id="24_g137x"]
+[ext_resource type="Texture2D" uid="uid://beh04qdrh1v7f" path="res://Assets/Textures/metal.png" id="25_fjug3"]
+[ext_resource type="Texture2D" uid="uid://bbhci6q38ugpp" path="res://Assets/Textures/papel.png" id="26_ie6bs"]
+[ext_resource type="Texture2D" uid="uid://cqsqqs283irp1" path="res://Assets/Textures/truck.png" id="27_3dsbg"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_wmxxr"]
 
@@ -185,7 +182,7 @@ vehicle = NodePath("../Player")
 hud = NodePath("../HUD")
 add_time_correct_deposit = true
 dumps = [NodePath("../Dumpsters/DumpGeneral"), NodePath("../Dumpsters/DumpGlass"), NodePath("../Dumpsters/DumpMetal"), NodePath("../Dumpsters/DumpPaper"), null]
-item_templates = Array[PackedScene]([ExtResource("5_hoaef"), ExtResource("6_udl0k"), ExtResource("7_txhe7"), ExtResource("8_ycjpv"), ExtResource("9_weavm"), ExtResource("10_w7cdi"), ExtResource("11_gmobi"), ExtResource("12_pq7br")])
+item_templates = Array[PackedScene]([ExtResource("4_pq7br"), ExtResource("5_uavya"), ExtResource("6_xcekw"), ExtResource("7_3dsbg"), ExtResource("8_g137x")])
 root_spawn_points = NodePath("../SpawnPointsItems")
 items_root = NodePath(".")
 max_items = 10
@@ -766,24 +763,24 @@ anchors_preset = -1
 anchor_left = 1.8500001
 anchor_right = 4.7250004
 anchor_bottom = 2.9250002
-offset_left = 2.9999924
-offset_top = 15.0
-offset_right = 2.9999847
-offset_bottom = 0.9999924
+offset_left = 30.999992
+offset_top = 36.0
+offset_right = 30.999985
+offset_bottom = 21.999992
 texture = ExtResource("22_xcekw")
 expand_mode = 1
 
 [node name="Label_general" type="Label" parent="HUD/Control/Marker/General"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 1.0830001
+anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0830001
 anchor_bottom = 0.5
-offset_left = -27.545006
-offset_top = -10.5
-offset_right = 27.454994
-offset_bottom = 38.5
+offset_left = -85.0
+offset_top = -68.5
+offset_right = -39.545006
+offset_bottom = -19.5
 text = "0
 "
 horizontal_alignment = 1
@@ -809,8 +806,10 @@ anchor_left = 5.05
 anchor_top = 0.5
 anchor_right = 7.675
 anchor_bottom = 2.5570002
-offset_top = -1.0
-offset_bottom = 15.719994
+offset_left = 28.0
+offset_top = 20.0
+offset_right = 28.0
+offset_bottom = 36.719994
 texture = ExtResource("23_3dsbg")
 expand_mode = 1
 
@@ -821,10 +820,10 @@ anchor_left = 1.171
 anchor_top = 0.5
 anchor_right = 1.171
 anchor_bottom = 0.5
-offset_left = -28.955002
-offset_top = -14.5
-offset_right = 29.044998
-offset_bottom = 34.5
+offset_left = -100.955
+offset_top = -69.5
+offset_right = -42.955
+offset_bottom = -20.5
 text = "0
 "
 horizontal_alignment = 1
@@ -850,6 +849,10 @@ anchor_left = 8.35
 anchor_top = 0.52500004
 anchor_right = 11.05
 anchor_bottom = 2.9250002
+offset_left = 28.0
+offset_top = 20.999998
+offset_right = 28.0
+offset_bottom = 20.999992
 texture = ExtResource("24_g137x")
 expand_mode = 1
 
@@ -859,11 +862,11 @@ anchors_preset = -1
 anchor_left = 1.2040001
 anchor_top = 0.48400003
 anchor_right = 1.2040001
-anchor_bottom = 0.48400003
-offset_left = -20.032013
-offset_top = -11.4640045
-offset_right = 19.967987
-offset_bottom = 11.5359955
+anchor_bottom = 0.708
+offset_left = -81.03201
+offset_top = -69.464005
+offset_right = -41.032013
+offset_bottom = -67.968
 text = "0"
 
 [node name="Label" type="Label" parent="HUD/Control/Marker/Plastico"]
@@ -886,9 +889,10 @@ anchor_left = 11.450001
 anchor_top = 0.5
 anchor_right = 14.175001
 anchor_bottom = 2.9750001
-offset_left = -3.0517578e-05
-offset_top = -3.0
-offset_right = -6.1035156e-05
+offset_left = 27.99997
+offset_top = 18.0
+offset_right = 27.999939
+offset_bottom = 20.999992
 texture = ExtResource("25_fjug3")
 expand_mode = 1
 
@@ -899,10 +903,10 @@ anchor_left = 1.0
 anchor_top = 0.49500003
 anchor_right = 1.0
 anchor_bottom = 0.49500003
-offset_left = -10.0
-offset_top = -11.490002
-offset_right = 30.0
-offset_bottom = 11.509998
+offset_left = -62.0
+offset_top = -70.490005
+offset_right = -22.0
+offset_bottom = -47.49
 text = "0"
 
 [node name="Label" type="Label" parent="HUD/Control/Marker/Metal"]
@@ -925,9 +929,10 @@ anchor_left = 14.300001
 anchor_top = 0.5
 anchor_right = 17.150002
 anchor_bottom = 2.95
-offset_left = -6.1035156e-05
-offset_top = -3.0
-offset_right = -6.1035156e-05
+offset_left = 27.999939
+offset_top = 18.0
+offset_right = 27.999939
+offset_bottom = 21.0
 texture = ExtResource("26_ie6bs")
 expand_mode = 1
 
@@ -938,10 +943,10 @@ anchor_left = 1.228
 anchor_top = 0.5
 anchor_right = 1.228
 anchor_bottom = 0.5
-offset_left = -19.992004
-offset_top = -8.5
-offset_right = 20.007996
-offset_bottom = 14.5
+offset_left = -89.992004
+offset_top = -70.5
+offset_right = -49.992004
+offset_bottom = -47.5
 text = "0"
 
 [node name="Label" type="Label" parent="HUD/Control/Marker/Papel"]
@@ -1110,8 +1115,11 @@ text = "Menu"
 
 [node name="LoseLabel" type="Label" parent="HUD"]
 visible = false
-offset_right = 40.0
-offset_bottom = 23.0
+offset_left = 554.0
+offset_top = 309.0
+offset_right = 700.0
+offset_bottom = 372.0
+text = "PERDISTE"
 horizontal_alignment = 1
 vertical_alignment = 1
 

@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://cmpg22kup51fc"]
+
+[ext_resource type="Script" uid="uid://c2pl3m8iayn7l" path="res://Scripts/TrashItem.gd" id="1_ttql6"]
+[ext_resource type="PackedScene" uid="uid://cxppd1syyoex6" path="res://Assets/Models/Trash/metal.glb" id="2_ttql6"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_b7nif"]
+size = Vector3(0.9528456, 1.2890701, 0.95539856)
+
+[node name="TrashCanBroken" type="Node3D"]
+script = ExtResource("1_ttql6")
+trash_type = "Metal"
+trash_type_score = 10
+floating_enabled = true
+float_amplitude = 0.3
+float_speed = 2.5
+
+[node name="Area3D" type="Area3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.25, 0)
+collision_layer = 2
+collision_mask = 16
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00526762, 0.14339066, 0.0011978149)
+shape = SubResource("BoxShape3D_b7nif")
+
+[node name="metal" parent="." instance=ExtResource("2_ttql6")]
