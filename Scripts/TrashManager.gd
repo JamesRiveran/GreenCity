@@ -21,6 +21,8 @@ signal vehicle_assigned(vehicle)
 
 @onready var hud_node := get_node_or_null(hud)
 
+var list_counters_deposit = []
+
 # Estado
 var depositos_correctos: int = 0
 var fin: bool = false
@@ -105,7 +107,18 @@ func _on_item_deposited(_item: Node3D, dump_type) -> void:
 		count_items -= 1
 		collected_count -= 1
 		respawn_missing_items()
+		var newCounter = true
+		var typeCounter 
+		for counter in list_counters_deposit:
+			if counter.type == trash_type_transported:
+				counter.count += 1
+				newCounter = false
+				typeCounter = counter
 
+		if newCounter:
+			typeCounter = {"type": trash_type_transported, "count": 1}
+			list_counters_deposit.append(typeCounter)
+		
 		if collected_count == 0:
 			trash_type_transported = ""
 			trash_type_transported_score = 0
@@ -115,7 +128,9 @@ func _on_item_deposited(_item: Node3D, dump_type) -> void:
 				hud_node.update_collected(collected_count, collected_count_max)
 			if hud_node.has_method("update_score"):
 				hud_node.update_score(score)
-			
+			if hud_node.has_method("update_trash_count"):
+				hud_node.update_trash_count(typeCounter.type, typeCounter.count)
+
 			# --- APAGAR ICONOS DE BASURA ---
 			if hud_node.has_method("hide_all_trash_icons"):
 				hud_node.hide_all_trash_icons()

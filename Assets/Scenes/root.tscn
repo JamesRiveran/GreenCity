@@ -194,6 +194,7 @@ item_templates = Array[PackedScene]([ExtResource("5_hoaef"), ExtResource("6_udl0
 root_spawn_points = NodePath("../SpawnPointsItems")
 items_root = NodePath(".")
 max_items = 10
+item_scale = Vector3(2, 2, 2)
 
 [node name="SpawnPointsItems" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7366333, 0)

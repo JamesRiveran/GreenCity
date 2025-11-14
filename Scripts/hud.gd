@@ -7,6 +7,11 @@ extends CanvasLayer
 @onready var collected_bar: ProgressBar = $CollectedBar
 @onready var collected_label: Label = $CollectedBar/CountLabel
 @onready var score_label: Label = $ScoreLabel
+@onready var label_general  : Label = $Control/Marker/General/Label_general
+@onready var label_plastico : Label = $Control/Marker/Plastico/Label_plastico
+@onready var label_vidrio   : Label = $Control/Marker/Vidrio/Label_vidrio
+@onready var label_metal    : Label = $Control/Marker/Metal/Label_metal
+@onready var label_papel    : Label = $Control/Marker/Papel/Label_papel
 @onready var icon_general  : TextureRect = $Control/Trash/basuraGeneral
 @onready var icon_plastico : TextureRect = $Control/Trash/basuraPlastico
 @onready var icon_vidrio   : TextureRect = $Control/Trash/basuraVidrio
@@ -85,13 +90,27 @@ func update_health(value: int, max_value: int) -> void:
 	stylebox.corner_radius_bottom_right = 4
 	health_bar.add_theme_stylebox_override("fill", stylebox)
 
+func update_trash_count(type: String, count: int):
+	hide_all_trash_icons()
+
+	match type:
+		"General":
+			label_general.text = str(count)
+		"Plastico":
+			label_plastico.text = str(count)
+		"Vidrio":
+			label_vidrio.text = str(count)
+		"Metal":
+			label_metal.text = str(count)
+		"Papel":
+			label_papel.text = str(count)
+			
 func hide_all_trash_icons():
 	icon_general.visible = false
 	icon_plastico.visible = false
 	icon_vidrio.visible = false
 	icon_metal.visible = false
 	icon_papel.visible = false
-
 
 func show_trash_icon(trash_type: String):
 	hide_all_trash_icons()
