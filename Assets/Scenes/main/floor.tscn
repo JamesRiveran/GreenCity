@@ -1,6 +1,6 @@
 [gd_scene load_steps=24 format=4 uid="uid://btkmt5nnpupi6"]
 
-[ext_resource type="Texture2D" uid="uid://c6t440u3oqudn" path="res://Textures/low_poly_city-pack_0.png" id="1_dc5ec"]
+[ext_resource type="Texture2D" uid="uid://c6t440u3oqudn" path="res://Assets/Textures/low_poly_city-pack_0.png" id="1_dc5ec"]
 [ext_resource type="Script" uid="uid://b6t5eytjtnmn6" path="res://Scripts/NoDamage.gd" id="1_tokpw"]
 [ext_resource type="Material" uid="uid://br7n00pcbpygy" path="res://Assets/Materials/pasto.tres" id="3_1rghr"]
 [ext_resource type="PackedScene" uid="uid://cqwp5rx2rbra3" path="res://Assets/Models/Trees/Pine.glb" id="4_b7v3y"]

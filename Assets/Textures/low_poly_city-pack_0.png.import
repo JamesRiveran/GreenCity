@@ -2,20 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dmeqq0di4i7y1"
-path.s3tc="res://.godot/imported/Dumpster (5)_CHAHIN_DUMPSTER_TEXTURE.jpg-5408e56ca1ceeee4eaf158a8df7b92ba.s3tc.ctex"
+uid="uid://c6t440u3oqudn"
+path.s3tc="res://.godot/imported/low_poly_city-pack_0.png-92fe2aea72f1ea575a67f5482efd8a19.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 generator_parameters={
-"md5": "ae109caa82fc08f85dac415f98253709"
+"md5": "bc804f9d1a9d05afd94f2ab5e5a29abf"
 }
 
 [deps]
 
-source_file="res://Textures/Dumpster (5)_CHAHIN_DUMPSTER_TEXTURE.jpg"
-dest_files=["res://.godot/imported/Dumpster (5)_CHAHIN_DUMPSTER_TEXTURE.jpg-5408e56ca1ceeee4eaf158a8df7b92ba.s3tc.ctex"]
+source_file="res://Assets/Textures/low_poly_city-pack_0.png"
+dest_files=["res://.godot/imported/low_poly_city-pack_0.png-92fe2aea72f1ea575a67f5482efd8a19.s3tc.ctex"]
 
 [params]
 

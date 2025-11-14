@@ -2,20 +2,17 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d1pwqjxan1op"
-path.s3tc="res://.godot/imported/Tennis court_TennisCourt_BaseColor.png-961f5084dabd4bdb66a4e1600618e3d1.s3tc.ctex"
+uid="uid://dbolvi45rwsyp"
+path.s3tc="res://.godot/imported/pasto.jpg-ca3243719e80b9470e9ea60caf7b537e.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
-generator_parameters={
-"md5": "9fa7cd8aa1c369f5fa8bdc5963ef1a25"
-}
 
 [deps]
 
-source_file="res://Textures/Tennis court_TennisCourt_BaseColor.png"
-dest_files=["res://.godot/imported/Tennis court_TennisCourt_BaseColor.png-961f5084dabd4bdb66a4e1600618e3d1.s3tc.ctex"]
+source_file="res://Assets/Textures/pasto.jpg"
+dest_files=["res://.godot/imported/pasto.jpg-ca3243719e80b9470e9ea60caf7b537e.s3tc.ctex"]
 
 [params]
 

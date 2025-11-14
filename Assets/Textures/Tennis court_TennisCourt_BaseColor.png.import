@@ -2,20 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cike8ebpw36p1"
-path.s3tc="res://.godot/imported/Paper_CHAHIN_DUMPSTER_TEXTURE.jpg-402caf771c57275ddb98337c18bf35dc.s3tc.ctex"
+uid="uid://d1pwqjxan1op"
+path.s3tc="res://.godot/imported/Tennis court_TennisCourt_BaseColor.png-34d139116b0f33471f5ea0e15c924c0c.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
 generator_parameters={
-"md5": "ae109caa82fc08f85dac415f98253709"
+"md5": "9fa7cd8aa1c369f5fa8bdc5963ef1a25"
 }
 
 [deps]
 
-source_file="res://Textures/Paper_CHAHIN_DUMPSTER_TEXTURE.jpg"
-dest_files=["res://.godot/imported/Paper_CHAHIN_DUMPSTER_TEXTURE.jpg-402caf771c57275ddb98337c18bf35dc.s3tc.ctex"]
+source_file="res://Assets/Textures/Tennis court_TennisCourt_BaseColor.png"
+dest_files=["res://.godot/imported/Tennis court_TennisCourt_BaseColor.png-34d139116b0f33471f5ea0e15c924c0c.s3tc.ctex"]
 
 [params]
 

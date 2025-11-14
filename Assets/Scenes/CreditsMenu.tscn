@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://b4owe4d854k3y"]
 
 [ext_resource type="Script" uid="uid://cxdt38ubkfe4d" path="res://Scripts/Menus/CreditsMenu.gd" id="1_5g7os"]
-[ext_resource type="Texture2D" uid="uid://blltyqiebhxr7" path="res://Textures/creditos.png" id="1_o1dyp"]
-[ext_resource type="Texture2D" uid="uid://doo2okufm1gq" path="res://Textures/boton.png" id="3_afp4b"]
+[ext_resource type="Texture2D" uid="uid://blltyqiebhxr7" path="res://Assets/Textures/creditos.png" id="1_o1dyp"]
+[ext_resource type="Texture2D" uid="uid://doo2okufm1gq" path="res://Assets/Textures/boton.png" id="3_afp4b"]
 
 [node name="CreditsMenu" type="Control"]
 layout_mode = 3
