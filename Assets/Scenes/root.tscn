@@ -178,9 +178,10 @@ transform = Transform3D(-4.770717e-08, 0, 1, 0, 1, 0, -1.0914129, 0, -4.371139e-
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7868347, 0.8994601, 0)
 shape = SubResource("BoxShape3D_morkg")
 
-[node name="Items" type="Node3D" parent="." node_paths=PackedStringArray("dumps", "items_root")]
+[node name="Items" type="Node3D" parent="." node_paths=PackedStringArray("vehicle", "dumps", "items_root")]
 script = ExtResource("2_6o2em")
 collected_count_max = 1
+vehicle = NodePath("../Player")
 hud = NodePath("../HUD")
 allow_cross_dump = true
 subtract_score_cross_dump = true
@@ -1054,4 +1055,8 @@ offset_bottom = 0.011993408
 text = "Papel"
 
 [node name="Player" parent="." instance=ExtResource("4_wmxxr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.3226154, 0.3681711, -7.9543443)
 center_of_mass = Vector3(0, -2, 0)
+wall_bodies = Array[NodePath]([NodePath("../Collisions/Walls/WallE/StaticBody3D"), NodePath("../Collisions/Walls/WallO/StaticBody3D"), NodePath("../Collisions/Walls/WallS/StaticBody3D"), NodePath("../Collisions/Walls/WallN/StaticBody3D")])
+wall_areas = Array[NodePath]([NodePath("../Collisions/TownAreas/BuildingCity/Area3D"), NodePath("../Collisions/TownAreas/BuildingCity/Area3D2"), NodePath("../Collisions/TownAreas/Area2/Area3D"), NodePath("../Collisions/TownAreas/Area3/Area3D"), NodePath("../Collisions/TownAreas/Area3/Area3D2"), NodePath("../Collisions/TownAreas/Area4/Area3D"), NodePath("../Collisions/TownAreas/Area4/Area3D2")])
+hud_path = NodePath("../HUD")
