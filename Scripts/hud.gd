@@ -7,6 +7,11 @@ extends CanvasLayer
 @onready var collected_bar: ProgressBar = $CollectedBar
 @onready var collected_label: Label = $CollectedBar/CountLabel
 @onready var score_label: Label = $ScoreLabel
+@onready var icon_general  : TextureRect = $Control/Trash/basuraGeneral
+@onready var icon_plastico : TextureRect = $Control/Trash/basuraPlastico
+@onready var icon_vidrio   : TextureRect = $Control/Trash/basuraVidrio
+@onready var icon_metal    : TextureRect = $Control/Trash/basuraMetal
+@onready var icon_papel    : TextureRect = $Control/Trash/basuraPapel
 
 signal time_over
 
@@ -15,7 +20,7 @@ func _ready() -> void:
 	update_health(health_bar.max_value, health_bar.max_value)
 	update_collected(0, 1)  # inicializar barra
 	update_score(0)         # inicializar texto
-
+	hide_all_trash_icons()
 	game_timer.timeout.connect(_on_game_timer_timeout)
 
 	_update_timer_label()
@@ -80,6 +85,29 @@ func update_health(value: int, max_value: int) -> void:
 	stylebox.corner_radius_bottom_left = 4
 	stylebox.corner_radius_bottom_right = 4
 	health_bar.add_theme_stylebox_override("fill", stylebox)
+
+func hide_all_trash_icons():
+	icon_general.visible = false
+	icon_plastico.visible = false
+	icon_vidrio.visible = false
+	icon_metal.visible = false
+	icon_papel.visible = false
+
+
+func show_trash_icon(trash_type: String):
+	hide_all_trash_icons()
+
+	match trash_type:
+		"general":
+			icon_general.visible = true
+		"plastico":
+			icon_plastico.visible = true
+		"vidrio":
+			icon_vidrio.visible = true
+		"metal":
+			icon_metal.visible = true
+		"papel":
+			icon_papel.visible = true
 
 
 func _update_timer_label() -> void:
