@@ -1,5 +1,5 @@
 extends ItemSpawner
-
+class_name TrashManager
 signal vehicle_assigned(vehicle)
 
 @export var collected_count_max: int = -1           # Máximo de ítems que puede llevar el camión (-1 = sin límite)
@@ -33,6 +33,8 @@ var score: int = 0                                  # Puntaje total
 func _ready() -> void:
 	# Lógica base
 	super._ready()
+	# Registrarse en un grupo para que el vehículo pueda encontrarnos fácilmente
+	add_to_group("trash_manager")
 
 	# Registrar ítems (basuras)
 	var items: Node3D = items_root if items_root else self

@@ -10641,6 +10641,23 @@ front_left_wheel = NodePath("VehicleWheelFrontLeft")
 front_right_wheel = NodePath("VehicleWheelFrontRight")
 rear_left_wheel = NodePath("VehicleWheelRearLeft")
 rear_right_wheel = NodePath("VehicleWheelRearRight")
+engine_force_strength = null
+brake_force_strength = null
+steering_angle_max = null
+key_forward = null
+key_backward = null
+key_left = null
+key_right = null
+key_brake = null
+max_health = null
+collision_damage = null
+area_damage = null
+wall_cooldown = null
+ignored_nodes = null
+wall_bodies = null
+wall_areas = null
+hud_path = null
+trash_manager_path = null
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0043945313, 1.0367813, -0.40903473)

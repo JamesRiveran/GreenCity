@@ -43,9 +43,9 @@ func _spawn() -> void:
 		return
 
 	var parent: Node = (cars_root if cars_root != null else self)
+	car_inst.global_transform = sp.global_transform
 	parent.add_child(car_inst)
 
-	car_inst.global_transform = sp.global_transform
 	_count += 1
 
 	# Cuando salga del árbol, reducimos conteo y reponemos si procede
