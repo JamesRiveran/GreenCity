@@ -88,7 +88,6 @@ func _on_item_deposited(_item: Node3D, dump_type) -> void:
 
 		if trash_type_transported == dump_type:
 			# 🔵 Depósito correcto
-			delta_score = trash_type_transported_score
 			score += trash_type_transported_score
 			depositos_correctos += 1
 
