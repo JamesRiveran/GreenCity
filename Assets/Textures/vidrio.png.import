@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://djyb5k5km8fg4"
-path="res://.godot/imported/general.png-0fe813a8873b897f60a7fd052e56054f.ctex"
+uid="uid://detp5b05obnyh"
+path="res://.godot/imported/vidrio.png-8cec427a464e67a32c8063079c5ecb9b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Textures/general.png"
-dest_files=["res://.godot/imported/general.png-0fe813a8873b897f60a7fd052e56054f.ctex"]
+source_file="res://Assets/Textures/vidrio.png"
+dest_files=["res://.godot/imported/vidrio.png-8cec427a464e67a32c8063079c5ecb9b.ctex"]
 
 [params]
 

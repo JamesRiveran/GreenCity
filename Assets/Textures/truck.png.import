@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cwqmpbflv00s7"
-path="res://.godot/imported/me.png-a74f531eda072564ececd666ec6fe4c0.ctex"
+uid="uid://cqsqqs283irp1"
+path="res://.godot/imported/truck.png-4061a66db764331cb65395f502e431f0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Textures/me.png"
-dest_files=["res://.godot/imported/me.png-a74f531eda072564ececd666ec6fe4c0.ctex"]
+source_file="res://Assets/Textures/truck.png"
+dest_files=["res://.godot/imported/truck.png-4061a66db764331cb65395f502e431f0.ctex"]
 
 [params]
 

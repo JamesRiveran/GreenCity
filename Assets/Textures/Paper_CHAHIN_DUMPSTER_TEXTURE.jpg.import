@@ -2,20 +2,24 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://blltyqiebhxr7"
-path="res://.godot/imported/creditos.png-f767885300fb8c905d3fa059bb29dbcf.ctex"
+uid="uid://cike8ebpw36p1"
+path.s3tc="res://.godot/imported/Paper_CHAHIN_DUMPSTER_TEXTURE.jpg-7d7d5faefd46617acdda887c72a33f83.s3tc.ctex"
 metadata={
-"vram_texture": false
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
+}
+generator_parameters={
+"md5": "ae109caa82fc08f85dac415f98253709"
 }
 
 [deps]
 
-source_file="res://Textures/creditos.png"
-dest_files=["res://.godot/imported/creditos.png-f767885300fb8c905d3fa059bb29dbcf.ctex"]
+source_file="res://Assets/Textures/Paper_CHAHIN_DUMPSTER_TEXTURE.jpg"
+dest_files=["res://.godot/imported/Paper_CHAHIN_DUMPSTER_TEXTURE.jpg-7d7d5faefd46617acdda887c72a33f83.s3tc.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0
@@ -23,7 +27,7 @@ compress/rdo_quality_loss=0.0
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
-mipmaps/generate=false
+mipmaps/generate=true
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""
@@ -37,4 +41,4 @@ process/normal_map_invert_y=false
 process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
-detect_3d/compress_to=1
+detect_3d/compress_to=0
