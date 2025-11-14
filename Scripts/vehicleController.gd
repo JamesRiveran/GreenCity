@@ -21,6 +21,10 @@ extends VehicleBody3D
 @export var max_health: int = 100
 var health: int = max_health
 
+# --- Audio ---
+@export var engine_sound_path: NodePath
+@onready var engine_sound: AudioStreamPlayer = null
+
 # --- Daño configurable ---
 @export var collision_damage: int = 10      # Daño por colisiones físicas (paredes, edificios)
 @export var area_damage: int = 5            # Daño por entrar a un Area3D
@@ -114,6 +118,18 @@ func _ready():
 		# Método 5: Búsqueda recursiva
 		trash_manager = _find_trash_manager_recursive(get_tree().current_scene)
 
+	# --- Engine sound resolution (optional) ---
+	if engine_sound_path and not engine_sound_path.is_empty():
+		engine_sound = get_node_or_null(engine_sound_path)
+	else:
+		# Fallback: node named "EngineSound" as child
+		engine_sound = get_node_or_null("EngineSound")
+		if not engine_sound:
+			# Try $EngineSound style (safe lookup)
+			var try_node = get_node_or_null("/root/" + name + "/EngineSound")
+			if try_node:
+				engine_sound = try_node
+
 func _physics_process(_delta: float) -> void:
 	if not front_left_wheel or not front_right_wheel:
 		return
@@ -145,6 +161,9 @@ func _physics_process(_delta: float) -> void:
 		if wheel:
 			wheel.brake = brake_force
 
+	# --- Sonido del motor ---
+	_update_engine_sound(accel)
+
 # ---------- Utilidad para tiempo transcurrido (opcional) ----------
 func _elapsed_time() -> float:
 	if hud and hud.has_method("get_elapsed_time"):
@@ -154,6 +173,23 @@ func _elapsed_time() -> float:
 		if t and t.wait_time > 0.0:
 			return t.wait_time - t.time_left
 	return 0.0
+
+
+# --- Sonido del motor: ajusta pitch y play/stop según aceleración ---
+func _update_engine_sound(accel: float) -> void:
+	if not engine_sound:
+		return
+
+	# Cambia tono según aceleración (ajusta factor a gusto)
+	engine_sound.pitch_scale = 1.0 + abs(accel) * 0.5
+
+	# Enciende o apaga el sonido según input
+	if abs(accel) > 0.05:
+		if not engine_sound.playing:
+			engine_sound.play()
+	else:
+		if engine_sound.playing:
+			engine_sound.stop()
 
 # --- Daño y colisiones ---
 func apply_damage(amount: int, source: Node = null) -> void:

@@ -1,6 +1,7 @@
-[gd_scene load_steps=669 format=4 uid="uid://d1dncn6cckwmj"]
+[gd_scene load_steps=670 format=4 uid="uid://d1dncn6cckwmj"]
 
 [ext_resource type="Script" uid="uid://ckfs4qx3kh6hv" path="res://Scripts/vehicleController.gd" id="1_tpd1a"]
+[ext_resource type="AudioStream" uid="uid://ylg5m41tbn87" path="res://Assets/Sounds/engine_loop.ogg" id="2_7tw65"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_vc4ur"]
 size = Vector3(1.9130859, 1.4566803, 3.5016327)
@@ -10641,23 +10642,6 @@ front_left_wheel = NodePath("VehicleWheelFrontLeft")
 front_right_wheel = NodePath("VehicleWheelFrontRight")
 rear_left_wheel = NodePath("VehicleWheelRearLeft")
 rear_right_wheel = NodePath("VehicleWheelRearRight")
-engine_force_strength = null
-brake_force_strength = null
-steering_angle_max = null
-key_forward = null
-key_backward = null
-key_left = null
-key_right = null
-key_brake = null
-max_health = null
-collision_damage = null
-area_damage = null
-wall_cooldown = null
-ignored_nodes = null
-wall_bodies = null
-wall_areas = null
-hud_path = null
-trash_manager_path = null
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0043945313, 1.0367813, -0.40903473)
@@ -13255,3 +13239,7 @@ transform = Transform3D(100, 0, 0, 0, -1.6292068e-05, 100, 0, -100, -1.6292068e-
 [node name="Cube_1578_Outline_001_0" type="MeshInstance3D" parent="Body/Cube_1578"]
 mesh = SubResource("ArrayMesh_acj8v")
 skeleton = NodePath("")
+
+[node name="EngineSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_7tw65")
+volume_db = -10.0

@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://bpvs6unrhmgga"]
+[gd_scene load_steps=37 format=3 uid="uid://bpvs6unrhmgga"]
 
 [ext_resource type="PackedScene" uid="uid://cdn81qieoaycd" path="res://Assets/Scenes/main/city.tscn" id="1_morkg"]
 [ext_resource type="Script" uid="uid://bcbdnxj17ojxi" path="res://Scripts/TrashManager.gd" id="2_6o2em"]
@@ -22,6 +22,7 @@
 [ext_resource type="Texture2D" uid="uid://detp5b05obnyh" path="res://Assets/Textures/vidrio.png" id="23_3dsbg"]
 [ext_resource type="Texture2D" uid="uid://cwgimefaybsjn" path="res://Assets/Textures/plastico.png" id="24_g137x"]
 [ext_resource type="Texture2D" uid="uid://beh04qdrh1v7f" path="res://Assets/Textures/metal.png" id="25_fjug3"]
+[ext_resource type="AudioStream" uid="uid://tf11prusojap" path="res://Assets/Sounds/Mechanical.mp3" id="25_uavya"]
 [ext_resource type="Texture2D" uid="uid://bbhci6q38ugpp" path="res://Assets/Textures/papel.png" id="26_ie6bs"]
 [ext_resource type="Texture2D" uid="uid://cqsqqs283irp1" path="res://Assets/Textures/truck.png" id="27_3dsbg"]
 
@@ -1146,3 +1147,8 @@ wall_bodies = Array[NodePath]([NodePath("../Collisions/Walls/WallE/StaticBody3D"
 wall_areas = Array[NodePath]([NodePath("../Collisions/TownAreas/BuildingCity/Area3D"), NodePath("../Collisions/TownAreas/BuildingCity/Area3D2"), NodePath("../Collisions/TownAreas/Area2/Area3D"), NodePath("../Collisions/TownAreas/Area3/Area3D"), NodePath("../Collisions/TownAreas/Area3/Area3D2"), NodePath("../Collisions/TownAreas/Area4/Area3D"), NodePath("../Collisions/TownAreas/Area4/Area3D2")])
 hud_path = NodePath("../HUD")
 trash_manager_path = NodePath("")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("25_uavya")
+volume_db = -30.0
+autoplay = true
