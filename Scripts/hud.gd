@@ -25,6 +25,10 @@ extends CanvasLayer
 @onready var lose_label: Label = $LoseLabel
 @onready var lose_delay_timer: Timer = $LoseDelayTimer
 
+# NUEVO: Referencia al Label y Timer para mensaje de depósito de basura
+@onready var label_trash: Label = $label_trash
+@onready var label_trash_timer: Timer = $label_trash_timer
+
 # NEW: Referencia al ConfirmationDialog
 @onready var confirm_dialog: ConfirmationDialog = $ConfirmMenuDialog
 
@@ -40,6 +44,9 @@ func _ready() -> void:
 
 	if lose_delay_timer:
 		lose_delay_timer.timeout.connect(_on_lose_delay_timeout)
+	
+	if label_trash_timer:
+		label_trash_timer.timeout.connect(_on_label_trash_timer_timeout)
 
 	update_health(health_bar.max_value, health_bar.max_value)
 	update_collected(0, 1)  # inicializar barra
@@ -213,3 +220,13 @@ func _on_menu_pressed() -> void:
 
 func _on_confirm_menu() -> void:
 	Game.go_main_menu()
+
+# NUEVO: Mostrar mensaje de depósito de basura por 4 segundos
+func show_trash_deposited_message() -> void:
+	if label_trash and label_trash_timer:
+		label_trash.visible = true
+		label_trash_timer.start()
+
+func _on_label_trash_timer_timeout() -> void:
+	if label_trash:
+		label_trash.visible = false

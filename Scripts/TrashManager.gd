@@ -126,6 +126,10 @@ func _on_item_deposited(_item: Node3D, dump_type) -> void:
 			# --- APAGAR ICONOS DE BASURA ---
 			if hud_node.has_method("hide_all_trash_icons"):
 				hud_node.hide_all_trash_icons()
+			
+			# --- MOSTRAR MENSAJE DE DEPÓSITO POR 4 SEGUNDOS ---
+			if hud_node.has_method("show_trash_deposited_message"):
+				hud_node.show_trash_deposited_message()
 
 	elif collected_count == 0:
 		print("[⚠️ TrashManager] Vehículo vacío")

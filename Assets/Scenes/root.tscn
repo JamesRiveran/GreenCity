@@ -1118,6 +1118,21 @@ vertical_alignment = 1
 [node name="LoseDelayTimer" type="Timer" parent="HUD"]
 wait_time = 2.0
 
+[node name="label_trash" type="Label" parent="HUD"]
+visible = false
+offset_left = 450.0
+offset_top = 250.0
+offset_right = 650.0
+offset_bottom = 300.0
+theme_override_font_sizes/font_size = 32
+text = "¡Basura Depositada!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="label_trash_timer" type="Timer" parent="HUD"]
+wait_time = 4.0
+one_shot = true
+
 [node name="Player" parent="." instance=ExtResource("4_wmxxr")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.3226154, 0.3681711, -7.9543443)
 center_of_mass = Vector3(0, -2, 0)
