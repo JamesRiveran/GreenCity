@@ -1,9 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://8f5863qki7h4"]
+[gd_scene load_steps=4 format=3 uid="uid://8f5863qki7h4"]
 
-[ext_resource type="Script" uid="uid://cii3wyl1q135h" path="res://Scripts/MainMenu.gd" id="1_hywc3"]
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_hywc3"]
-load_path = "res://.godot/imported/menu.png-08ac179b929f17b757762787aec96bbf.ctex"
+[ext_resource type="Script" uid="uid://cii3wyl1q135h" path="res://Scripts/Menus/MainMenu.gd" id="1_hywc3"]
+[ext_resource type="Texture2D" uid="uid://cwqmpbflv00s7" path="res://Textures/me.png" id="2_ldl0q"]
+[ext_resource type="Texture2D" uid="uid://doo2okufm1gq" path="res://Textures/boton.png" id="2_pi1tf"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -19,7 +18,43 @@ layout_mode = 0
 offset_left = 1.0
 offset_right = 1153.0
 offset_bottom = 648.0
-texture = SubResource("CompressedTexture2D_hywc3")
+texture = ExtResource("2_ldl0q")
+
+[node name="BG6" type="TextureRect" parent="BG"]
+layout_mode = 0
+offset_left = 460.0
+offset_top = 416.0
+offset_right = 1996.0
+offset_bottom = 1440.0
+scale = Vector2(0.15459569, 0.07094939)
+texture = ExtResource("2_pi1tf")
+
+[node name="BG5" type="TextureRect" parent="BG"]
+layout_mode = 0
+offset_left = 460.0
+offset_top = 369.0
+offset_right = 1996.0
+offset_bottom = 1393.0
+scale = Vector2(0.15459569, 0.07094939)
+texture = ExtResource("2_pi1tf")
+
+[node name="BG4" type="TextureRect" parent="BG"]
+layout_mode = 0
+offset_left = 459.0
+offset_top = 322.0
+offset_right = 1995.0
+offset_bottom = 1346.0
+scale = Vector2(0.15459569, 0.07094939)
+texture = ExtResource("2_pi1tf")
+
+[node name="BG3" type="TextureRect" parent="BG"]
+layout_mode = 0
+offset_left = 461.0
+offset_top = 275.0
+offset_right = 1997.0
+offset_bottom = 1299.0
+scale = Vector2(0.15459569, 0.07094939)
+texture = ExtResource("2_pi1tf")
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 layout_mode = 0
@@ -41,11 +76,6 @@ offset_right = 680.0
 offset_bottom = 496.0
 theme_override_constants/separation = 16
 
-[node name="Title" type="Label" parent="CenterContainer/Panel/VBoxContainer"]
-layout_mode = 2
-text = "Recycla City"
-horizontal_alignment = 1
-
 [node name="PlayButton" type="Button" parent="CenterContainer/Panel/VBoxContainer"]
 layout_mode = 2
 text = "Jugar"
@@ -54,10 +84,10 @@ text = "Jugar"
 layout_mode = 2
 text = "Ayuda"
 
-[node name="QuitButton" type="Button" parent="CenterContainer/Panel/VBoxContainer"]
-layout_mode = 2
-text = "Salir"
-
 [node name="CreditsButton" type="Button" parent="CenterContainer/Panel/VBoxContainer"]
 layout_mode = 2
 text = "Creditos"
+
+[node name="QuitButton" type="Button" parent="CenterContainer/Panel/VBoxContainer"]
+layout_mode = 2
+text = "Salir"

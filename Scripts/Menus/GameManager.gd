@@ -10,6 +10,7 @@ const GAME_SCENE := "res://Assets/Scenes/root.tscn"
 const WIN_MENU  := "res://Assets/Scenes/WinMenu.tscn"
 const LOSE_MENU := "res://Assets/Scenes/LoseMenu.tscn"
 const HELP_MENU := "res://Assets/Scenes/HelpMenu.tscn"
+const CREDITS_MENU := "res://Assets/Scenes/CreditsMenu.tscn"
 
 func _change_to(path: String) -> void:
 	if not ResourceLoader.exists(path):
@@ -47,3 +48,6 @@ func go_main_menu() -> void:
 # Helper para el botón "Menú"
 func help_menu() -> void:
 	call_deferred("_change_to", HELP_MENU)
+	
+func credits_menu() -> void:
+	call_deferred("_change_to", CREDITS_MENU)
