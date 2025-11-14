@@ -38,10 +38,20 @@ var health: int = max_health
 @onready var hud := get_node_or_null(hud_path)
 
 @export var trash_manager_path: NodePath
-@onready var trash_manager := get_node_or_null(trash_manager_path)
+var trash_manager = null
 
 var _wall_hit_cd_until := 0.0
 var has_lost: bool = false
+
+# Función helper para buscar TrashManager recursivamente
+func _find_trash_manager_recursive(node: Node) -> Node:
+	if node and "score" in node and "collected_count" in node:
+		return node
+	for child in node.get_children():
+		var result = _find_trash_manager_recursive(child)
+		if result:
+			return result
+	return null
 
 func _ready():
 	# Configurar estabilidad del vehículo
@@ -67,6 +77,42 @@ func _ready():
 			print("[Car:%s] ⚠️ Área inválida en path: %s" % [name, str(path)])
 
 	print("[Car:%s] Vida inicial: %d" % [name, health])
+	
+	# Intentar obtener TrashManager de varias formas
+	if trash_manager_path and not trash_manager_path.is_empty():
+		trash_manager = get_node_or_null(trash_manager_path)
+	
+	if not trash_manager:
+		# Método 1: Buscar por nombre "TrashManager"
+		trash_manager = get_tree().root.find_child("TrashManager", true, false)
+	
+	if not trash_manager:
+		# Método 2: Buscar por grupo
+		var nodes = get_tree().get_nodes_in_group("trash_manager")
+		if nodes.size() > 0:
+			trash_manager = nodes[0]
+	
+	if not trash_manager:
+		# Método 3: Buscar instancias de TrashManager por clase
+		var root = get_tree().current_scene
+		if root:
+			for child in root.get_children():
+				if child is TrashManager:
+					trash_manager = child
+					break
+	
+	if not trash_manager:
+		# Método 4: Buscar por propiedades
+		var root = get_tree().current_scene
+		if root:
+			for child in root.get_children():
+				if child.get_script() and "score" in child:
+					trash_manager = child
+					break
+	
+	if not trash_manager:
+		# Método 5: Búsqueda recursiva
+		trash_manager = _find_trash_manager_recursive(get_tree().current_scene)
 
 func _physics_process(_delta: float) -> void:
 	if not front_left_wheel or not front_right_wheel:
@@ -124,8 +170,30 @@ func apply_damage(amount: int, source: Node = null) -> void:
 		if not has_lost:
 			has_lost = true
 			var score := 0
-			if trash_manager and ("score" in trash_manager):
-				score = trash_manager.score
+			
+			# Intentar obtener el TrashManager si no lo tenemos
+			if not trash_manager:
+				trash_manager = get_tree().root.find_child("TrashManager", true, false)
+				
+				if not trash_manager and get_tree().current_scene:
+					for child in get_tree().current_scene.get_children():
+						if child is TrashManager:
+							trash_manager = child
+							break
+				
+				if not trash_manager:
+					trash_manager = _find_trash_manager_recursive(get_tree().current_scene)
+				
+				if not trash_manager and get_tree().current_scene:
+					for child in get_tree().current_scene.get_children():
+						if child.get_script() and "score" in child and "collected_count" in child:
+							trash_manager = child
+							break
+			
+			# Obtener el score
+			if trash_manager and "score" in trash_manager:
+				score = int(trash_manager.score)
+			
 			Game.lose(score, _elapsed_time())
 
 # Cuando una de las áreas detecta que el coche entró

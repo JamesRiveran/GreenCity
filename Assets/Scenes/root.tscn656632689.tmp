@@ -69,6 +69,15 @@ environment = SubResource("Environment_tr35v")
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldEnvironment"]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 30, 0)
 
+[node name="Player" parent="." instance=ExtResource("4_wmxxr")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -8.417389, 0, -1.5)
+mass = 3000.0
+engine_force_strength = 4000.0
+steering_angle_max = 0.1
+wall_bodies = Array[NodePath]([NodePath("../Collisions/Walls/WallE/StaticBody3D"), NodePath("../Collisions/Walls/WallO/StaticBody3D"), NodePath("../Collisions/Walls/WallS/StaticBody3D"), NodePath("../Collisions/Walls/WallN/StaticBody3D")])
+wall_areas = Array[NodePath]([NodePath("../Collisions/TownAreas/BuildingCity/Area3D"), NodePath("../Collisions/TownAreas/BuildingCity/Area3D2"), NodePath("../Collisions/TownAreas/Area2/Area3D"), NodePath("../Collisions/TownAreas/Area3/Area3D"), NodePath("../Collisions/TownAreas/Area3/Area3D2"), NodePath("../Collisions/TownAreas/Area4/Area3D"), NodePath("../Collisions/TownAreas/Area4/Area3D2")])
+hud_path = NodePath("../HUD")
+
 [node name="TruckCamara" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.13305214, 0.9911091, 0, -0.9911091, 0.13305214, 0, 74.204796, 11.666693)
 script = ExtResource("2_weavm")
@@ -83,14 +92,12 @@ script = ExtResource("2_weavm")
 transform = Transform3D(38, 0, 0, 0, 10, 0, 0, 0, 38, 22.5, 5.189189, 22.5)
 
 [node name="Area3D" type="Area3D" parent="Collisions/TownAreas/BuildingCity"]
-collision_mask = 17
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Collisions/TownAreas/BuildingCity/Area3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.21679688, 0, -0.0015563965)
 shape = SubResource("BoxShape3D_vc8ck")
 
 [node name="Area3D2" type="Area3D" parent="Collisions/TownAreas/BuildingCity"]
-collision_mask = 17
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Collisions/TownAreas/BuildingCity/Area3D2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.35595703, 0, 0.0054626465)
@@ -100,7 +107,6 @@ shape = SubResource("BoxShape3D_d5rut")
 transform = Transform3D(38, 0, 0, 0, 10, 0, 0, 0, 38, -22.5, 5.189, 22.5)
 
 [node name="Area3D" type="Area3D" parent="Collisions/TownAreas/Area2"]
-collision_mask = 17
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Collisions/TownAreas/Area2/Area3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0009460449, 0, 0.0028381348)
@@ -110,14 +116,12 @@ shape = SubResource("BoxShape3D_wmxxr")
 transform = Transform3D(38, 0, 0, 0, 10, 0, 0, 0, 38, -22.5, 5.189, -22.5)
 
 [node name="Area3D" type="Area3D" parent="Collisions/TownAreas/Area3"]
-collision_mask = 17
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Collisions/TownAreas/Area3/Area3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.253891, 0, 0)
 shape = SubResource("BoxShape3D_lhmy0")
 
 [node name="Area3D2" type="Area3D" parent="Collisions/TownAreas/Area3"]
-collision_mask = 17
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Collisions/TownAreas/Area3/Area3D2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.27236938, 0, 0)
@@ -127,14 +131,12 @@ shape = SubResource("BoxShape3D_vxctq")
 transform = Transform3D(38, 0, 0, 0, 10, 0, 0, 0, 38, 22.5, 5.189, -22.5)
 
 [node name="Area3D" type="Area3D" parent="Collisions/TownAreas/Area4"]
-collision_mask = 17
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Collisions/TownAreas/Area4/Area3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.12557983, 0, 0.0004272461)
 shape = SubResource("BoxShape3D_24s64")
 
 [node name="Area3D2" type="Area3D" parent="Collisions/TownAreas/Area4"]
-collision_mask = 17
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Collisions/TownAreas/Area4/Area3D2"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.34231567, 0, 0.40045166)
@@ -143,7 +145,7 @@ shape = SubResource("BoxShape3D_hoaef")
 [node name="Walls" type="Node3D" parent="Collisions"]
 
 [node name="WallE" type="Node3D" parent="Collisions/Walls"]
-transform = Transform3D(1.1197715, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 53.6382)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 50)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Collisions/Walls/WallE"]
 
@@ -152,7 +154,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.51568604, 0.8994601, 0)
 shape = SubResource("BoxShape3D_morkg")
 
 [node name="WallO" type="Node3D" parent="Collisions/Walls"]
-transform = Transform3D(1.1884356, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -52.244736)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -50)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Collisions/Walls/WallO"]
 
@@ -161,7 +163,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.51568604, 0.8994601, 0)
 shape = SubResource("BoxShape3D_morkg")
 
 [node name="WallS" type="Node3D" parent="Collisions/Walls"]
-transform = Transform3D(-5.4548178e-08, 0, 1, 0, 1, 0, -1.2479168, 0, -4.371139e-08, -51.79908, 0, 0)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -50, 0, 0)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Collisions/Walls/WallS"]
 
@@ -170,7 +172,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7868347, 0.8994601, 0)
 shape = SubResource("BoxShape3D_morkg")
 
 [node name="WallN" type="Node3D" parent="Collisions/Walls"]
-transform = Transform3D(-4.770717e-08, 0, 1, 0, 1, 0, -1.0914129, 0, -4.371139e-08, 52.50775, 0, 0)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 50, 0, 0)
 
 [node name="StaticBody3D" type="StaticBody3D" parent="Collisions/Walls/WallN"]
 
@@ -178,18 +180,19 @@ transform = Transform3D(-4.770717e-08, 0, 1, 0, 1, 0, -1.0914129, 0, -4.371139e-
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7868347, 0.8994601, 0)
 shape = SubResource("BoxShape3D_morkg")
 
-[node name="Items" type="Node3D" parent="." node_paths=PackedStringArray("vehicle", "dumps", "items_root")]
+[node name="Items" type="Node3D" parent="." node_paths=PackedStringArray("vehicle", "items_root")]
 script = ExtResource("2_6o2em")
 collected_count_max = 1
 vehicle = NodePath("../Player")
 hud = NodePath("../HUD")
+allow_cross_dump = true
+subtract_score_cross_dump = true
+allow_negative_score = true
 add_time_correct_deposit = true
-dumps = [NodePath("../Dumpsters/DumpGeneral"), NodePath("../Dumpsters/DumpGlass"), NodePath("../Dumpsters/DumpMetal"), NodePath("../Dumpsters/DumpPaper"), null]
 item_templates = Array[PackedScene]([ExtResource("5_hoaef"), ExtResource("6_udl0k"), ExtResource("7_txhe7"), ExtResource("8_ycjpv"), ExtResource("9_weavm"), ExtResource("10_w7cdi"), ExtResource("11_gmobi"), ExtResource("12_pq7br")])
 root_spawn_points = NodePath("../SpawnPointsItems")
 items_root = NodePath(".")
 max_items = 10
-item_scale = Vector3(2, 2, 2)
 
 [node name="SpawnPointsItems" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7366333, 0)
@@ -1051,10 +1054,3 @@ offset_top = 0.039993286
 offset_right = -0.018005371
 offset_bottom = 0.011993408
 text = "Papel"
-
-[node name="Player" parent="." instance=ExtResource("4_wmxxr")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.3226154, 0.3681711, -7.9543443)
-center_of_mass = Vector3(0, -2, 0)
-wall_bodies = Array[NodePath]([NodePath("../Collisions/Walls/WallE/StaticBody3D"), NodePath("../Collisions/Walls/WallO/StaticBody3D"), NodePath("../Collisions/Walls/WallS/StaticBody3D"), NodePath("../Collisions/Walls/WallN/StaticBody3D")])
-wall_areas = Array[NodePath]([NodePath("../Collisions/TownAreas/BuildingCity/Area3D"), NodePath("../Collisions/TownAreas/BuildingCity/Area3D2"), NodePath("../Collisions/TownAreas/Area2/Area3D"), NodePath("../Collisions/TownAreas/Area3/Area3D"), NodePath("../Collisions/TownAreas/Area3/Area3D2"), NodePath("../Collisions/TownAreas/Area4/Area3D"), NodePath("../Collisions/TownAreas/Area4/Area3D2")])
-hud_path = NodePath("../HUD")
