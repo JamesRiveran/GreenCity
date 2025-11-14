@@ -9,6 +9,7 @@ size = Vector3(2.840165, 1.0955582, 1.1237662)
 [node name="TrashRubbish" type="Node3D"]
 script = ExtResource("1_qmsnt")
 trash_type = "General"
+trash_type_score = 15
 floating_enabled = true
 float_amplitude = 0.3
 float_speed = 2.5
