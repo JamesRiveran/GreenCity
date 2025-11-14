@@ -5,8 +5,11 @@ extends CanvasLayer
 @onready var game_timer: Timer = $GameTimer
 
 @onready var collected_bar: ProgressBar = $CollectedBar
+@onready var menu_btn:  Button = $MenuButton
+
 @onready var collected_label: Label = $CollectedBar/CountLabel
 @onready var score_label: Label = $ScoreLabel
+
 @onready var label_general  : Label = $Control/Marker/General/Label_general
 @onready var label_plastico : Label = $Control/Marker/Plastico/Label_plastico
 @onready var label_vidrio   : Label = $Control/Marker/Vidrio/Label_vidrio
@@ -18,6 +21,13 @@ extends CanvasLayer
 @onready var icon_metal    : TextureRect = $Control/Trash/basuraMetal
 @onready var icon_papel    : TextureRect = $Control/Trash/basuraPapel
 
+# NUEVO: Referencia al Label y Timer para mensaje de derrota
+@onready var lose_label: Label = $LoseLabel
+@onready var lose_delay_timer: Timer = $LoseDelayTimer
+
+# NEW: Referencia al ConfirmationDialog
+@onready var confirm_dialog: ConfirmationDialog = $ConfirmMenuDialog
+
 signal time_over
 
 # NEW: llevar conteo de tiempo jugado total
@@ -25,6 +35,12 @@ var _elapsed_time: float = 0.0
 var _finished: bool = false
 
 func _ready() -> void:
+	menu_btn.pressed.connect(_on_menu_pressed)
+	confirm_dialog.confirmed.connect(_on_confirm_menu)
+
+	if lose_delay_timer:
+		lose_delay_timer.timeout.connect(_on_lose_delay_timeout)
+
 	update_health(health_bar.max_value, health_bar.max_value)
 	update_collected(0, 1)  # inicializar barra
 	update_score(0)         # inicializar texto
@@ -150,6 +166,30 @@ func _on_game_timer_timeout() -> void:
 	_finished = true                    # NEW: dejar de acumular
 	emit_signal("time_over")
 
+# NUEVO: función para mostrar mensaje de derrota y esperar antes de ir al menú
+func show_lose_message_and_wait(score: int, elapsed_time: float, delay: float = 2.0) -> void:
+	if lose_label:
+		lose_label.text = "¡Perdiste!"
+		lose_label.visible = true
+	if lose_delay_timer:
+		lose_delay_timer.start(delay)
+	# Guardar los datos para usarlos al terminar el timer
+	self._lose_score = score
+	self._lose_elapsed_time = elapsed_time
+	self._lose_pending = true
+
+# Variables para guardar datos temporales
+var _lose_score: int = 0
+var _lose_elapsed_time: float = 0.0
+var _lose_pending: bool = false
+
+func _on_lose_delay_timeout() -> void:
+	if _lose_pending:
+		if lose_label:
+			lose_label.visible = false
+		Game.lose(_lose_score, _lose_elapsed_time)
+		_lose_pending = false
+
 func add_time(extra_seconds: float) -> void:
 	if not game_timer:
 		return
@@ -162,3 +202,14 @@ func add_time(extra_seconds: float) -> void:
 # NEW: para que TrashManager / Vehicle manden tiempo a Win/Lose
 func get_elapsed_time() -> float:
 	return _elapsed_time
+	
+#Boton de Volver al menu
+func _on_menu_pressed() -> void:
+	confirm_dialog.dialog_text = "¿Estás seguro que deseas volver al menú principal?\nPerderás el puntaje que llevas"
+	confirm_dialog.title = "Confirmar acción"
+	confirm_dialog.get_ok_button().text = "Sí"
+	confirm_dialog.get_cancel_button().text = "No"
+	confirm_dialog.popup_centered()
+
+func _on_confirm_menu() -> void:
+	Game.go_main_menu()

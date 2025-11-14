@@ -11,6 +11,7 @@ extends Control
 func _ready() -> void:
 	# Título
 	title_lbl.text = "Ayuda"
+	title_lbl.add_theme_color_override("font_color", Color.BLACK)
 
 	#  Quitar fondo del Panel y dejar padding
 	panel.custom_minimum_size = Vector2(720, 480)
@@ -39,6 +40,24 @@ func _ready() -> void:
 	help_txt.add_theme_color_override("default_color", Color.BLACK)
 	help_txt.bbcode_text = HELP_TEXT
 
+	# Fondo personalizado para el texto de ayuda
+	var fondo := StyleBoxFlat.new()
+	fondo.bg_color = Color(0.95, 0.95, 0.95, 0.35) # gris muy claro y casi transparente
+	fondo.content_margin_left = 24
+	fondo.content_margin_right = 24
+	fondo.content_margin_top = 18
+	fondo.content_margin_bottom = 18
+	fondo.corner_radius_top_left = 12
+	fondo.corner_radius_top_right = 12
+	fondo.corner_radius_bottom_left = 12
+	fondo.corner_radius_bottom_right = 12
+	fondo.set_border_width(0, 2) # izquierda
+	fondo.set_border_width(1, 2) # arriba
+	fondo.set_border_width(2, 2) # derecha
+	fondo.set_border_width(3, 2) # abajo
+	fondo.border_color = Color(0.8, 0.8, 0.6)
+	help_txt.add_theme_stylebox_override("normal", fondo)
+
 	# Botones
 	
 	if not menu_btn.pressed.is_connected(_on_menu_pressed):
@@ -62,7 +81,7 @@ Recolecta una bolsa a la vez y deposítala en el contenedor correcto (general, p
 W/S: acelerar/retroceder · A/D: girar · [b]ESPACIO[/b]: freno
 
 [b]Reglas[/b]
-• Depósito correcto suma puntos (puede agregar tiempo si está activado).
+• Depósito correcto suma puntos (puede agregar tiempo).
 • Chocar resta vida; si la vida llega a 0 → [color=red]pierdes[/color].
 • Se acaba el tiempo → [color=red]pierdes[/color].
 """

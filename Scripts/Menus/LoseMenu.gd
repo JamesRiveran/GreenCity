@@ -7,8 +7,8 @@ extends Control
 
 func _ready() -> void:
 	# Leer datos del autoload Game (GameManager)
-	score_lbl.text = "Puntaje: %d" % Game.last_score
-	best_lbl.text  = "Mejor puntaje: %d" % Game.best_score
+	score_lbl.text = "🏆 Puntaje: %d" % Game.last_score
+	best_lbl.text  = "⭐ Mejor puntaje: %d" % Game.best_score
 
 	retry_btn.pressed.connect(_on_retry_pressed)
 	menu_btn.pressed.connect(_on_menu_pressed)

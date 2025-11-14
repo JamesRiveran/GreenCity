@@ -1052,9 +1052,40 @@ offset_right = -0.018005371
 offset_bottom = 0.011993408
 text = "Papel"
 
+[node name="MenuButton" type="Button" parent="HUD"]
+offset_right = 8.0
+offset_bottom = 8.0
+text = "Menu"
+
+[node name="ConfirmMenuDialog" type="ConfirmationDialog" parent="HUD"]
+
+[node name="LoseLabel" type="Label" parent="HUD"]
+visible = false
+offset_right = 40.0
+offset_bottom = 23.0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LoseDelayTimer" type="Timer" parent="HUD"]
+wait_time = 2.0
+
 [node name="Player" parent="." instance=ExtResource("4_wmxxr")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.3226154, 0.3681711, -7.9543443)
 center_of_mass = Vector3(0, -2, 0)
+engine_force_strength = 1200.0
+brake_force_strength = 60.0
+steering_angle_max = 0.4
+key_forward = 87
+key_backward = 83
+key_left = 65
+key_right = 68
+key_brake = 32
+max_health = 100
+collision_damage = 10
+area_damage = 5
+wall_cooldown = 0.3
+ignored_nodes = Array[String](["Floor"])
 wall_bodies = Array[NodePath]([NodePath("../Collisions/Walls/WallE/StaticBody3D"), NodePath("../Collisions/Walls/WallO/StaticBody3D"), NodePath("../Collisions/Walls/WallS/StaticBody3D"), NodePath("../Collisions/Walls/WallN/StaticBody3D")])
 wall_areas = Array[NodePath]([NodePath("../Collisions/TownAreas/BuildingCity/Area3D"), NodePath("../Collisions/TownAreas/BuildingCity/Area3D2"), NodePath("../Collisions/TownAreas/Area2/Area3D"), NodePath("../Collisions/TownAreas/Area3/Area3D"), NodePath("../Collisions/TownAreas/Area3/Area3D2"), NodePath("../Collisions/TownAreas/Area4/Area3D"), NodePath("../Collisions/TownAreas/Area4/Area3D2")])
 hud_path = NodePath("../HUD")
+trash_manager_path = NodePath("")

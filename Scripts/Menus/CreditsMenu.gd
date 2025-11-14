@@ -9,8 +9,26 @@ extends Control
 @onready var panel: Panel             = $CenterContainer/Panel
 
 func _ready() -> void:
+	# Fondo personalizado para el texto de créditos
+	var fondo := StyleBoxFlat.new()
+	fondo.bg_color = Color(0.95, 0.95, 0.95, 0.35) # gris muy claro y casi transparente
+	fondo.content_margin_left = 24
+	fondo.content_margin_right = 24
+	fondo.content_margin_top = 18
+	fondo.content_margin_bottom = 18
+	fondo.corner_radius_top_left = 12
+	fondo.corner_radius_top_right = 12
+	fondo.corner_radius_bottom_left = 12
+	fondo.corner_radius_bottom_right = 12
+	fondo.set_border_width(0, 2) # izquierda
+	fondo.set_border_width(1, 2) # arriba
+	fondo.set_border_width(2, 2) # derecha
+	fondo.set_border_width(3, 2) # abajo
+	fondo.border_color = Color(0.8, 0.8, 0.6)
+	body.add_theme_stylebox_override("normal", fondo)
 	# Título
 	title_lbl.text = "Créditos y Atribuciones"
+	title_lbl.add_theme_color_override("font_color", Color.BLACK)
 
 	# Tamaño mínimo para que no se aplaste
 	panel.custom_minimum_size = Vector2(720, 480)

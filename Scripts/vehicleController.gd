@@ -194,7 +194,11 @@ func apply_damage(amount: int, source: Node = null) -> void:
 			if trash_manager and "score" in trash_manager:
 				score = int(trash_manager.score)
 			
-			Game.lose(score, _elapsed_time())
+			# Usar HUD para mostrar mensaje de derrota y esperar antes de ir al menú
+			if hud and hud.has_method("show_lose_message_and_wait"):
+				hud.show_lose_message_and_wait(score, _elapsed_time(), 2.0)
+			else:
+				Game.lose(score, _elapsed_time())
 
 # Cuando una de las áreas detecta que el coche entró
 func _on_wall_area_body_entered(body: Node, area: Area3D) -> void:

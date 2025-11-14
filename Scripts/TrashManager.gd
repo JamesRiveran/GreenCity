@@ -14,11 +14,6 @@ signal vehicle_assigned(vehicle)
 @export var time_added_correct_deposit: int = 10
 
 @export var dumps: Array[Node3D] = []              # Basureros (escenas con señal "deposited")
-
-# --- Metas de fin de partida ---
-@export var meta_puntos: int = 50                   # Gana cuando alcance este puntaje (<=0 para desactivar)
-@export var meta_depositos: int = -1                # Gana cuando haga esta cantidad de depósitos correctos (-1 para desactivar)
-
 @onready var hud_node := get_node_or_null(hud)
 
 var list_counters_deposit = []
@@ -98,11 +93,6 @@ func _on_item_deposited(_item: Node3D, dump_type) -> void:
 			# (Opcional) agregar tiempo al HUD
 			if add_time_correct_deposit and hud_node and hud_node.has_method("add_time"):
 				hud_node.add_time(time_added_correct_deposit)
-
-			# ✅ ¿Victoria?
-			if _check_victoria():
-				_finalizar_victoria()
-				return
 		elif subtract_score_cross_dump and (score > 0 or allow_negative_score):
 			score -= trash_type_transported_score
 
@@ -165,15 +155,10 @@ func respawn_missing_items() -> void:
 	emit_signal("vehicle_assigned", vehicle)
 
 # -------------------------
-#   Victoria / Derrota
+# Para Puntuacion
 # -------------------------
 
-func _check_victoria() -> bool:
-	if fin:
-		return false
-	var por_puntos := meta_puntos > 0 and score >= meta_puntos
-	var por_depositos := meta_depositos > 0 and depositos_correctos >= meta_depositos
-	return por_puntos or por_depositos
+
 
 func _get_elapsed_time() -> float:
 	# Si tu HUD expone get_elapsed_time() o tiene un Timer "GameTimer", úsalo
@@ -186,14 +171,14 @@ func _get_elapsed_time() -> float:
 				return t.wait_time - t.time_left
 	return 0.0
 
-func _finalizar_victoria() -> void:
-	if fin:
-		return
-	fin = true
-	Game.win(score, _get_elapsed_time())
+
 
 func _on_time_over() -> void:
 	if fin:
 		return
 	fin = true
-	Game.lose(score, _get_elapsed_time())
+	# Usar HUD para mostrar mensaje de derrota y esperar antes de ir al menú
+	if hud_node and hud_node.has_method("show_lose_message_and_wait"):
+		hud_node.show_lose_message_and_wait(score, _get_elapsed_time(), 2.0)
+	else:
+		Game.lose(score, _get_elapsed_time())
