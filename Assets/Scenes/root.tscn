@@ -1,8 +1,8 @@
-[gd_scene load_steps=30 format=3 uid="uid://bpvs6unrhmgga"]
+[gd_scene load_steps=39 format=3 uid="uid://bpvs6unrhmgga"]
 
 [ext_resource type="PackedScene" uid="uid://cdn81qieoaycd" path="res://Assets/Scenes/main/city.tscn" id="1_morkg"]
-[ext_resource type="Script" uid="uid://duefghhm48a04" path="res://Scripts/camera.gd" id="1_vc8ck"]
 [ext_resource type="Script" uid="uid://bcbdnxj17ojxi" path="res://Scripts/TrashManager.gd" id="2_6o2em"]
+[ext_resource type="Script" uid="uid://duefghhm48a04" path="res://Scripts/camera.gd" id="2_weavm"]
 [ext_resource type="PackedScene" uid="uid://d1dncn6cckwmj" path="res://Assets/Scenes/main/player.tscn" id="4_wmxxr"]
 [ext_resource type="PackedScene" uid="uid://ctuq3lki53eau" path="res://Assets/Scenes/Trashes/TrashBag.tscn" id="5_hoaef"]
 [ext_resource type="Script" uid="uid://ce501i3lptkkq" path="res://Scripts/hud.gd" id="5_morkg"]
@@ -18,6 +18,15 @@
 [ext_resource type="PackedScene" uid="uid://b53p34u8yxfpc" path="res://Assets/Scenes/Trashes/TrashSoda.tscn" id="10_w7cdi"]
 [ext_resource type="PackedScene" uid="uid://dsohkrr1kayx4" path="res://Assets/Scenes/Trashes/TrashWaterBottle.tscn" id="11_gmobi"]
 [ext_resource type="PackedScene" uid="uid://1vkxa5m4qqt4" path="res://Assets/Scenes/Trashes/TrashCardboardBoxes.tscn" id="12_pq7br"]
+[ext_resource type="Script" uid="uid://b1uajdngr6i5o" path="res://Scripts/NPC/NPCSpawner.gd" id="13_ycjpv"]
+[ext_resource type="Script" uid="uid://d3ckluomlkngx" path="res://Scripts/NPC/RoadNode.gd" id="14_weavm"]
+[ext_resource type="PackedScene" uid="uid://b4r4e43s5sd7d" path="res://Assets/Scenes/NPC/CarRed.tscn" id="19_txhe7"]
+[ext_resource type="Texture2D" uid="uid://djyb5k5km8fg4" path="res://Textures/general.png" id="22_xcekw"]
+[ext_resource type="Texture2D" uid="uid://detp5b05obnyh" path="res://Textures/vidrio.png" id="23_3dsbg"]
+[ext_resource type="Texture2D" uid="uid://cwgimefaybsjn" path="res://Textures/plastico.png" id="24_g137x"]
+[ext_resource type="Texture2D" uid="uid://beh04qdrh1v7f" path="res://Textures/metal.png" id="25_fjug3"]
+[ext_resource type="Texture2D" uid="uid://bbhci6q38ugpp" path="res://Textures/papel.png" id="26_ie6bs"]
+[ext_resource type="Texture2D" uid="uid://cqsqqs283irp1" path="res://Textures/truck.png" id="27_3dsbg"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_wmxxr"]
 
@@ -61,7 +70,7 @@ environment = SubResource("Environment_tr35v")
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 30, 0)
 
 [node name="Player" parent="." instance=ExtResource("4_wmxxr")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5591593, 0, -4.9478016)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -8.417389, 0, -1.5)
 mass = 3000.0
 engine_force_strength = 4000.0
 steering_angle_max = 0.1
@@ -71,7 +80,7 @@ hud_path = NodePath("../HUD")
 
 [node name="TruckCamara" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.13305214, 0.9911091, 0, -0.9911091, 0.13305214, 0, 74.204796, 11.666693)
-script = ExtResource("1_vc8ck")
+script = ExtResource("2_weavm")
 
 [node name="City" parent="." instance=ExtResource("1_morkg")]
 
@@ -180,12 +189,12 @@ allow_cross_dump = true
 subtract_score_cross_dump = true
 allow_negative_score = true
 add_time_correct_deposit = true
-dumps = [NodePath("../Dumpsters/DumpGeneral"), NodePath("../Dumpsters/DumpGlass"), NodePath("../Dumpsters/DumpMetal"), NodePath("../Dumpsters/DumpPaper"), NodePath("../Dumpsters/DumpPlastic")]
+dumps = [NodePath("../Dumpsters/DumpGeneral"), NodePath("../Dumpsters/DumpGlass"), NodePath("../Dumpsters/DumpMetal"), NodePath("../Dumpsters/DumpPaper"), null]
 item_templates = Array[PackedScene]([ExtResource("5_hoaef"), ExtResource("6_udl0k"), ExtResource("7_txhe7"), ExtResource("8_ycjpv"), ExtResource("9_weavm"), ExtResource("10_w7cdi"), ExtResource("11_gmobi"), ExtResource("12_pq7br")])
 root_spawn_points = NodePath("../SpawnPointsItems")
 items_root = NodePath(".")
-clear_old_items = true
 max_items = 10
+item_scale = Vector3(2, 2, 2)
 
 [node name="SpawnPointsItems" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7366333, 0)
@@ -264,6 +273,377 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.5, 0, 12)
 [node name="Point24" type="Marker3D" parent="SpawnPointsItems"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.5, 0, 30)
 
+[node name="Cars" type="Node3D" parent="." node_paths=PackedStringArray("cars_root")]
+script = ExtResource("13_ycjpv")
+car_scenes = Array[PackedScene]([ExtResource("19_txhe7")])
+spawn_points = Array[NodePath]([NodePath("../RoadNodes/Spawners/SpawnRoadNode"), NodePath("../RoadNodes/Spawners/SpawnRoadNode2"), NodePath("../RoadNodes/Spawners/SpawnRoadNode3"), NodePath("../RoadNodes/Spawners/SpawnRoadNode4")])
+spawn_interval = 1.0
+refill_on_exit = false
+cars_root = NodePath(".")
+
+[node name="RoadNodes" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
+
+[node name="Spawners" type="Node3D" parent="RoadNodes"]
+
+[node name="SpawnRoadNode" type="Marker3D" parent="RoadNodes/Spawners"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 60, 0, -1.5)
+gizmo_extents = 1.0
+script = ExtResource("14_weavm")
+neighbors = Array[NodePath]([NodePath("../../ExitRoad/CentralRoadNode")])
+
+[node name="SpawnRoadNode2" type="Marker3D" parent="RoadNodes/Spawners"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -60, 0, 1.5)
+gizmo_extents = 1.0
+script = ExtResource("14_weavm")
+neighbors = Array[NodePath]([NodePath("../../ExitRoad/CentralRoadNode6")])
+
+[node name="SpawnRoadNode3" type="Marker3D" parent="RoadNodes/Spawners"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0, 60)
+gizmo_extents = 1.0
+script = ExtResource("14_weavm")
+
+[node name="SpawnRoadNode4" type="Marker3D" parent="RoadNodes/Spawners"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0, -60)
+gizmo_extents = 1.0
+script = ExtResource("14_weavm")
+neighbors = Array[NodePath]([NodePath("../../ExitRoad/CentralRoadNode3")])
+
+[node name="Despawners" type="Node3D" parent="RoadNodes"]
+
+[node name="DespawnRoadNode" type="Marker3D" parent="RoadNodes/Despawners"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 60, 0, 1.5)
+gizmo_extents = 1.0
+script = ExtResource("14_weavm")
+is_sink = true
+
+[node name="DespawnRoadNode2" type="Marker3D" parent="RoadNodes/Despawners"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -60, 0, -1.5)
+gizmo_extents = 1.0
+script = ExtResource("14_weavm")
+is_sink = true
+
+[node name="DespawnRoadNode3" type="Marker3D" parent="RoadNodes/Despawners"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0, -60)
+gizmo_extents = 1.0
+script = ExtResource("14_weavm")
+is_sink = true
+
+[node name="DespawnRoadNode4" type="Marker3D" parent="RoadNodes/Despawners"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0, 60)
+gizmo_extents = 1.0
+script = ExtResource("14_weavm")
+is_sink = true
+
+[node name="SectionX-Y" type="Node3D" parent="RoadNodes"]
+
+[node name="X-YRoadNode2" type="Marker3D" parent="RoadNodes/SectionX-Y"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 46.5, 0, -5)
+gizmo_extents = 1.0
+script = ExtResource("14_weavm")
+neighbors = Array[NodePath]([NodePath("../../ExitRoad/CentralRoadNode2")])
+
+[node name="X-YRoadNode3" type="Marker3D" parent="RoadNodes/SectionX-Y"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 46.5, 0, -46.5)
+gizmo_extents = 1.0
+script = ExtResource("14_weavm")
+neighbors = Array[NodePath]([NodePath("../X-YRoadNode2")])
+
+[node name="X-YRoadNode4" type="Marker3D" parent="RoadNodes/SectionX-Y"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, -46.5)
+gizmo_extents = 1.0
+script = ExtResource("14_weavm")
+neighbors = Array[NodePath]([NodePath("../X-YRoadNode3")])
+
+[node name="X-YRoadNode5" type="Marker3D" parent="RoadNodes/SectionX-Y"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, -43.5)
+gizmo_extents = 1.0
+script = ExtResource("14_weavm")
+neighbors = Array[NodePath]([NodePath("../../Section-X-Y/-X-YRoadNode6"), NodePath("../../ExitRoad/CentralRoadNode4")])
+
+[node name="X-YRoadNode6" type="Marker3D" parent="RoadNodes/SectionX-Y"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 43.5, 0, -43.5)
+gizmo_extents = 1.0
+script = ExtResource("14_weavm")
+neighbors = Array[NodePath]([NodePath("../X-YRoadNode5")])
+
+[node name="X-YRoadNode7" type="Marker3D" parent="RoadNodes/SectionX-Y"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 43.5, 0, -5)
+gizmo_extents = 1.0
+script = ExtResource("14_weavm")
+neighbors = Array[NodePath]([NodePath("../X-YRoadNode6")])
+
+[node name="Section-X-Y" type="Node3D" parent="RoadNodes"]
+
+[node name="-X-YRoadNode" type="Marker3D" parent="RoadNodes/Section-X-Y"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46.5, 0, -5)
+gizmo_extents = 1.0
+script = ExtResource("14_weavm")
+neighbors = Array[NodePath]([NodePath("../-X-YRoadNode3")])
+
+[node name="-X-YRoadNode2" type="Marker3D" parent="RoadNodes/Section-X-Y"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -43.5, 0, -5)
+gizmo_extents = 1.0
+script = ExtResource("14_weavm")
+neighbors = Array[NodePath]([NodePath("../../ExitRoad/CentralRoadNode5")])
+
+[node name="-X-YRoadNode3" type="Marker3D" parent="RoadNodes/Section-X-Y"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46.5, 0, -46.5)
+gizmo_extents = 1.0
+script = ExtResource("14_weavm")
+neighbors = Array[NodePath]([NodePath("../-X-YRoadNode5")])
+
+[node name="-X-YRoadNode4" type="Marker3D" parent="RoadNodes/Section-X-Y"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -43.5, 0, -43.5)
+gizmo_extents = 1.0
+script = ExtResource("14_weavm")
+neighbors = Array[NodePath]([NodePath("../-X-YRoadNode2")])
+
+[node name="-X-YRoadNode5" type="Marker3D" parent="RoadNodes/Section-X-Y"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, -46.5)
+gizmo_extents = 1.0
+script = ExtResource("14_weavm")
+neighbors = Array[NodePath]([NodePath("../../ExitRoad/CentralRoadNode4")])
+
+[node name="-X-YRoadNode6" type="Marker3D" parent="RoadNodes/Section-X-Y"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, -43.5)
+gizmo_extents = 1.0
+script = ExtResource("14_weavm")
+neighbors = Array[NodePath]([NodePath("../-X-YRoadNode4")])
+
+[node name="SectionXY" type="Node3D" parent="RoadNodes"]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
+
+[node name="XYRoadNode" type="Marker3D" parent="RoadNodes/SectionXY"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46.5, 0, -5)
+gizmo_extents = 1.0
+script = ExtResource("14_weavm")
+neighbors = Array[NodePath]([NodePath("../XYRoadNode3")])
+
+[node name="XYRoadNode2" type="Marker3D" parent="RoadNodes/SectionXY"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -43.5, 0, -5)
+gizmo_extents = 1.0
+script = ExtResource("14_weavm")
+neighbors = Array[NodePath]([NodePath("../../ExitRoad/CentralRoadNode2")])
+
+[node name="XYRoadNode3" type="Marker3D" parent="RoadNodes/SectionXY"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46.5, 0, -46.5)
+gizmo_extents = 1.0
+script = ExtResource("14_weavm")
+neighbors = Array[NodePath]([NodePath("../XYRoadNode5")])
+
+[node name="XYRoadNode4" type="Marker3D" parent="RoadNodes/SectionXY"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -43.5, 0, -43.5)
+gizmo_extents = 1.0
+script = ExtResource("14_weavm")
+neighbors = Array[NodePath]([NodePath("../XYRoadNode6")])
+
+[node name="XYRoadNode5" type="Marker3D" parent="RoadNodes/SectionXY"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, -46.5)
+gizmo_extents = 1.0
+script = ExtResource("14_weavm")
+neighbors = Array[NodePath]([NodePath("../../ExitRoad/CentralRoadNode7")])
+
+[node name="XYRoadNode6" type="Marker3D" parent="RoadNodes/SectionXY"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0, -43.5)
+gizmo_extents = 1.0
+script = ExtResource("14_weavm")
+neighbors = Array[NodePath]([NodePath("../../ExitRoad/CentralRoadNode7")])
+
+[node name="Section-XY" type="Node3D" parent="RoadNodes"]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
+
+[node name="-XYRoadNode2" type="Marker3D" parent="RoadNodes/Section-XY"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 46.5, 0, -5)
+gizmo_extents = 1.0
+script = ExtResource("14_weavm")
+neighbors = Array[NodePath]([NodePath("../../ExitRoad/CentralRoadNode6")])
+
+[node name="-XYRoadNode3" type="Marker3D" parent="RoadNodes/Section-XY"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 46.5, 0, -46.5)
+gizmo_extents = 1.0
+script = ExtResource("14_weavm")
+neighbors = Array[NodePath]([NodePath("../-XYRoadNode2")])
+
+[node name="-XYRoadNode4" type="Marker3D" parent="RoadNodes/Section-XY"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, -46.5)
+gizmo_extents = 1.0
+script = ExtResource("14_weavm")
+neighbors = Array[NodePath]([NodePath("../-XYRoadNode3")])
+
+[node name="-XYRoadNode5" type="Marker3D" parent="RoadNodes/Section-XY"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, -43.5)
+gizmo_extents = 1.0
+script = ExtResource("14_weavm")
+neighbors = Array[NodePath]([NodePath("../../ExitRoad/CentralRoadNode7")])
+
+[node name="-XYRoadNode6" type="Marker3D" parent="RoadNodes/Section-XY"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 43.5, 0, -43.5)
+gizmo_extents = 1.0
+script = ExtResource("14_weavm")
+neighbors = Array[NodePath]([NodePath("../-XYRoadNode5")])
+
+[node name="-XYRoadNode7" type="Marker3D" parent="RoadNodes/Section-XY"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 43.5, 0, -5)
+gizmo_extents = 1.0
+script = ExtResource("14_weavm")
+neighbors = Array[NodePath]([NodePath("../-XYRoadNode6")])
+
+[node name="CentralRoad" type="Node3D" parent="RoadNodes"]
+
+[node name="CentralRoadNode" type="Marker3D" parent="RoadNodes/CentralRoad"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0, 40)
+gizmo_extents = 1.0
+script = ExtResource("14_weavm")
+neighbors = Array[NodePath]([NodePath("../../ExitRoad/CentralRoadNode7")])
+
+[node name="CentralRoadNode2" type="Marker3D" parent="RoadNodes/CentralRoad"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0, 40)
+gizmo_extents = 1.0
+script = ExtResource("14_weavm")
+neighbors = Array[NodePath]([NodePath("../CentralRoadNode4")])
+
+[node name="CentralRoadNode3" type="Marker3D" parent="RoadNodes/CentralRoad"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0, 4)
+gizmo_extents = 1.0
+script = ExtResource("14_weavm")
+neighbors = Array[NodePath]([NodePath("../CentralRoadNode")])
+
+[node name="CentralRoadNode4" type="Marker3D" parent="RoadNodes/CentralRoad"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0, 4)
+gizmo_extents = 1.0
+script = ExtResource("14_weavm")
+neighbors = Array[NodePath]([NodePath("../CentralRoadNode6")])
+
+[node name="CentralRoadNode5" type="Marker3D" parent="RoadNodes/CentralRoad"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0, -4)
+gizmo_extents = 1.0
+script = ExtResource("14_weavm")
+neighbors = Array[NodePath]([NodePath("../CentralRoadNode3")])
+
+[node name="CentralRoadNode6" type="Marker3D" parent="RoadNodes/CentralRoad"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0, -4)
+gizmo_extents = 1.0
+script = ExtResource("14_weavm")
+neighbors = Array[NodePath]([NodePath("../CentralRoadNode8")])
+
+[node name="CentralRoadNode7" type="Marker3D" parent="RoadNodes/CentralRoad"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0, -40)
+gizmo_extents = 1.0
+script = ExtResource("14_weavm")
+neighbors = Array[NodePath]([NodePath("../CentralRoadNode5")])
+
+[node name="CentralRoadNode8" type="Marker3D" parent="RoadNodes/CentralRoad"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0, -40)
+gizmo_extents = 1.0
+script = ExtResource("14_weavm")
+neighbors = Array[NodePath]([NodePath("../../ExitRoad/CentralRoadNode4")])
+
+[node name="CentralRoadNode9" type="Marker3D" parent="RoadNodes/CentralRoad"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40, 0, -1.5)
+gizmo_extents = 1.0
+script = ExtResource("14_weavm")
+neighbors = Array[NodePath]([NodePath("../../ExitRoad/CentralRoadNode5")])
+
+[node name="CentralRoadNode10" type="Marker3D" parent="RoadNodes/CentralRoad"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40, 0, 1.5)
+gizmo_extents = 1.0
+script = ExtResource("14_weavm")
+neighbors = Array[NodePath]([NodePath("../CentralRoadNode12")])
+
+[node name="CentralRoadNode11" type="Marker3D" parent="RoadNodes/CentralRoad"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, -1.5)
+gizmo_extents = 1.0
+script = ExtResource("14_weavm")
+neighbors = Array[NodePath]([NodePath("../CentralRoadNode9")])
+
+[node name="CentralRoadNode12" type="Marker3D" parent="RoadNodes/CentralRoad"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 1.5)
+gizmo_extents = 1.0
+script = ExtResource("14_weavm")
+neighbors = Array[NodePath]([NodePath("../CentralRoadNode14"), NodePath("../CentralRoadNode3"), NodePath("../CentralRoadNode6")])
+
+[node name="CentralRoadNode13" type="Marker3D" parent="RoadNodes/CentralRoad"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, -1.5)
+gizmo_extents = 1.0
+script = ExtResource("14_weavm")
+neighbors = Array[NodePath]([NodePath("../CentralRoadNode11"), NodePath("../CentralRoadNode6"), NodePath("../CentralRoadNode3")])
+
+[node name="CentralRoadNode14" type="Marker3D" parent="RoadNodes/CentralRoad"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 1.5)
+gizmo_extents = 1.0
+script = ExtResource("14_weavm")
+neighbors = Array[NodePath]([NodePath("../CentralRoadNode16")])
+
+[node name="CentralRoadNode15" type="Marker3D" parent="RoadNodes/CentralRoad"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40, 0, -1.5)
+gizmo_extents = 1.0
+script = ExtResource("14_weavm")
+neighbors = Array[NodePath]([NodePath("../CentralRoadNode13")])
+
+[node name="CentralRoadNode16" type="Marker3D" parent="RoadNodes/CentralRoad"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 40, 0, 1.5)
+gizmo_extents = 1.0
+script = ExtResource("14_weavm")
+neighbors = Array[NodePath]([NodePath("../../ExitRoad/CentralRoadNode2")])
+
+[node name="ExitRoad" type="Node3D" parent="RoadNodes"]
+
+[node name="CentralRoadNode" type="Marker3D" parent="RoadNodes/ExitRoad"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50, 0, -1.5)
+gizmo_extents = 1.0
+script = ExtResource("14_weavm")
+neighbors = Array[NodePath]([NodePath("../../SectionX-Y/X-YRoadNode7"), NodePath("../../SectionXY/XYRoadNode"), NodePath("../../CentralRoad/CentralRoadNode15")])
+use_weights = true
+neighbor_weights = Array[float]([2.0, 2.0, 6.0])
+
+[node name="CentralRoadNode2" type="Marker3D" parent="RoadNodes/ExitRoad"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 48, 0, 1.5)
+gizmo_extents = 1.0
+script = ExtResource("14_weavm")
+neighbors = Array[NodePath]([NodePath("../../Despawners/DespawnRoadNode")])
+
+[node name="CentralRoadNode3" type="Marker3D" parent="RoadNodes/ExitRoad"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0, -50)
+gizmo_extents = 1.0
+script = ExtResource("14_weavm")
+neighbors = Array[NodePath]([NodePath("../../CentralRoad/CentralRoadNode7"), NodePath("../../Section-X-Y/-X-YRoadNode6"), NodePath("../../SectionX-Y/X-YRoadNode4")])
+neighbor_weights = Array[float]([6.0, 2.0, 2.0])
+
+[node name="CentralRoadNode4" type="Marker3D" parent="RoadNodes/ExitRoad"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0, -48)
+gizmo_extents = 1.0
+script = ExtResource("14_weavm")
+neighbors = Array[NodePath]([NodePath("../../Despawners/DespawnRoadNode3")])
+
+[node name="CentralRoadNode5" type="Marker3D" parent="RoadNodes/ExitRoad"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -48, 0, -1.5)
+gizmo_extents = 1.0
+script = ExtResource("14_weavm")
+neighbors = Array[NodePath]([NodePath("../../Despawners/DespawnRoadNode2")])
+
+[node name="CentralRoadNode6" type="Marker3D" parent="RoadNodes/ExitRoad"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -50, 0, 1.5)
+gizmo_extents = 1.0
+script = ExtResource("14_weavm")
+neighbors = Array[NodePath]([NodePath("../../Section-XY/-XYRoadNode7"), NodePath("../../Section-X-Y/-X-YRoadNode"), NodePath("../../CentralRoad/CentralRoadNode10")])
+use_weights = true
+neighbor_weights = Array[float]([2.0, 2.0, 6.0])
+
+[node name="CentralRoadNode7" type="Marker3D" parent="RoadNodes/ExitRoad"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0, 48)
+gizmo_extents = 1.0
+script = ExtResource("14_weavm")
+neighbors = Array[NodePath]([NodePath("../../Despawners/DespawnRoadNode4")])
+
+[node name="CentralRoadNode8" type="Marker3D" parent="RoadNodes/ExitRoad"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0, 50)
+gizmo_extents = 1.0
+script = ExtResource("14_weavm")
+neighbors = Array[NodePath]([NodePath("../../SectionXY/XYRoadNode5"), NodePath("../../Section-XY/-XYRoadNode4"), NodePath("../../CentralRoad/CentralRoadNode2")])
+use_weights = true
+neighbor_weights = Array[float]([2.0, 2.0, 6.0])
+
 [node name="Dumpsters" type="Node3D" parent="."]
 
 [node name="DumpGeneral" parent="Dumpsters" instance=ExtResource("6_hoaef")]
@@ -282,18 +662,17 @@ deposit_time = 5.0
 transform = Transform3D(-2, 0, -1.7484555e-07, 0, 2, 0, 1.7484555e-07, 0, -2, -15, 0, -39.5)
 deposit_time = 5.0
 
-[node name="DumpPlastic" parent="Dumpsters" instance=ExtResource("7_msmft")]
-transform = Transform3D(-8.742278e-08, 0, -2, 0, 2, 0, 2, 0, -8.742278e-08, -39.5, 0, -22.513)
-deposit_time = 5.0
+[node name="DumpPalstic" parent="Dumpsters" instance=ExtResource("7_msmft")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.401891, 0, -5.8102865)
 
 [node name="HUD" type="CanvasLayer" parent="."]
 script = ExtResource("5_morkg")
 
 [node name="HealthBar" type="ProgressBar" parent="HUD"]
-offset_left = 720.0
-offset_top = 25.0
-offset_right = 1120.0
-offset_bottom = 52.0
+offset_left = 801.99994
+offset_top = 107.025925
+offset_right = 1086.0
+offset_bottom = 140.02592
 value = 100.0
 
 [node name="GameTimer" type="Timer" parent="HUD"]
@@ -302,32 +681,378 @@ one_shot = true
 autostart = true
 
 [node name="TimerLabel" type="Label" parent="HUD"]
-offset_left = 500.0
-offset_top = 25.0
-offset_right = 700.0
-offset_bottom = 50.0
-text = "Timer"
+offset_left = 905.99994
+offset_top = 30.025925
+offset_right = 1106.0
+offset_bottom = 55.025925
+text = "Tiempo:"
 
-[node name="CollectedBar" type="ProgressBar" parent="HUD"]
-offset_left = 50.0
-offset_top = 25.0
-offset_right = 450.0
-offset_bottom = 52.0
-value = 100.0
-show_percentage = false
+[node name="ScoreLabel" type="Label" parent="HUD"]
+offset_left = 905.99994
+offset_top = 65.025925
+offset_right = 1106.0
+offset_bottom = 90.025925
+text = "Puntaje:"
 
-[node name="CountLabel" type="Label" parent="HUD/CollectedBar"]
+[node name="Control" type="Control" parent="HUD"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TruckHealth" type="TextureRect" parent="HUD/Control"]
 layout_mode = 0
-offset_left = 150.0
-offset_right = 250.0
-offset_bottom = 25.0
-text = "0/0"
+offset_left = 777.0
+offset_top = 20.025925
+offset_right = 909.0
+offset_bottom = 158.02592
+rotation = -0.09467664
+scale = Vector2(0.80344594, 0.8450701)
+texture = ExtResource("27_3dsbg")
+expand_mode = 1
+
+[node name="Marker" type="Control" parent="HUD/Control"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="General" type="TextureRect" parent="HUD/Control/Marker"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.8500001
+anchor_right = 4.7250004
+anchor_bottom = 2.9250002
+offset_left = 2.9999924
+offset_top = 15.0
+offset_right = 2.9999847
+offset_bottom = 0.9999924
+texture = ExtResource("22_xcekw")
+expand_mode = 1
+
+[node name="Label_general" type="Label" parent="HUD/Control/Marker/General"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0830001
+anchor_top = 0.5
+anchor_right = 1.0830001
+anchor_bottom = 0.5
+offset_left = -27.545006
+offset_top = -10.5
+offset_right = 27.454994
+offset_bottom = 38.5
+text = "0
+"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ScoreLabel" type="Label" parent="HUD"]
-offset_left = 500.0
-offset_top = 60.0
-offset_right = 700.0
-offset_bottom = 85.0
-text = "Score"
+[node name="Label" type="Label" parent="HUD/Control/Marker/General"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.21700001
+anchor_top = 0.94200003
+anchor_right = 0.748
+anchor_bottom = 1.1650001
+offset_left = 0.04499817
+offset_top = -0.026000977
+offset_right = -0.020004272
+offset_bottom = 0.004989624
+text = "General"
+
+[node name="Vidrio" type="TextureRect" parent="HUD/Control/Marker"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 5.05
+anchor_top = 0.5
+anchor_right = 7.675
+anchor_bottom = 2.5570002
+offset_top = -1.0
+offset_bottom = 15.719994
+texture = ExtResource("23_3dsbg")
+expand_mode = 1
+
+[node name="Label_vidrio" type="Label" parent="HUD/Control/Marker/Vidrio"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.171
+anchor_top = 0.5
+anchor_right = 1.171
+anchor_bottom = 0.5
+offset_left = -28.955002
+offset_top = -14.5
+offset_right = 29.044998
+offset_bottom = 34.5
+text = "0
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label" type="Label" parent="HUD/Control/Marker/Vidrio"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.305
+anchor_top = 1.0
+anchor_right = 0.74300003
+anchor_bottom = 1.182
+offset_left = -0.025001526
+offset_top = -5.0
+offset_right = -0.01499939
+offset_bottom = -0.018005371
+text = "Vidrio"
+
+[node name="Plastico" type="TextureRect" parent="HUD/Control/Marker"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 8.35
+anchor_top = 0.52500004
+anchor_right = 11.05
+anchor_bottom = 2.9250002
+texture = ExtResource("24_g137x")
+expand_mode = 1
+
+[node name="Label_plastico" type="Label" parent="HUD/Control/Marker/Plastico"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.2040001
+anchor_top = 0.48400003
+anchor_right = 1.2040001
+anchor_bottom = 0.48400003
+offset_left = -20.032013
+offset_top = -11.4640045
+offset_right = 19.967987
+offset_bottom = 11.5359955
+text = "0"
+
+[node name="Label" type="Label" parent="HUD/Control/Marker/Plastico"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.24100001
+anchor_top = 1.0
+anchor_right = 0.79600006
+anchor_bottom = 1.1980001
+offset_left = -0.028001785
+offset_top = -4.0
+offset_right = 0.03199005
+offset_bottom = -0.008010864
+text = "Plastico"
+
+[node name="Metal" type="TextureRect" parent="HUD/Control/Marker"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 11.450001
+anchor_top = 0.5
+anchor_right = 14.175001
+anchor_bottom = 2.9750001
+offset_left = -3.0517578e-05
+offset_top = -3.0
+offset_right = -6.1035156e-05
+texture = ExtResource("25_fjug3")
+expand_mode = 1
+
+[node name="Label_metal" type="Label" parent="HUD/Control/Marker/Metal"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_top = 0.49500003
+anchor_right = 1.0
+anchor_bottom = 0.49500003
+offset_left = -10.0
+offset_top = -11.490002
+offset_right = 30.0
+offset_bottom = 11.509998
+text = "0"
+
+[node name="Label" type="Label" parent="HUD/Control/Marker/Metal"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.33
+anchor_top = 0.961
+anchor_right = 0.74300003
+anchor_bottom = 1.1860001
+offset_left = 0.02999878
+offset_top = -0.022003174
+offset_right = 0.013000488
+offset_bottom = 0.027992249
+text = "Metal"
+
+[node name="Papel" type="TextureRect" parent="HUD/Control/Marker"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 14.300001
+anchor_top = 0.5
+anchor_right = 17.150002
+anchor_bottom = 2.95
+offset_left = -6.1035156e-05
+offset_top = -3.0
+offset_right = -6.1035156e-05
+texture = ExtResource("26_ie6bs")
+expand_mode = 1
+
+[node name="Label_papel" type="Label" parent="HUD/Control/Marker/Papel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.228
+anchor_top = 0.5
+anchor_right = 1.228
+anchor_bottom = 0.5
+offset_left = -19.992004
+offset_top = -8.5
+offset_right = 20.007996
+offset_bottom = 14.5
+text = "0"
+
+[node name="Label" type="Label" parent="HUD/Control/Marker/Papel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.36
+anchor_top = 0.96000004
+anchor_right = 0.73700005
+anchor_bottom = 1.1880001
+offset_left = -0.040000916
+offset_top = 0.039993286
+offset_right = -0.018005371
+offset_bottom = 0.011993408
+text = "Papel"
+
+[node name="Trash" type="Control" parent="HUD/Control"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="basuraGeneral" type="TextureRect" parent="HUD/Control/Trash"]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.8500001
+anchor_right = 4.7250004
+anchor_bottom = 2.9250002
+offset_left = 623.0
+offset_top = 501.0
+offset_right = 623.0
+offset_bottom = 487.0
+texture = ExtResource("22_xcekw")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="HUD/Control/Trash/basuraGeneral"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.21700001
+anchor_top = 0.94200003
+anchor_right = 0.748
+anchor_bottom = 1.1650001
+offset_left = 0.04499817
+offset_top = -0.026000977
+offset_right = -0.020004272
+offset_bottom = 0.004989624
+text = "General"
+
+[node name="basuraVidrio" type="TextureRect" parent="HUD/Control/Trash"]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 5.05
+anchor_top = 0.5
+anchor_right = 7.675
+anchor_bottom = 2.5570002
+offset_left = 576.0
+offset_top = 485.0
+offset_right = 576.0
+offset_bottom = 501.72
+texture = ExtResource("23_3dsbg")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="HUD/Control/Trash/basuraVidrio"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.305
+anchor_top = 1.0
+anchor_right = 0.74300003
+anchor_bottom = 1.182
+offset_left = -0.025001526
+offset_top = -5.0
+offset_right = -0.01499939
+offset_bottom = -0.018005371
+text = "Vidrio"
+
+[node name="basuraPlastico" type="TextureRect" parent="HUD/Control/Trash"]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 8.35
+anchor_top = 0.52500004
+anchor_right = 11.05
+anchor_bottom = 2.9250002
+offset_left = 524.0
+offset_top = 486.0
+offset_right = 524.0
+offset_bottom = 486.0
+texture = ExtResource("24_g137x")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="HUD/Control/Trash/basuraPlastico"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.24100001
+anchor_top = 1.0
+anchor_right = 0.79600006
+anchor_bottom = 1.1980001
+offset_left = -0.028001785
+offset_top = -4.0
+offset_right = 0.03199005
+offset_bottom = -0.008010864
+text = "Plastico"
+
+[node name="basuraMetal" type="TextureRect" parent="HUD/Control/Trash"]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 11.450001
+anchor_top = 0.5
+anchor_right = 14.175001
+anchor_bottom = 2.9750001
+offset_left = 477.99997
+offset_top = 481.0
+offset_right = 477.99994
+offset_bottom = 484.0
+texture = ExtResource("25_fjug3")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="HUD/Control/Trash/basuraMetal"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.33
+anchor_top = 0.961
+anchor_right = 0.74300003
+anchor_bottom = 1.1860001
+offset_left = 0.02999878
+offset_top = -0.022003174
+offset_right = 0.013000488
+offset_bottom = 0.027992249
+text = "Metal"
+
+[node name="basuraPapel" type="TextureRect" parent="HUD/Control/Trash"]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 14.300001
+anchor_top = 0.5
+anchor_right = 17.150002
+anchor_bottom = 2.95
+offset_left = 437.99994
+offset_top = 481.0
+offset_right = 437.99994
+offset_bottom = 484.0
+texture = ExtResource("26_ie6bs")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="HUD/Control/Trash/basuraPapel"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.36
+anchor_top = 0.96000004
+anchor_right = 0.73700005
+anchor_bottom = 1.1880001
+offset_left = -0.040000916
+offset_top = 0.039993286
+offset_right = -0.018005371
+offset_bottom = 0.011993408
+text = "Papel"

@@ -21,6 +21,7 @@ class_name ItemSpawner
 
 # Límite máximo de ítems a generar (-1 = sin límite)
 @export var max_items: int = -1
+@export var item_scale: Vector3 = Vector3(1, 1, 1)
 
 var spawn_points: Array[Node3D] = []
 var list_items = []
@@ -112,6 +113,7 @@ func spawn_items():
 				entry.items.append(instance)
 				break
 		instance.global_position = spawn_pos
+		instance.scale = item_scale
 		count_items += 1
 
 func respawn_missing_items():

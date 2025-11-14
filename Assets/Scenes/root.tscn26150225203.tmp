@@ -1,0 +1,458 @@
+[gd_scene load_steps=33 format=3 uid="uid://bpvs6unrhmgga"]
+
+[ext_resource type="PackedScene" uid="uid://cdn81qieoaycd" path="res://Assets/Scenes/main/city.tscn" id="1_morkg"]
+[ext_resource type="Script" uid="uid://duefghhm48a04" path="res://Scripts/camera.gd" id="1_vc8ck"]
+[ext_resource type="Script" uid="uid://bcbdnxj17ojxi" path="res://Scripts/TrashManager.gd" id="2_6o2em"]
+[ext_resource type="PackedScene" uid="uid://d1dncn6cckwmj" path="res://Assets/Scenes/main/player.tscn" id="4_wmxxr"]
+[ext_resource type="PackedScene" uid="uid://ctuq3lki53eau" path="res://Assets/Scenes/Trashes/TrashBag.tscn" id="5_hoaef"]
+[ext_resource type="Script" uid="uid://ce501i3lptkkq" path="res://Scripts/hud.gd" id="5_morkg"]
+[ext_resource type="PackedScene" uid="uid://d2ai043jjf2fr" path="res://Assets/Scenes/Dumpsters/DumpGeneral.tscn" id="6_hoaef"]
+[ext_resource type="PackedScene" uid="uid://ykjcnopkskj6" path="res://Assets/Scenes/Trashes/TrashBags.tscn" id="6_udl0k"]
+[ext_resource type="PackedScene" uid="uid://ccsoyj23wl5r8" path="res://Assets/Scenes/Dumpsters/DumpPlastic.tscn" id="7_msmft"]
+[ext_resource type="PackedScene" uid="uid://ikw4fpcwecaf" path="res://Assets/Scenes/Trashes/TrashRubbish.tscn" id="7_txhe7"]
+[ext_resource type="PackedScene" uid="uid://d3x275cbw7mah" path="res://Assets/Scenes/Dumpsters/DumpPaper.tscn" id="8_n4vqs"]
+[ext_resource type="PackedScene" uid="uid://bf7s1sa5dutl2" path="res://Assets/Scenes/Trashes/TrashCanBroken.tscn" id="8_ycjpv"]
+[ext_resource type="PackedScene" uid="uid://c8tljjn7qiabb" path="res://Assets/Scenes/Dumpsters/DumpMetal.tscn" id="9_dfvf4"]
+[ext_resource type="PackedScene" uid="uid://c8iimf8daq140" path="res://Assets/Scenes/Trashes/TrashSodaCrushed.tscn" id="9_weavm"]
+[ext_resource type="PackedScene" uid="uid://lpvpglmbn74y" path="res://Assets/Scenes/Dumpsters/DumpGlass.tscn" id="10_2l25m"]
+[ext_resource type="PackedScene" uid="uid://b53p34u8yxfpc" path="res://Assets/Scenes/Trashes/TrashSoda.tscn" id="10_w7cdi"]
+[ext_resource type="PackedScene" uid="uid://dsohkrr1kayx4" path="res://Assets/Scenes/Trashes/TrashWaterBottle.tscn" id="11_gmobi"]
+[ext_resource type="PackedScene" uid="uid://1vkxa5m4qqt4" path="res://Assets/Scenes/Trashes/TrashCardboardBoxes.tscn" id="12_pq7br"]
+[ext_resource type="Script" uid="uid://b1uajdngr6i5o" path="res://Scripts/NPC/NPCSpawner.gd" id="13_ycjpv"]
+[ext_resource type="Script" uid="uid://d3ckluomlkngx" path="res://Scripts/NPC/RoadNode.gd" id="14_weavm"]
+[ext_resource type="PackedScene" uid="uid://b4r4e43s5sd7d" path="res://Assets/Scenes/NPC/CarRed.tscn" id="19_txhe7"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_wmxxr"]
+
+[sub_resource type="Sky" id="Sky_5qytm"]
+sky_material = SubResource("ProceduralSkyMaterial_wmxxr")
+
+[sub_resource type="Environment" id="Environment_tr35v"]
+background_mode = 2
+sky = SubResource("Sky_5qytm")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vc8ck"]
+size = Vector3(0.5136719, 1, 0.9423218)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_d5rut"]
+size = Vector3(0.22949219, 1, 0.9454956)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_wmxxr"]
+size = Vector3(0.9463501, 1, 0.9784546)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_lhmy0"]
+size = Vector3(0.25289917, 1, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_vxctq"]
+size = Vector3(0.47857666, 1, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_24s64"]
+size = Vector3(0.6865845, 1, 0.9412842)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_hoaef"]
+size = Vector3(0.2600708, 1, 0.14074707)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_morkg"]
+size = Vector3(100.388, 15, 1)
+
+[node name="Root" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_tr35v")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="WorldEnvironment"]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 30, 0)
+
+[node name="Player" parent="." instance=ExtResource("4_wmxxr")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 40, 0, -1.5)
+mass = 3000.0
+engine_force_strength = 4000.0
+steering_angle_max = 0.1
+wall_bodies = Array[NodePath]([NodePath("../Collisions/Walls/WallE/StaticBody3D"), NodePath("../Collisions/Walls/WallO/StaticBody3D"), NodePath("../Collisions/Walls/WallS/StaticBody3D"), NodePath("../Collisions/Walls/WallN/StaticBody3D")])
+wall_areas = Array[NodePath]([NodePath("../Collisions/TownAreas/BuildingCity/Area3D"), NodePath("../Collisions/TownAreas/BuildingCity/Area3D2"), NodePath("../Collisions/TownAreas/Area2/Area3D"), NodePath("../Collisions/TownAreas/Area3/Area3D"), NodePath("../Collisions/TownAreas/Area3/Area3D2"), NodePath("../Collisions/TownAreas/Area4/Area3D"), NodePath("../Collisions/TownAreas/Area4/Area3D2")])
+hud_path = NodePath("../HUD")
+
+[node name="TruckCamara" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.13305214, 0.9911091, 0, -0.9911091, 0.13305214, 0, 74.204796, 11.666693)
+script = ExtResource("1_vc8ck")
+
+[node name="City" parent="." instance=ExtResource("1_morkg")]
+
+[node name="Collisions" type="Node3D" parent="."]
+
+[node name="TownAreas" type="Node3D" parent="Collisions"]
+
+[node name="BuildingCity" type="Node3D" parent="Collisions/TownAreas"]
+transform = Transform3D(38, 0, 0, 0, 10, 0, 0, 0, 38, 22.5, 5.189189, 22.5)
+
+[node name="Area3D" type="Area3D" parent="Collisions/TownAreas/BuildingCity"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Collisions/TownAreas/BuildingCity/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.21679688, 0, -0.0015563965)
+shape = SubResource("BoxShape3D_vc8ck")
+
+[node name="Area3D2" type="Area3D" parent="Collisions/TownAreas/BuildingCity"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Collisions/TownAreas/BuildingCity/Area3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.35595703, 0, 0.0054626465)
+shape = SubResource("BoxShape3D_d5rut")
+
+[node name="Area2" type="Node3D" parent="Collisions/TownAreas"]
+transform = Transform3D(38, 0, 0, 0, 10, 0, 0, 0, 38, -22.5, 5.189, 22.5)
+
+[node name="Area3D" type="Area3D" parent="Collisions/TownAreas/Area2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Collisions/TownAreas/Area2/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0009460449, 0, 0.0028381348)
+shape = SubResource("BoxShape3D_wmxxr")
+
+[node name="Area3" type="Node3D" parent="Collisions/TownAreas"]
+transform = Transform3D(38, 0, 0, 0, 10, 0, 0, 0, 38, -22.5, 5.189, -22.5)
+
+[node name="Area3D" type="Area3D" parent="Collisions/TownAreas/Area3"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Collisions/TownAreas/Area3/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.253891, 0, 0)
+shape = SubResource("BoxShape3D_lhmy0")
+
+[node name="Area3D2" type="Area3D" parent="Collisions/TownAreas/Area3"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Collisions/TownAreas/Area3/Area3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.27236938, 0, 0)
+shape = SubResource("BoxShape3D_vxctq")
+
+[node name="Area4" type="Node3D" parent="Collisions/TownAreas"]
+transform = Transform3D(38, 0, 0, 0, 10, 0, 0, 0, 38, 22.5, 5.189, -22.5)
+
+[node name="Area3D" type="Area3D" parent="Collisions/TownAreas/Area4"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Collisions/TownAreas/Area4/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.12557983, 0, 0.0004272461)
+shape = SubResource("BoxShape3D_24s64")
+
+[node name="Area3D2" type="Area3D" parent="Collisions/TownAreas/Area4"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Collisions/TownAreas/Area4/Area3D2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.34231567, 0, 0.40045166)
+shape = SubResource("BoxShape3D_hoaef")
+
+[node name="Walls" type="Node3D" parent="Collisions"]
+
+[node name="WallE" type="Node3D" parent="Collisions/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 50)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Collisions/Walls/WallE"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Collisions/Walls/WallE/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.51568604, 0.8994601, 0)
+shape = SubResource("BoxShape3D_morkg")
+
+[node name="WallO" type="Node3D" parent="Collisions/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -50)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Collisions/Walls/WallO"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Collisions/Walls/WallO/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.51568604, 0.8994601, 0)
+shape = SubResource("BoxShape3D_morkg")
+
+[node name="WallS" type="Node3D" parent="Collisions/Walls"]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -50, 0, 0)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Collisions/Walls/WallS"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Collisions/Walls/WallS/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7868347, 0.8994601, 0)
+shape = SubResource("BoxShape3D_morkg")
+
+[node name="WallN" type="Node3D" parent="Collisions/Walls"]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 50, 0, 0)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Collisions/Walls/WallN"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Collisions/Walls/WallN/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7868347, 0.8994601, 0)
+shape = SubResource("BoxShape3D_morkg")
+
+[node name="Items" type="Node3D" parent="." node_paths=PackedStringArray("vehicle", "dumps", "items_root")]
+script = ExtResource("2_6o2em")
+collected_count_max = 1
+vehicle = NodePath("../Player")
+hud = NodePath("../HUD")
+allow_cross_dump = true
+subtract_score_cross_dump = true
+allow_negative_score = true
+add_time_correct_deposit = true
+dumps = [NodePath("../Dumpsters/DumpGeneral"), NodePath("../Dumpsters/DumpGlass"), NodePath("../Dumpsters/DumpMetal"), NodePath("../Dumpsters/DumpPaper"), NodePath("../Dumpsters/DumpPlastic")]
+item_templates = Array[PackedScene]([ExtResource("5_hoaef"), ExtResource("6_udl0k"), ExtResource("7_txhe7"), ExtResource("8_ycjpv"), ExtResource("9_weavm"), ExtResource("10_w7cdi"), ExtResource("11_gmobi"), ExtResource("12_pq7br")])
+root_spawn_points = NodePath("../SpawnPointsItems")
+items_root = NodePath(".")
+auto_spawn = false
+max_items = 10
+
+[node name="SpawnPointsItems" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7366333, 0)
+
+[node name="Point1" type="Marker3D" parent="SpawnPointsItems"]
+
+[node name="Point2" type="Marker3D" parent="SpawnPointsItems"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 45)
+
+[node name="Point3" type="Marker3D" parent="SpawnPointsItems"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -45)
+
+[node name="Point4" type="Marker3D" parent="SpawnPointsItems"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -45, 0, 0)
+
+[node name="Point5" type="Marker3D" parent="SpawnPointsItems"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 45, 0, 0)
+
+[node name="Point6" type="Marker3D" parent="SpawnPointsItems"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -45, 0, -45)
+
+[node name="Point7" type="Marker3D" parent="SpawnPointsItems"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 45, 0, -45)
+
+[node name="Point8" type="Marker3D" parent="SpawnPointsItems"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 45, 0, 45)
+
+[node name="Point9" type="Marker3D" parent="SpawnPointsItems"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -45, 0, 45)
+
+[node name="Point10" type="Marker3D" parent="SpawnPointsItems"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25, 0, 45)
+
+[node name="Point11" type="Marker3D" parent="SpawnPointsItems"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25, 0, 45)
+
+[node name="Point12" type="Marker3D" parent="SpawnPointsItems"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25, 0, -45)
+
+[node name="Point13" type="Marker3D" parent="SpawnPointsItems"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25, 0, -45)
+
+[node name="Point14" type="Marker3D" parent="SpawnPointsItems"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -45, 0, -25)
+
+[node name="Point15" type="Marker3D" parent="SpawnPointsItems"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -45, 0, 25)
+
+[node name="Point16" type="Marker3D" parent="SpawnPointsItems"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 45, 0, 25)
+
+[node name="Point17" type="Marker3D" parent="SpawnPointsItems"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 45, 0, -25)
+
+[node name="Point18" type="Marker3D" parent="SpawnPointsItems"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -25)
+
+[node name="Point19" type="Marker3D" parent="SpawnPointsItems"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 25)
+
+[node name="Point20" type="Marker3D" parent="SpawnPointsItems"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25, 0, 0)
+
+[node name="Point21" type="Marker3D" parent="SpawnPointsItems"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25, 0, 0)
+
+[node name="Point22" type="Marker3D" parent="SpawnPointsItems"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24, 0, -12)
+
+[node name="Point25" type="Marker3D" parent="SpawnPointsItems"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24, 0, -30)
+
+[node name="Point23" type="Marker3D" parent="SpawnPointsItems"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.5, 0, 12)
+
+[node name="Point24" type="Marker3D" parent="SpawnPointsItems"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 16.5, 0, 30)
+
+[node name="Cars" type="Node3D" parent="." node_paths=PackedStringArray("cars_root")]
+script = ExtResource("13_ycjpv")
+car_scenes = Array[PackedScene]([ExtResource("19_txhe7")])
+spawn_points = Array[NodePath]([NodePath("../RoadNodes/Spawners/SpawnRoadNode")])
+max_cars = 1
+cars_root = NodePath(".")
+
+[node name="RoadNodes" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0)
+
+[node name="Spawners" type="Node3D" parent="RoadNodes"]
+
+[node name="SpawnRoadNode" type="Marker3D" parent="RoadNodes/Spawners"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 60, 0, -1.5)
+gizmo_extents = 1.0
+script = ExtResource("14_weavm")
+neighbors = Array[NodePath]([NodePath("../../RoadNode")])
+
+[node name="SpawnRoadNode2" type="Marker3D" parent="RoadNodes/Spawners"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -60, 0, 1.5)
+gizmo_extents = 1.0
+script = ExtResource("14_weavm")
+
+[node name="SpawnRoadNode3" type="Marker3D" parent="RoadNodes/Spawners"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0, 60)
+gizmo_extents = 1.0
+script = ExtResource("14_weavm")
+
+[node name="SpawnRoadNode4" type="Marker3D" parent="RoadNodes/Spawners"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0, -60)
+gizmo_extents = 1.0
+script = ExtResource("14_weavm")
+neighbors = Array[NodePath]([NodePath("../../Section-x-y/RoadNode6")])
+
+[node name="Despawners" type="Node3D" parent="RoadNodes"]
+
+[node name="DespawnRoadNode" type="Marker3D" parent="RoadNodes/Despawners"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 60, 0, 1.5)
+gizmo_extents = 1.0
+script = ExtResource("14_weavm")
+is_sink = true
+
+[node name="DespawnRoadNode2" type="Marker3D" parent="RoadNodes/Despawners"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -60, 0, -1.5)
+gizmo_extents = 1.0
+script = ExtResource("14_weavm")
+is_sink = true
+
+[node name="DespawnRoadNode3" type="Marker3D" parent="RoadNodes/Despawners"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0, -60)
+gizmo_extents = 1.0
+script = ExtResource("14_weavm")
+is_sink = true
+
+[node name="DespawnRoadNode4" type="Marker3D" parent="RoadNodes/Despawners"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0, 60)
+gizmo_extents = 1.0
+script = ExtResource("14_weavm")
+is_sink = true
+
+[node name="Section-x-y" type="Node3D" parent="RoadNodes"]
+
+[node name="RoadNode2" type="Marker3D" parent="RoadNodes/Section-x-y"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 46.5, 0, -5)
+gizmo_extents = 1.0
+script = ExtResource("14_weavm")
+neighbors = Array[NodePath]([NodePath("../RoadNode3")])
+
+[node name="RoadNode3" type="Marker3D" parent="RoadNodes/Section-x-y"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 46.5, 0, -46.5)
+gizmo_extents = 1.0
+script = ExtResource("14_weavm")
+neighbors = Array[NodePath]([NodePath("../RoadNode4")])
+
+[node name="RoadNode4" type="Marker3D" parent="RoadNodes/Section-x-y"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, -46.5)
+gizmo_extents = 1.0
+script = ExtResource("14_weavm")
+neighbors = Array[NodePath]([NodePath("../RoadNode5")])
+
+[node name="RoadNode5" type="Marker3D" parent="RoadNodes/Section-x-y"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0, -50)
+gizmo_extents = 1.0
+script = ExtResource("14_weavm")
+neighbors = Array[NodePath]([NodePath("../../Despawners/DespawnRoadNode3")])
+
+[node name="RoadNode6" type="Marker3D" parent="RoadNodes/Section-x-y"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0, -50)
+gizmo_extents = 1.0
+script = ExtResource("14_weavm")
+neighbors = Array[NodePath]([NodePath("../RoadNode7")])
+
+[node name="RoadNode7" type="Marker3D" parent="RoadNodes/Section-x-y"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0, -43.5)
+gizmo_extents = 1.0
+script = ExtResource("14_weavm")
+neighbors = Array[NodePath]([NodePath("../RoadNode8")])
+
+[node name="RoadNode8" type="Marker3D" parent="RoadNodes/Section-x-y"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 43.5, 0, -43.5)
+gizmo_extents = 1.0
+script = ExtResource("14_weavm")
+neighbors = Array[NodePath]([NodePath("../RoadNode9")])
+
+[node name="RoadNode9" type="Marker3D" parent="RoadNodes/Section-x-y"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 43.5, 0, -5)
+gizmo_extents = 1.0
+script = ExtResource("14_weavm")
+neighbors = Array[NodePath]([NodePath("../RoadNode10")])
+
+[node name="RoadNode10" type="Marker3D" parent="RoadNodes/Section-x-y"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50, 0, 1.5)
+gizmo_extents = 1.0
+script = ExtResource("14_weavm")
+neighbors = Array[NodePath]([NodePath("../../Despawners/DespawnRoadNode")])
+
+[node name="RoadNode" type="Marker3D" parent="RoadNodes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50, 0, -1.5)
+gizmo_extents = 1.0
+script = ExtResource("14_weavm")
+neighbors = Array[NodePath]([NodePath("../Section-x-y/RoadNode2")])
+
+[node name="Dumpsters" type="Node3D" parent="."]
+
+[node name="DumpGeneral" parent="Dumpsters" instance=ExtResource("6_hoaef")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, -6.826702, 0, 39.5)
+deposit_time = 5.0
+
+[node name="DumpGlass" parent="Dumpsters" instance=ExtResource("10_2l25m")]
+transform = Transform3D(-8.742278e-08, 0, 2, 0, 2, 0, -2, 0, -8.742278e-08, 39.5, 0, -20)
+deposit_time = 5.0
+
+[node name="DumpMetal" parent="Dumpsters" instance=ExtResource("9_dfvf4")]
+transform = Transform3D(-8.742278e-08, 0, 2, 0, 2, 0, -2, 0, -8.742278e-08, 39.5, 0, 32)
+deposit_time = 5.0
+
+[node name="DumpPaper" parent="Dumpsters" instance=ExtResource("8_n4vqs")]
+transform = Transform3D(-2, 0, -1.7484555e-07, 0, 2, 0, 1.7484555e-07, 0, -2, -15, 0, -39.5)
+deposit_time = 5.0
+
+[node name="DumpPlastic" parent="Dumpsters" instance=ExtResource("7_msmft")]
+transform = Transform3D(-8.742278e-08, 0, -2, 0, 2, 0, 2, 0, -8.742278e-08, -39.5, 0, -22.513)
+deposit_time = 5.0
+
+[node name="HUD" type="CanvasLayer" parent="."]
+script = ExtResource("5_morkg")
+
+[node name="HealthBar" type="ProgressBar" parent="HUD"]
+offset_left = 720.0
+offset_top = 25.0
+offset_right = 1120.0
+offset_bottom = 52.0
+value = 100.0
+
+[node name="GameTimer" type="Timer" parent="HUD"]
+wait_time = 180.0
+one_shot = true
+autostart = true
+
+[node name="TimerLabel" type="Label" parent="HUD"]
+offset_left = 500.0
+offset_top = 25.0
+offset_right = 700.0
+offset_bottom = 50.0
+text = "Timer"
+
+[node name="CollectedBar" type="ProgressBar" parent="HUD"]
+offset_left = 50.0
+offset_top = 25.0
+offset_right = 450.0
+offset_bottom = 52.0
+value = 100.0
+show_percentage = false
+
+[node name="CountLabel" type="Label" parent="HUD/CollectedBar"]
+layout_mode = 0
+offset_left = 150.0
+offset_right = 250.0
+offset_bottom = 25.0
+text = "0/0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ScoreLabel" type="Label" parent="HUD"]
+offset_left = 500.0
+offset_top = 60.0
+offset_right = 700.0
+offset_bottom = 85.0
+text = "Score"
