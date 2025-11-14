@@ -59,7 +59,7 @@ func _on_item_collected(item: Node3D, trash_type, trash_type_score):
 			
 		if hud_node and hud_node.has_method("update_collected"):
 			hud_node.update_collected(collected_count, collected_count_max)
-		
+			
 		var entry_arr = list_items.filter(func (entry):
 			return entry.items.has(item)
 		)

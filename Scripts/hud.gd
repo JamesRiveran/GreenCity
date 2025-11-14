@@ -98,15 +98,15 @@ func show_trash_icon(trash_type: String):
 	hide_all_trash_icons()
 
 	match trash_type:
-		"general":
+		"General":
 			icon_general.visible = true
-		"plastico":
+		"Plastico":
 			icon_plastico.visible = true
-		"vidrio":
+		"Vidrio":
 			icon_vidrio.visible = true
-		"metal":
+		"Metal":
 			icon_metal.visible = true
-		"papel":
+		"Papel":
 			icon_papel.visible = true
 
 
